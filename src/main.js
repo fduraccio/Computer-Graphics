@@ -1,6 +1,6 @@
 function main() {
 
-	var canvas = document.getElementById("c");
+	var canvas = document.getElementById("environemt");
 	
 	var gl = canvas.getContext("webgl2");
 	if(!gl) {
