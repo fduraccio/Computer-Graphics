@@ -20,17 +20,49 @@
             }
         </style>
         <script src="perspective1.js"></script>
-        <script src="object/flower.js"></script>
+        <script src="src/movement.js"></script>
+        <script src="src/flower.js"></script>
         <script src="lib/texture.js"></script>
         <script src="lib/webgl-obj-loader.min.js"></script>
         <script src="lib/utils.js"></script>
-        <script src="lib/app.js"></script>
+        <script src="src/main.js"></script>
+
     </head>
 
-<body style="background-color: grey;" onLoad="main();">
-    <canvas id="my-canvas" width='800' height='450' style="background-color: white;">
+<body style="background-color: grey;" onload="main();">
+    <canvas id="environment" width='800' height='450' style="background-color: white;">
         Your browser doesn't support the Canvas Element!
     </canvas>
+    <div>
+        Choose your Strategy
+    </div>
+    <table  style="padding: 10px; ">
+		<tr>
+			<td>Search the bird:</td>
+			<td><B>WASD/Arrows</B> keys</td>
+		</tr>
+		<tr>
+			<td>Move view (first person):</td>
+			<td>Mouse/directional keys</td>
+        
+		</tr>
+		<tr>
+			<td>Move view (third person):</td>
+			<td>Directional keys</td>
+		</tr>
+		<tr>
+			<td>Zoom in/out (third person):</td>
+			<td><B>X/Z</B> keys</td>
+		</tr>
+		<tr>
+			<td>Reset view:</td>
+			<td><B>R</B> key</td>
+		</tr>
+		<tr>
+			<td>Toggle fullscreen:</td>
+			<td><B>F</B> key</td>
+		</tr>
+	</table>
 </body>
 
 </html>
