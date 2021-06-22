@@ -8,15 +8,46 @@
         <title> Bird Hunt</title>
         <style type="text/css">
             body {
-                margin: 0;
                 background-color: gray;
+                color: black;
+                font-family: "Clear Sans", Arial, sans-serif;
+            }
+
+            body>div {
+                display: table-row;
+            }
+
+            body>div>div:first-child {
+                float: left;
             }
 
             canvas {
-                width: 70vw;
-                height: 70vh;
-                display: block;
                 background-color: white;
+            }
+
+            #controls {
+                float: left;
+                padding-left: 15px;
+                margin-top: 10px;
+            }
+
+            #controls>span {
+                font-size: x-large;
+                text-decoration-line: underline;
+                font-weight: bold;
+            }
+
+            li>span:first-child {
+                font-weight: normal;
+                text-decoration-line: underline;
+            }
+
+            li>span:last-child {
+                font-weight: bold;
+            }
+
+            #clear {
+                clear: both;
             }
         </style>
         <script src="perspective1.js"></script>
@@ -29,40 +60,46 @@
 
     </head>
 
-<body style="background-color: grey;" onload="main();">
-    <canvas id="environment" width='800' height='450' style="background-color: white;">
-        Your browser doesn't support the Canvas Element!
-    </canvas>
+<body onload="main();">
     <div>
-        Choose your Strategy
-    </div>
-    <table  style="padding: 10px; ">
-		<tr>
-			<td>Search the bird:</td>
-			<td><B>WASD/Arrows</B> keys</td>
-		</tr>
-		<tr>
-			<td>Move view (first person):</td>
-			<td>Mouse/directional keys</td>
-        
-		</tr>
-		<tr>
-			<td>Move view (third person):</td>
-			<td>Directional keys</td>
-		</tr>
-		<tr>
-			<td>Zoom in/out (third person):</td>
-			<td><B>X/Z</B> keys</td>
-		</tr>
-		<tr>
-			<td>Reset view:</td>
-			<td><B>R</B> key</td>
-		</tr>
-		<tr>
-			<td>Toggle fullscreen:</td>
-			<td><B>F</B> key</td>
-		</tr>
-	</table>
+        <div>
+            <canvas id="environment" width="1024" height="769" style="background-color: white;">
+                Your browser doesn't support the Canvas Element!
+            </canvas>
+        </div>
+        <div id="controls">
+            <span>Choose your Strategy</span>
+            <div class="row">
+                <div class="col-12" style="padding: 10px">
+                    <table>
+                        <tr>
+                            <td>Search the bird:</td>
+                            <td><B>WASD/Arrows</B> keys</td>
+                        </tr>
+                        <tr>
+                            <td>Move view (first person):</td>
+                            <td>Mouse/directional keys</td>
+                        </tr>
+                        <tr>
+                            <td>Move view (third person):</td>
+                            <td>Directional keys</td>
+                        </tr>
+                        <tr>
+                            <td>Zoom in/out (third person):</td>
+                            <td><B>X/Z</B> keys</td>
+                        </tr>
+                        <tr>
+                            <td>Reset view:</td>
+                            <td><B>R</B> key</td>
+                        </tr>
+                        <tr>
+                            <td>Toggle fullscreen:</td>
+                            <td><B>F</B> key</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
