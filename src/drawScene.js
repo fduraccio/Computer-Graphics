@@ -1,18 +1,21 @@
-var flowerStr = 'object/flower.obj';
-var plantStr = 'object/plant.obj';
-var birdStr = 'object/red.obj';
-var rock1Str = 'object/rock1.obj';
-var rock2Str = 'object/rock2.obj';
-var rock3Str = 'object/rock3.obj';
-var tree1Str = 'object/tree1.obj';
-var tree2Str = 'object/tree2.obj';
-var tree3Str = 'object/tree3.obj';
-var tree4Str = 'object/tree4.obj';
-var smallRockStr = 'object/smallrock.obj';
-var environmentTexture='texture/Texture_01.png'
-var birdTexture = 'texture/texture_birb.png';
+flowerStr = 'object/flower.obj';
+plantStr = 'object/plant.obj';
+birdStr = 'object/red.obj';
+rock1Str = 'object/rock1.obj';
+rock2Str = 'object/rock2.obj';
+rock3Str = 'object/rock3.obj';
+tree1Str = 'object/tree1.obj';
+tree2Str = 'object/tree2.obj';
+tree3Str = 'object/tree3.obj';
+tree4Str = 'object/tree4.obj';
+smallRockStr = 'object/smallrock.obj';
+environmentTexture='texture/Texture_01.png';
+birdTexture = 'texture/texture_birb.png';
 
 function sceneGraph(){
 
+    floor= new Node();
+    
+    
 
 }
