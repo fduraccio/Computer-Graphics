@@ -1,5 +1,3 @@
-<html>
-
 <head>
 
     <head>
@@ -52,19 +50,18 @@
         </style>
         <script src="perspective1.js"></script>
         <script src="src/movement.js"></script>
-        <!--<script src="src/flower.js"></script>-->
-        <!--<script src="lib/texture.js"></script>-->
         <script src="lib/webgl-obj-loader.min.js"></script>
         <script src="lib/utils.js"></script>
+        <script src="src/drawScene.js" ></script>
+        <script src="src/vars.js" ></script>
         <script src="src/main.js"></script>
 
     </head>
 
-<body>
+<body onload="init();">
     <div>
         <div>
-            <canvas id="environment" width="1024" height="769" style="background-color: white;">
-                Your browser doesn't support the Canvas Element!
+            <canvas id="canvas" width="1024" height="769" style="background-color: white;">
             </canvas>
         </div>
         <div id="controls">
