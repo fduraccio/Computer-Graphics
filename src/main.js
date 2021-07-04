@@ -1,44 +1,5 @@
 
 var canvas;
-
-var vs=`#version 300 es
-#define POSITION_LOCATION 0
-#define NORMAL_LOCATION 1
-#define UV_LOCATION 2
-
-layout(location = POSITION_LOCATION) in vec3 in_pos;
-layout(location = NORMAL_LOCATION) in vec3 in_norm;
-layout(location = UV_LOCATION) in vec2 in_uv;
-
-uniform mat4 pMatrix;
-
-out vec3 fs_pos;
-out vec3 fs_norm;
-out vec2 fs_uv;
-
-void main() {
-	fs_pos = in_pos;
-	fs_norm = in_norm;
-	fs_uv = vec2(in_uv.x,1.0-in_uv.y);
-	
-	gl_Position = pMatrix * vec4(in_pos, 1);
-}`;
-
-var fs= `#version 300 es
-precision highp float;
-
-in vec3 fs_pos;
-in vec3 fs_norm;
-in vec2 fs_uv;
-
-uniform sampler2D u_texture;
-
-out vec4 color;
-
-void main() {
-	color = texture(u_texture, fs_uv);
-}`;
-
 var gl = null,
 	program = null,
 	mesh = null;
@@ -47,7 +8,9 @@ var projectionMatrix,
 	perspProjectionMatrix,
 	viewMatrix,
 	worldMatrix;
-
+var baseDir;
+var shaderDir;
+var program;
 
 //Parameters for Camera
 var cx = 4.5;
@@ -60,116 +23,83 @@ var lookRadius = 10.0;
 
 
 function main(){
+	
 
 	// setup everything else
-	var canvas = document.getElementById("environment");
 	canvas.addEventListener("mousedown", doMouseDown, false);
 	canvas.addEventListener("mouseup", doMouseUp, false);
 	canvas.addEventListener("mousemove", doMouseMove, false);
 	canvas.addEventListener("mousewheel", doMouseWheel, false);
 	
-	try{
-		gl= canvas.getContext("webgl2");
-	} catch(e){
-		console.log(e);
-	}
-	
-	if(gl){
-		// Compile and link shaders
-		program = gl.createProgram();
-		var v1 = gl.createShader(gl.VERTEX_SHADER);
-		gl.shaderSource(v1, vs);
-		gl.compileShader(v1);
-		if (!gl.getShaderParameter(v1, gl.COMPILE_STATUS)) {
-			alert("ERROR IN VS SHADER : " + gl.getShaderInfoLog(v1));
-		}
-		var v2 = gl.createShader(gl.FRAGMENT_SHADER);
-		gl.shaderSource(v2, fs)
-		gl.compileShader(v2);		
-		if (!gl.getShaderParameter(v2, gl.COMPILE_STATUS)) {
-			alert("ERROR IN FS SHADER : " + gl.getShaderInfoLog(v2));
-		}			
-		gl.attachShader(program, v1);
-		gl.attachShader(program, v2);
-		gl.linkProgram(program);				
-		
-		gl.useProgram(program);
 
-		// Load mesh using the webgl-obj-loader library
-		mesh = new OBJ.Mesh(objStr);
-
-		// Create a texture
-		imgtx = new Image();
-		imgtx.src = TextureData;
-		imgtx.onload = function() {
-			var textureId = gl.createTexture();
-			gl.activeTexture(gl.TEXTURE0 + 0);
-			gl.bindTexture(gl.TEXTURE_2D, textureId);		
-			gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, imgtx);		
-		// set the filtering so we don't need mips
-		    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-		    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-		    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-		    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-		}
-		
-		
-		// links mesh attributes to shader attributes
-		program.vertexPositionAttribute = gl.getAttribLocation(program, "in_pos");
-		gl.enableVertexAttribArray(program.vertexPositionAttribute);
-		 
-		program.vertexNormalAttribute = gl.getAttribLocation(program, "in_norm");
-		gl.enableVertexAttribArray(program.vertexNormalAttribute);
-		 
-		program.textureCoordAttribute = gl.getAttribLocation(program, "in_uv");
-		gl.enableVertexAttribArray(program.textureCoordAttribute);
-
-		program.WVPmatrixUniform = gl.getUniformLocation(program, "pMatrix");
-		program.textureUniform = gl.getUniformLocation(program, "u_texture");
-		
-		OBJ.initMeshBuffers(gl, mesh);
-		
-		// prepares the world, view and projection matrices.
-		var w=canvas.clientWidth;
-		var h=canvas.clientHeight;
-		
-		gl.clearColor(0.0, 0.0, 0.0, 1.0);
-		gl.viewport(0.0, 0.0, w, h);
-		
-		perspProjectionMatrix = perspective();
-
-
-		// selects the mesh
-		gl.bindBuffer(gl.ARRAY_BUFFER, mesh.vertexBuffer);
-		gl.vertexAttribPointer(program.vertexPositionAttribute, mesh.vertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
-	    gl.bindBuffer(gl.ARRAY_BUFFER, mesh.textureBuffer);
-	    gl.vertexAttribPointer(program.textureCoordAttribute, mesh.textureBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		
-		gl.bindBuffer(gl.ARRAY_BUFFER, mesh.normalBuffer);
-		gl.vertexAttribPointer(program.vertexNormalAttribute, mesh.normalBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		 
-		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indexBuffer);		
-		
+	// Create a texture
+	imgtx = new Image();
+	imgtx.src = baseDir+"texture/Texture_01.jpg";
+	imgtx.onload = function() {
 		var textureId = gl.createTexture();
 		gl.activeTexture(gl.TEXTURE0 + 0);
 		gl.bindTexture(gl.TEXTURE_2D, textureId);		
 		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, imgtx);		
-	// set the filtering so we don't need mips
-	    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-	    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-	    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-	    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-
-	 // turn on depth testing
-	    gl.enable(gl.DEPTH_TEST);
-
-		drawScene();
-	}else{
-		alert("Error: WebGL not supported by your browser!");
+		// set the filtering so we don't need mips
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 	}
+		
+		
+		// links mesh attributes to shader attributes
+	program.vertexPositionAttribute = gl.getAttribLocation(program, "in_pos");
+	gl.enableVertexAttribArray(program.vertexPositionAttribute);
+		 
+	program.vertexNormalAttribute = gl.getAttribLocation(program, "in_norm");
+	gl.enableVertexAttribArray(program.vertexNormalAttribute);
+		 
+	program.textureCoordAttribute = gl.getAttribLocation(program, "in_uv");
+	gl.enableVertexAttribArray(program.textureCoordAttribute);
+
+	program.WVPmatrixUniform = gl.getUniformLocation(program, "pMatrix");
+	program.textureUniform = gl.getUniformLocation(program, "u_texture");
+		
+	OBJ.initMeshBuffers(gl, mesh);
+		
+	// prepares the world, view and projection matrices.
+	var w=canvas.clientWidth;
+	var h=canvas.clientHeight;
+		
+	gl.clearColor(0.0, 0.0, 0.0, 1.0);
+	gl.viewport(0.0, 0.0, w, h);
+		
+	perspProjectionMatrix = perspective();
+
+
+	// selects the mesh
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.vertexBuffer);
+	gl.vertexAttribPointer(program.vertexPositionAttribute, mesh.vertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.textureBuffer);
+	gl.vertexAttribPointer(program.textureCoordAttribute, mesh.textureBuffer.itemSize, gl.FLOAT, false, 0, 0);
+	
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.normalBuffer);
+	gl.vertexAttribPointer(program.vertexNormalAttribute, mesh.normalBuffer.itemSize, gl.FLOAT, false, 0, 0);
+		
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indexBuffer);		
+	
+	var textureId = gl.createTexture();
+	gl.activeTexture(gl.TEXTURE0 + 0);
+	gl.bindTexture(gl.TEXTURE_2D, textureId);		
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, imgtx);		
+	// set the filtering so we don't need mips
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+	// turn on depth testing
+	gl.enable(gl.DEPTH_TEST);
+
+	//drawScene();
+	
 }
-
-
 
 
 function drawScene() {
@@ -189,4 +119,45 @@ function drawScene() {
 	
 	window.requestAnimationFrame(drawScene);		
 }
+
+
+async function init(){
+	console.log("casa");
+	var path = window.location.pathname;
+	var page = path.split("/").pop();
+	baseDir = window.location.href.replace(page, '');
+	shaderDir = baseDir+"shaders/"; 
+
+  	var canvas = document.getElementById("environment");
+	gl = canvas.getContext("webgl2");
+	if (!gl) {
+		document.write("GL context not opened");
+		return;
+	}
+	utils.resizeCanvasToDisplaySize(gl.canvas);
+
+  	await utils.loadFiles([shaderDir + 'vs.glsl', shaderDir + 'fs.glsl'], function (shaderText) {
+  	var vertexShader = utils.createShader(gl, gl.VERTEX_SHADER, shaderText[0]);
+  	var fragmentShader = utils.createShader(gl, gl.FRAGMENT_SHADER, shaderText[1]);
+
+  	program = utils.createProgram(gl, vertexShader, fragmentShader);
+	});
+
+	gl.useProgram(program);
+
+	//Load Models 
+	var flowerObjStr = await utils.get_objstr(baseDir+ "object/flower.obj");
+    flowerModel = new OBJ.Mesh(flowerObjStr);
+
+    var plantObjStr = await utils.get_objstr(baseDir+ "object/plant.obj");
+    plantModel = new OBJ.Mesh(plantObjStr);
+
+    var rock1ObjStr = await utils.get_objstr(baseDir+ "object/rock1.obj");
+    rock1Model = new OBJ.Mesh(rock1ObjStr);
+
+	///////////////////////////////////
+
+	main();
+}
+
 

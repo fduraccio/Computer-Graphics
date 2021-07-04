@@ -165,6 +165,7 @@ function doMouseDown(event) {
 	mouseState = true;
 }
 function doMouseUp(event) {
+	console.log("casa")
 	lastMouseX = -100;
 	lastMouseY = -100;
 	mouseState = false;
