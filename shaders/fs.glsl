@@ -1,14 +1,18 @@
 #version 300 es
-precision highp float;
 
-in vec3 fs_pos;
-in vec3 fs_norm;
-in vec2 fs_uv;
+precision mediump float;
 
-uniform sampler2D u_texture;
+in vec3 sampleDir;
+ 
+uniform samplerCube u_texture;
+uniform mat4 inverseViewProjMatrix;
 
-out vec4 color;
-
+out vec4 outColor;
+ 
 void main() {
-	color = texture(u_texture, fs_uv);
+    vec4 p = inverseViewProjMatrix*vec4(sampleDir, 1.0);
+    
+    vec4 rgba = texture(u_texture, normalize(p.xyz / p.w));
+    
+    outColor = vec4(rgba.rgb, 1.0);
 }

@@ -15,7 +15,13 @@ birdTexture = 'texture/texture_birb.png';
 function sceneGraph(){
 
     floor= new Node();
+    floor.drawInfo={
+        buffer: floorBuffer,
+        vao: vaofloor,
+    };
+
     
+
     
 
 }

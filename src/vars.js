@@ -48,3 +48,15 @@ var Node = function() {
   };
   //------------------------------------------------------------------------------
   
+
+  var bgCol = [0.1, 0.1, 0.1, 1.0];
+var cx = 0.0;
+var cy = 0.0;
+var cz = 10.0;
+var angle = 0.01;
+var elevation = 0.01;
+var lookRadius = 10.0;
+
+var vertPosAttr;
+var vertNormAttr;
+var skyboxVertPosAttr;

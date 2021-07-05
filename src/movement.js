@@ -1,4 +1,5 @@
 var keyFunctionDown = function(e) {
+	console.log("casa")
 	if(!keys[e.keyCode]) {
 		keys[e.keyCode] = true;
 		switch(e.keyCode) {
@@ -128,6 +129,7 @@ var keyFunctionDown = function(e) {
 }
 
 var keyFunctionUp = function(e) {
+	console.log(e.keyCode)
 	if(keys[e.keyCode]) {
 		keys[e.keyCode] = false;
 		switch(e.keyCode) {
@@ -141,8 +143,8 @@ var keyFunctionUp = function(e) {
 				break;
 			case 37:
 			case 39:
-				deltaCamAngle_1 = 0.0;
-				deltaCamAngle_2 = 0.0;
+				elevation = 0.0;
+				elevation = 0.0;
 				break;
 			case 38:
 			case 40:

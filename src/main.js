@@ -1,25 +1,6 @@
 
-var canvas;
-var gl = null,
-	program = null,
-	mesh = null;
-	
-var projectionMatrix, 
-	perspProjectionMatrix,
-	viewMatrix,
-	worldMatrix;
-var baseDir;
-var shaderDir;
-var program;
 
-//Parameters for Camera
-var cx = 4.5;
-var cy = 0.0;
-var cz = 10.0;
-var elevation = 0.0;
-var angle = 0.0;
 
-var lookRadius = 10.0;
 
 function initializeVariables(){
 	utils.resizeCanvasToDisplaySize(gl.canvas);
@@ -28,7 +9,79 @@ function initializeVariables(){
     gl.enable(gl.DEPTH_TEST);
     gl.enable(gl.CULL_FACE);
 }
+
+function ClearBits(){
+    gl.clearColor(bgCol[0], bgCol[1], bgCol[2], bgCol[3]);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+}
+
+function SetViewportAndCanvas(){
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+    gl.enable(gl.DEPTH_TEST);
+    ClearBits();
+}
+
+function SetMatrices(){
+    viewMatrix = utils.MakeView(cx, cy, cz, 0.0, 0.0);
+    perspectiveMatrix = utils.MakePerspective(30, gl.canvas.width/gl.canvas.height, 0.1, 100.0);
+    
+}
+
+function DrawSkybox(){
+    gl.useProgram(program);
+    
+    gl.activeTexture(gl.TEXTURE0+3);
+    gl.bindTexture(gl.TEXTURE_CUBE_MAP, skyboxTexture);
+    gl.uniform1i(skyboxTexHandle, 3);
+    
+    var viewProjMat = utils.multiplyMatrices(perspectiveMatrix, viewMatrix);
+    inverseViewProjMatrix = utils.invertMatrix(viewProjMat);
+    gl.uniformMatrix4fv(inverseViewProjMatrixHandle, gl.FALSE, utils.transposeMatrix(inverseViewProjMatrix));
+    
+    gl.bindVertexArray(skyboxVao);
+    gl.depthFunc(gl.LEQUAL);
+    gl.drawArrays(gl.TRIANGLES, 0, 1*6);
+}
+
+function DrawScene(){
+    ClearBits();
+    
+    gl.useProgram(program);
+    
+    angle = angle;// + rvy;
+	elevation = elevation;// + rvx;
+	
+	cz = lookRadius * Math.cos(utils.degToRad(-angle)) * Math.cos(utils.degToRad(-elevation));
+	cx = lookRadius * Math.sin(utils.degToRad(-angle)) * Math.cos(utils.degToRad(-elevation));
+	cy = lookRadius * Math.sin(utils.degToRad(-elevation));
+	viewMatrix = utils.MakeView(cx, cy, cz, elevation, angle);
+    
+    DrawSkybox();
+        
+    window.requestAnimationFrame(DrawScene);
+}
+
+
 function main(){
+
+	canvas.addEventListener("mousedown", doMouseDown, false);
+	canvas.addEventListener("mouseup", doMouseUp, false);
+	canvas.addEventListener("mousemove", doMouseMove, false);
+	canvas.addEventListener("keyup", keyFunctionUp, false);
+	SetViewportAndCanvas();
+    SetMatrices();
+    GetAttributesAndUniforms();
+    
+    DrawScene();
+}
+
+function GetAttributesAndUniforms(){
+    //Uniforms
+    skyboxTexHandle = gl.getUniformLocation(program, "u_texture"); 
+    inverseViewProjMatrixHandle = gl.getUniformLocation(program, "inverseViewProjMatrix"); 
+    skyboxVertPosAttr = gl.getAttribLocation(program, "in_position");
+}
+/*function main(){
 	console.log("casa")
     initializeVariables()
 	// setup everything else
@@ -105,25 +158,91 @@ function main(){
 
 	//drawScene();
 	
-}
+}*/
 
 
-function drawScene() {
-	// update WV matrix
-	cz = lookRadius * Math.cos(utils.degToRad(-angle)) * Math.cos(utils.degToRad(-elevation));
-	cx = lookRadius * Math.sin(utils.degToRad(-angle)) * Math.cos(utils.degToRad(-elevation));
-	cy = lookRadius * Math.sin(utils.degToRad(-elevation));
-	viewMatrix = utils.MakeView(cx, cy, cz, elevation, -angle);
-	projectionMatrix = utils.multiplyMatrices(perspProjectionMatrix, viewMatrix);
-
-	// sets the uniforms
-	gl.uniform1i(program.textureUniform, 0);
-
-	// draws the request
-	gl.uniformMatrix4fv(program.WVPmatrixUniform, gl.FALSE, utils.transposeMatrix(projectionMatrix));		
-	gl.drawElements(gl.TRIANGLES, flowerModel.indexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
-	
-	window.requestAnimationFrame(drawScene);		
+function LoadEnvironment(){
+    skyboxVertPos = new Float32Array(
+    [
+      -1, -1, 1.0,
+       1, -1, 1.0,
+      -1,  1, 1.0,
+      -1,  1, 1.0,
+       1, -1, 1.0,
+       1,  1, 1.0,
+    ]);
+    
+    skyboxVao = gl.createVertexArray();
+    gl.bindVertexArray(skyboxVao);
+    
+    var positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, skyboxVertPos, gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(skyboxVertPosAttr);
+    gl.vertexAttribPointer(skyboxVertPosAttr, 3, gl.FLOAT, false, 0, 0);
+    
+    skyboxTexture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0+3);
+    gl.bindTexture(gl.TEXTURE_CUBE_MAP, skyboxTexture);
+    
+    var envTexDir = baseDir+"env/";
+ 
+    const faceInfos = [
+        {
+            target: gl.TEXTURE_CUBE_MAP_POSITIVE_X, 
+            url: envTexDir+'front.png',
+        },
+        {
+            target: gl.TEXTURE_CUBE_MAP_NEGATIVE_X, 
+            url: envTexDir+'back.png',
+        },
+        {
+            target: gl.TEXTURE_CUBE_MAP_POSITIVE_Y, 
+            url: envTexDir+'top2.png',
+        },
+        {
+            target: gl.TEXTURE_CUBE_MAP_NEGATIVE_Y, 
+            url: envTexDir+'bottom.png',
+        },
+        {
+            target: gl.TEXTURE_CUBE_MAP_POSITIVE_Z, 
+            url: envTexDir+'right.png',
+        },
+        {
+            target: gl.TEXTURE_CUBE_MAP_NEGATIVE_Z, 
+            url: envTexDir+'left.png',
+        },
+    ];
+    faceInfos.forEach((faceInfo) => {
+        const {target, url} = faceInfo;
+        
+        // Upload the canvas to the cubemap face.
+        const level = 0;
+        const internalFormat = gl.RGBA;
+        const width = 1024;
+        const height = 1024;
+        const format = gl.RGBA;
+        const type = gl.UNSIGNED_BYTE;
+        
+        // setup each face so it's immediately renderable
+        gl.texImage2D(target, level, internalFormat, width, height, 0, format, type, null);
+        
+        // Asynchronously load an image
+        const image = new Image();
+        image.src = url;
+        image.addEventListener('load', function() {
+            // Now that the image has loaded upload it to the texture.
+            gl.activeTexture(gl.TEXTURE0+3);
+            gl.bindTexture(gl.TEXTURE_CUBE_MAP, skyboxTexture);
+            gl.texImage2D(target, level, internalFormat, format, type, image);
+            gl.generateMipmap(gl.TEXTURE_CUBE_MAP);
+        });
+    
+        
+    });
+    gl.generateMipmap(gl.TEXTURE_CUBE_MAP);
+    gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+    
 }
 
 
@@ -185,6 +304,7 @@ async function init(){
     smallRModel = new OBJ.Mesh(smallRObj);
 
 	///////////////////////////////////
+	LoadEnvironment()
 
 	main();
 }
