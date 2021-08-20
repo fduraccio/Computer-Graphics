@@ -1,15 +1,13 @@
 #version 300 es
 
-in vec3 in_position;
-     
-out vec3 sampleDir;
-     
+in vec3 inPosition;
+in vec3 inNormal;
+out vec3 fsNormal;
+
+uniform mat4 matrix; 
+uniform mat4 nMatrix;     //matrix to transform normals
+
 void main() {
-  // Multiply the position by the matrix.
-  gl_Position = vec4(in_position,1.0);
- 
-  // Pass a normal. Since the positions are
-  // centered around the origin we can just 
-  // pass the position
-  sampleDir = in_position;
+  fsNormal = mat3(nMatrix) * inNormal; 
+  gl_Position = matrix * vec4(inPosition, 1.0);
 }

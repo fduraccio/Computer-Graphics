@@ -2,17 +2,16 @@
 
 precision mediump float;
 
-in vec3 sampleDir;
- 
-uniform samplerCube u_texture;
-uniform mat4 inverseViewProjMatrix;
-
+in vec3 fsNormal;
 out vec4 outColor;
- 
+
+uniform vec3 mDiffColor; //material diffuse color 
+uniform vec3 lightDirection; // directional light direction vec
+uniform vec3 lightColor; //directional light color 
+
 void main() {
-    vec4 p = inverseViewProjMatrix*vec4(sampleDir, 1.0);
-    
-    vec4 rgba = texture(u_texture, normalize(p.xyz / p.w));
-    
-    outColor = vec4(rgba.rgb, 1.0);
+
+  vec3 nNormal = normalize(fsNormal);
+  vec3 lambertColor = mDiffColor * lightColor * dot(-lightDirection,nNormal);
+  outColor = vec4(clamp(lambertColor, 0.00, 1.0),1.0);
 }

@@ -1,5 +1,5 @@
 var keyFunctionDown = function(e) {
-	console.log("casa")
+	console.log('keydown')
 	if(!keys[e.keyCode]) {
 		keys[e.keyCode] = true;
 		switch(e.keyCode) {
@@ -129,7 +129,7 @@ var keyFunctionDown = function(e) {
 }
 
 var keyFunctionUp = function(e) {
-	console.log(e.keyCode)
+	console.log('up')
 	if(keys[e.keyCode]) {
 		keys[e.keyCode] = false;
 		switch(e.keyCode) {
@@ -143,8 +143,8 @@ var keyFunctionUp = function(e) {
 				break;
 			case 37:
 			case 39:
-				elevation = 0.0;
-				elevation = 0.0;
+				deltaCamAngle_1 = 0.0;
+				deltaCamAngle_2 = 0.0;
 				break;
 			case 38:
 			case 40:
@@ -158,41 +158,45 @@ var keyFunctionUp = function(e) {
 		}
 	}
 }
-
 var mouseState = false;
 var lastMouseX = -100, lastMouseY = -100;
+
 function doMouseDown(event) {
 	lastMouseX = event.pageX;
 	lastMouseY = event.pageY;
 	mouseState = true;
 }
+
 function doMouseUp(event) {
-	console.log("casa")
 	lastMouseX = -100;
 	lastMouseY = -100;
 	mouseState = false;
 }
+
 function doMouseMove(event) {
-	if(mouseState) {
+	if (mouseState) {
 		var dx = event.pageX - lastMouseX;
 		var dy = lastMouseY - event.pageY;
 		lastMouseX = event.pageX;
 		lastMouseY = event.pageY;
-		
-		if((dx != 0) || (dy != 0)) {
+
+		if ((dx != 0) || (dy != 0)) {
 			angle = angle + 0.5 * dx;
 			elevation = elevation + 0.5 * dy;
 		}
 	}
 }
+
 function doMouseWheel(event) {
-	var nLookRadius = lookRadius + event.wheelDelta/200.0;
-	if((nLookRadius > 5.0) && (nLookRadius < 100.0)) {
+	console.log('wheel')
+	var nLookRadius = lookRadius + event.wheelDelta / 200.0;
+	if ((nLookRadius > 5.0) && (nLookRadius < 100.0)) {
 		lookRadius = nLookRadius;
 	}
 }
+
 function toggleFullScreen() {
-	var canvas = document.getElementById("c");
+	var canvas = document.getElementById("canvas");
 	if(!document.fullscreenElement) {
 		canvas.requestFullscreen();
 	}
