@@ -1,14 +1,5 @@
 
-
-
-//Variables to load the model
-var flowerStr, plantStr, birdStr,
-  rock1Str, rock2Str, rock3Str,
-  tree1Str, tree2Str, tree3Str,
-  tree4Str, smallRockStr, environmentTexture,
-  birdTexture;
-
-//scene graphs variables--------------------------------------------------------
+//scene graphs variables-
 var Node = function () {
   this.children = [];
   this.localMatrix = utils.identityMatrix();
@@ -46,17 +37,19 @@ Node.prototype.updateWorldMatrix = function (matrix) {
     child.updateWorldMatrix(worldMatrix);
   });
 };
-//------------------------------------------------------------------------------
 
+ updateWorldMatrix = function (matrix) {
+  if (matrix) {
+    // a matrix was passed in so do the math
+    this.worldMatrix = utils.multiplyMatrices(matrix, this.localMatrix);
+  } else {
+    // no matrix was passed in so just copy.
+    utils.copy(this.localMatrix, this.worldMatrix);
+  }
 
-var bgCol = [0.1, 0.1, 0.1, 1.0];
-var cx = 0.0;
-var cy = 0.0;
-var cz = 10.0;
-var angle = 0.01;
-var elevation = 0.01;
-var lookRadius = 10.0;
-
-var vertPosAttr;
-var vertNormAttr;
-var skyboxVertPosAttr;
+  // now process all the children
+  var worldMatrix = this.worldMatrix;
+  this.children.forEach(function (child) {
+    child.updateWorldMatrix(worldMatrix);
+  });
+};
