@@ -26,17 +26,15 @@ async function main() {
 
 
     var img = loadTextures();
-    var i = 0;
+    var i;
 
     // load bird
-    // redAsset = await loadAsset(redObj[0])
+    redAsset = await loadAsset(redObj[0], img[0])
 
     // load asset
     for (var i = 0; i < assetsObj.length; i++) {
-        assets[i] = await loadAsset(assetsObj[i]);
-        console.log(assets[i])
+        assets[i] = await loadAsset(assetsObj[i], img[1]);
     }
-
     console.log(assets)
 
 
@@ -47,6 +45,9 @@ async function main() {
 
     localMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(0, 40, 0), utils.multiplyMatrices(utils.MakeRotateXMatrix(45), utils.MakeScaleMatrix(30, 30, 30)))
     worldMatrix2 = localMatrix2
+
+    localMatrix3 = utils.multiplyMatrices(utils.MakeTranslateMatrix(0, 0, 40), utils.multiplyMatrices(utils.MakeRotateXMatrix(0), utils.MakeScaleMatrix(30, 30, 30)))
+    worldMatrix3 = localMatrix3
 
     requestAnimationFrame(drawScene);
 
@@ -81,26 +82,25 @@ async function main() {
 
         worldMatrix = utils.multiplyMatrices(utils.MakeRotateZMatrix(0.3), worldMatrix);
         worldMatrix2 = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.3), worldMatrix2);
+        worldMatrix3 = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.3), worldMatrix3);
 
-        // drawAsset(redAsset, worldMatrix, viewMatrix)
-
-        // drawAsset(assets[0], worldMatrix, viewMatrix)
-        drawAsset(assets[2], worldMatrix2, viewMatrix)
-       
-        
-
+        drawAsset(redAsset, worldMatrix, viewMatrix)
+        drawAsset(assets[1], worldMatrix3, viewMatrix)
+        drawAsset(assets[0], worldMatrix2, viewMatrix)
 
         requestAnimationFrame(drawScene);
 
     }
 
-    async function loadAsset(assetDir) {
+    async function loadAsset(assetDir, texture) {
+
+        var vao = [];
+        var bufferLength = [];
 
         var assetModel = await initMesh(assetDir)
         OBJ.initMeshBuffers(gl, assetModel);
         vao[i] = gl.createVertexArray();
         gl.bindVertexArray(vao[i]);
-        console.log(assetModel)
 
         bufferLength[i] = assetModel.indexBuffer.numItems
 
@@ -127,11 +127,10 @@ async function main() {
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(assetModel.indices), gl.STATIC_DRAW);
 
         texture[i] = gl.createTexture();
-        
         gl.activeTexture(gl.TEXTURE0 + 0);
         gl.bindTexture(gl.TEXTURE_2D, texture[i]);
         gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture);
         // set the filtering so we don't need mips
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
@@ -139,6 +138,7 @@ async function main() {
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 
         gl.enable(gl.DEPTH_TEST);
+        gl.bindVertexArray(null);
 
         return { "id": i, "vao": vao, "texture": texture, "bufferLength": bufferLength };
     }
@@ -172,25 +172,28 @@ async function main() {
 
     }
 
-
     function loadTextures() {
 
         // Create bird texture
-        imgtxs = new Image();
-        imgtxs.onload = function () {
-            var textureId = gl.createTexture();
-            gl.activeTexture(gl.TEXTURE0 + 0);
-            gl.bindTexture(gl.TEXTURE_2D, textureId);
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, imgtxs);
-            // set the filtering so we don't need mips
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        var imgtxs = [];
+        for (var i = 0; i < 2; i++) {
+            imgtxs[i] = new Image();
+            imgtxs[i].onload = function () {
+                var textureId = gl.createTexture();
+                gl.activeTexture(gl.TEXTURE0 + 0);
+                gl.bindTexture(gl.TEXTURE_2D, textureId);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, imgtxs[i]);
+                // set the filtering so we don't need mips
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+            }
+            imgtxs[i].src = texture[i];
         }
-        imgtxs.src = 'texture/Texture_01.jpg';
         return imgtxs
     }
+
 }
 
 

@@ -31,6 +31,7 @@ let keys = [];
 var vao = []
 var bufferLength = []
 var texture = []
+var buff = []
 
 //Parameters for Camera
 var cx = 4.5;
@@ -79,19 +80,19 @@ var redAsset;
 var assetsObj = [
     'object/flower.obj',
     'object/plant.obj',
-    // 'object/rock1.obj',
-    // 'object/rock2.obj',
-    // 'object/rock3.obj',
+    'object/rock1.obj',
+    'object/rock2.obj',
+    'object/rock3.obj',
     'object/tree1.obj',
-    // 'object/tree2.obj',
-    // 'object/tree3.obj',
-    // 'object/tree4.obj',
-    // 'object/smallrock.obj'
+    'object/tree2.obj',
+    'object/tree3.obj',
+    'object/tree4.obj',
+    'object/smallrock.obj'
 ];
 
 var texture = [
-    'texture_birb.png',
-    'Texture_01.jpg'
+    'texture/texture_birb.png',
+    'texture/Texture_01.jpg'
 ]
 
 var roadAssetsJSONs = [
