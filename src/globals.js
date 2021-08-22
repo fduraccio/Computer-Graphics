@@ -86,7 +86,7 @@ var assetsObj = [
     // 'object/tree2.obj',
     // 'object/tree3.obj',
     // 'object/tree4.obj',
-    'object/smallrock.obj'
+    // 'object/smallrock.obj'
 ];
 
 var texture = [
