@@ -7,6 +7,8 @@ async function main() {
     Math.sin(dirLightAlpha), Math.cos(dirLightAlpha) * Math.sin(dirLightBeta)];
     var directionalLightColor = [0.8, 1.0, 1.0];
 
+    window.onresize = doResize;
+
     //SET Global states (viewport size, viewport background color, Depth test)
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
     gl.clearColor(0.85, 0.85, 0.85, 1.0);
@@ -28,6 +30,7 @@ async function main() {
     var img = loadTextures();
     var i;
 
+
     // load bird
     redAsset = await loadAsset(redObj[0], img[0])
 
@@ -37,10 +40,11 @@ async function main() {
     }
     console.log(assets)
 
+    grass = await loadAsset('grass/grass2.obj', img[2])
 
     //Define the scene Graph
 
-    localMatrix = utils.multiplyMatrices(utils.MakeTranslateMatrix(40, 0, 0), utils.multiplyMatrices(utils.MakeRotateXMatrix(90), utils.MakeScaleMatrix(30, 30, 30)))
+    localMatrix = utils.multiplyMatrices(utils.MakeTranslateMatrix(40, 0, 0), utils.multiplyMatrices(utils.MakeRotateXMatrix(0), utils.MakeScaleMatrix(10, 10, 10)))
     worldMatrix = localMatrix
 
     localMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(0, 40, 0), utils.multiplyMatrices(utils.MakeRotateXMatrix(45), utils.MakeScaleMatrix(30, 30, 30)))
@@ -51,9 +55,31 @@ async function main() {
 
     requestAnimationFrame(drawScene);
 
+    function animate() {
+        currentTime = (new Date).getTime();
+        if (lastUpdateTime) {
+
+            var deltaC = (30 * (currentTime - lastUpdateTime)) / 1000.0;
+
+            sunRise = ((sunRise + deltaC / 500 + Math.PI) % (2 * Math.PI)) - Math.PI;
+
+            // directionalLightDir = [-Math.sin(sunRise), -Math.cos(sunRise), 0.0];
+
+            var WVP = computeWPV();
+
+            worldMatrix = WVP[0];
+            viewMatrix = WVP[1];
+            perspectiveMatrix = WVP[2];
+
+            // generateMap();
+        }
+
+        lastUpdateTime = currentTime;
+    }
     function drawScene(time) {
         time *= 0.001;
 
+        animate();
         // sky color
         skyAlpha = Math.min(Math.max((Math.cos(sunRise) / Math.cos(utils.degToRad(60.0)) + 1) / 2, 0.0), 1.0);
 
@@ -73,24 +99,30 @@ async function main() {
         gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        // Compute the camera matrix using look at. //DA CAPIRE
-        var cameraPosition = [0.0, -200.0, 0.0];
-        var target = [0.0, 0.0, 0.0];
-        var up = [0.0, 0.0, 1.0];
-        var cameraMatrix = utils.LookAt(cameraPosition, target, up);
-        var viewMatrix = utils.invertMatrix(cameraMatrix);
+        perspectiveMatrix = utils.MakePerspective(65, canvas.width / canvas.height, 1, 2000)
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeRotateZMatrix(0.3), worldMatrix);
-        worldMatrix2 = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.3), worldMatrix2);
-        worldMatrix3 = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.3), worldMatrix3);
+        // update WV matrix
+        cz = lookRadius * Math.cos(utils.degToRad(-angle)) * Math.cos(utils.degToRad(-elevation));
+        cx = lookRadius * Math.sin(utils.degToRad(-angle)) * Math.cos(utils.degToRad(-elevation));
+        cy = lookRadius * Math.sin(utils.degToRad(-elevation));
+        viewMatrix = utils.MakeView(cx, cy, cz, elevation, -angle);
+        projectionMatrix = utils.multiplyMatrices(perspectiveMatrix, viewMatrix);
 
+        worldMatrix = utils.MakeWorld(cx + Math.cos(sunRise) * roadScale * 10, roadScale * 10, cz + Math.cos(sunRise) * roadScale * 10, 0.0, 0.0, 0.0, roadScale * 0.25);
+        worldMatrix = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.5), worldMatrix);
+
+        worldMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(40, 0, 0), worldMatrix)
+        worldMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(20, 0, 0), worldMatrix)
+
+        // drawAsset(grass, worldMatrix, viewMatrix)
         drawAsset(redAsset, worldMatrix, viewMatrix)
-        drawAsset(assets[1], worldMatrix3, viewMatrix)
-        drawAsset(assets[0], worldMatrix2, viewMatrix)
+        drawAsset(assets[0], worldMatrix3, viewMatrix)
+        drawAsset(assets[1], worldMatrix2, viewMatrix)
 
         requestAnimationFrame(drawScene);
 
     }
+
 
     async function loadAsset(assetDir, texture) {
 
@@ -143,7 +175,7 @@ async function main() {
         return { "id": i, "vao": vao, "texture": texture, "bufferLength": bufferLength };
     }
 
-    function drawAsset(asset, worldMatrix, viewMatrix) {
+    function drawAsset(asset, worldMatrix, viewMatrix, perspectiveMatrix) {
 
         // Compute the projection matrix 
         var aspect = gl.canvas.width / gl.canvas.height;
@@ -174,9 +206,9 @@ async function main() {
 
     function loadTextures() {
 
-        // Create bird texture
+        // load textures
         var imgtxs = [];
-        for (var i = 0; i < 2; i++) {
+        for (var i = 0; i < texture.length; i++) {
             imgtxs[i] = new Image();
             imgtxs[i].onload = function () {
                 var textureId = gl.createTexture();
@@ -189,9 +221,25 @@ async function main() {
                 gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
                 gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
             }
+            imgtxs[i].crossOrigin = "anonymous";
             imgtxs[i].src = texture[i];
         }
         return imgtxs
+    }
+
+    function doResize() {
+        // set canvas dimensions
+        if ((window.innerWidth > 40) && (window.innerHeight > 240)) {
+            canvas.width = window.innerWidth - 16;
+            canvas.height = window.innerHeight - 200;
+            var w = canvas.clientWidth;
+            var h = canvas.clientHeight;
+
+            gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            gl.viewport(0.0, 0.0, w, h);
+
+            aspectRatio = w / h;
+        }
     }
 
 }
@@ -202,10 +250,12 @@ async function init() {
 
     var canvas = document.getElementById("canvas");
 
+
     canvas.addEventListener("mousedown", doMouseDown, false);
     canvas.addEventListener("mouseup", doMouseUp, false);
     canvas.addEventListener("mousemove", doMouseMove, false);
     window.addEventListener("keyup", keyFunctionUp, false);
+    canvas.addEventListener("mousewheel", doMouseWheel, false);
     window.addEventListener("keydown", keyFunctionDown, false);
 
     gl = canvas.getContext("webgl2");
@@ -213,6 +263,8 @@ async function init() {
         alert("Error: WebGL not supported by your browser!");
         return;
     }
+
+    aspectRatio = canvas.clientWidth / canvas.clientHeight;
 
     utils.resizeCanvasToDisplaySize(gl.canvas);
 
@@ -227,9 +279,10 @@ async function init() {
     gl.useProgram(program);
 
     main();
+
 }
 
-window.onload = init();
+window.onload = init;
 
 
 // load an object .obj

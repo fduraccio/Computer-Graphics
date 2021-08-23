@@ -1,8 +1,8 @@
-var keyFunctionDown = function(e) {
+var keyFunctionDown = function (e) {
 	console.log('keydown')
-	if(!keys[e.keyCode]) {
+	if (!keys[e.keyCode]) {
 		keys[e.keyCode] = true;
-		switch(e.keyCode) {
+		switch (e.keyCode) {
 			case 65:
 				steeringDir = 1;
 				break;
@@ -16,7 +16,7 @@ var keyFunctionDown = function(e) {
 				vz = vz - 1.0;
 				break;
 			case 37:
-				if(firstPersonView) {
+				if (firstPersonView) {
 					deltaCamAngle_1 += 1.0;
 				}
 				else {
@@ -24,7 +24,7 @@ var keyFunctionDown = function(e) {
 				}
 				break;
 			case 39:
-				if(firstPersonView) {
+				if (firstPersonView) {
 					deltaCamAngle_1 -= 1.0;
 				}
 				else {
@@ -32,7 +32,7 @@ var keyFunctionDown = function(e) {
 				}
 				break;
 			case 38:
-				if(firstPersonView) {
+				if (firstPersonView) {
 					deltaCamElevation_1 += 1.0;
 				}
 				else {
@@ -40,7 +40,7 @@ var keyFunctionDown = function(e) {
 				}
 				break;
 			case 40:
-				if(firstPersonView) {
+				if (firstPersonView) {
 					deltaCamElevation_1 -= 1.0;
 				}
 				else {
@@ -48,7 +48,7 @@ var keyFunctionDown = function(e) {
 				}
 				break;
 			case 82:
-				if(firstPersonView) {
+				if (firstPersonView) {
 					camAngle = carAngle % 360 - 180;
 					camElevation = 0.0;
 					deltaCamAngle_1 = 0.0;
@@ -64,22 +64,22 @@ var keyFunctionDown = function(e) {
 					driverPosZ = -10;
 					camAngle = Math.atan2(driverPosX, driverPosZ) / Math.PI * 180 + carAngle;
 					planarDist = Math.sqrt(Math.pow(driverPosX, 2) + Math.pow(driverPosZ, 2));
-					camElevation = -Math.atan2(driverPosY-lookAtPosY, planarDist) / Math.PI * 180;
+					camElevation = -Math.atan2(driverPosY - lookAtPosY, planarDist) / Math.PI * 180;
 					deltaCamAngle_2 = 0.0;
 					deltaCamElevation_2 = 0.0;
 					lookRadius = 1.0;
 					deltaLookRadius = 0.0;
 				}
 				break;
-			case 86:
-				if(firstPersonView) {
+			case 86: 
+				if (firstPersonView) {
 					firstPersonView = false;
 					driverPosX = 0;
 					driverPosY = 5;
 					driverPosZ = -10;
 					camAngle = Math.atan2(driverPosX, driverPosZ) / Math.PI * 180 + carAngle;
 					planarDist = Math.sqrt(Math.pow(driverPosX, 2) + Math.pow(driverPosZ, 2));
-					camElevation = -Math.atan2(driverPosY-lookAtPosY, planarDist) / Math.PI * 180;
+					camElevation = -Math.atan2(driverPosY - lookAtPosY, planarDist) / Math.PI * 180;
 					deltaCamAngle_1 = 0.0;
 					deltaCamElevation_1 = 0.0;
 					deltaCamAngle_2 = 0.0;
@@ -115,11 +115,11 @@ var keyFunctionDown = function(e) {
 				toggleFullScreen();
 				break;
 			case 84:
-				if(easterEggPresses < 5) {
+				if (easterEggPresses < 5) {
 					easterEggPresses += 1;
 				}
 				else {
-					alert("I like trains");
+					alert("Tropp fort");
 					carIndex = vehicleAssets.length - 1;
 					easterEggPresses = 0;
 				}
@@ -128,11 +128,11 @@ var keyFunctionDown = function(e) {
 	}
 }
 
-var keyFunctionUp = function(e) {
+var keyFunctionUp = function (e) {
 	console.log('up')
-	if(keys[e.keyCode]) {
+	if (keys[e.keyCode]) {
 		keys[e.keyCode] = false;
-		switch(e.keyCode) {
+		switch (e.keyCode) {
 			case 65:
 			case 68:
 				steeringDir = 0;
@@ -188,21 +188,20 @@ function doMouseMove(event) {
 }
 
 function doMouseWheel(event) {
-	console.log('wheel')
 	var nLookRadius = lookRadius + event.wheelDelta / 200.0;
-	if ((nLookRadius > 5.0) && (nLookRadius < 100.0)) {
+	if ((nLookRadius > 2.0) && (nLookRadius < 100.0)) {
 		lookRadius = nLookRadius;
 	}
 }
 
 function toggleFullScreen() {
 	var canvas = document.getElementById("canvas");
-	if(!document.fullscreenElement) {
+	if (!document.fullscreenElement) {
 		canvas.requestFullscreen();
 	}
 	else {
-		if(document.exitFullscreen) {
-			document.exitFullscreen(); 
+		if (document.exitFullscreen) {
+			document.exitFullscreen();
 		}
 	}
 }
