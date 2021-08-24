@@ -3,6 +3,7 @@
 precision mediump float;
 
 in vec3 fsNormal;
+in vec3 fsPosition;
 in vec2 uvFS;
 
 out vec4 outColor;

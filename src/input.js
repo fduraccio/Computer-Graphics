@@ -1,21 +1,20 @@
 var keyFunctionDown = function (e) {
-	console.log('keydown')
 	if (!keys[e.keyCode]) {
 		keys[e.keyCode] = true;
 		switch (e.keyCode) {
-			case 65:
+			case KEY_CODE.A:
 				steeringDir = 1;
 				break;
-			case 68:
+			case KEY_CODE.D:
 				steeringDir = -1;
 				break;
-			case 87:
+			case KEY_CODE.W:
 				vz = vz + 1.0;
 				break;
-			case 83:
+			case KEY_CODE.S:
 				vz = vz - 1.0;
 				break;
-			case 37:
+			case KEY_CODE.LEFT:
 				if (firstPersonView) {
 					deltaCamAngle_1 += 1.0;
 				}
@@ -23,7 +22,7 @@ var keyFunctionDown = function (e) {
 					deltaCamAngle_2 -= 1.0;
 				}
 				break;
-			case 39:
+			case KEY_CODE.RIGHT:
 				if (firstPersonView) {
 					deltaCamAngle_1 -= 1.0;
 				}
@@ -31,7 +30,7 @@ var keyFunctionDown = function (e) {
 					deltaCamAngle_2 += 1.0;
 				}
 				break;
-			case 38:
+			case KEY_CODE.UP:
 				if (firstPersonView) {
 					deltaCamElevation_1 += 1.0;
 				}
@@ -39,7 +38,7 @@ var keyFunctionDown = function (e) {
 					deltaCamElevation_2 -= 1.0;
 				}
 				break;
-			case 40:
+			case KEY_CODE.DOWN:
 				if (firstPersonView) {
 					deltaCamElevation_1 -= 1.0;
 				}
@@ -47,10 +46,10 @@ var keyFunctionDown = function (e) {
 					deltaCamElevation_2 += 1.0;
 				}
 				break;
-			case 82:
+			case KEY_CODE.R:
 				if (firstPersonView) {
-					camAngle = carAngle % 360 - 180;
-					camElevation = 0.0;
+					angle = playerAngle % 360 - 180;
+					elevation = 0.0;
 					deltaCamAngle_1 = 0.0;
 					deltaCamElevation_1 = 0.0;
 					deltaCamAngle_2 = 0.0;
@@ -71,7 +70,7 @@ var keyFunctionDown = function (e) {
 					deltaLookRadius = 0.0;
 				}
 				break;
-			case 86: 
+			case KEY_CODE.V:
 				if (firstPersonView) {
 					firstPersonView = false;
 					driverPosX = 0;
@@ -102,16 +101,13 @@ var keyFunctionDown = function (e) {
 					deltaLookRadius = 0.0;
 				}
 				break;
-			case 88:
+			case KEY_CODE.X:
 				deltaLookRadius = -0.01;
 				break;
-			case 90:
+			case KEY_CODE.Z:
 				deltaLookRadius = 0.01;
 				break;
-			case 67:
-				carIndex = (carIndex + 1) % (vehicleAssets.length - 1);
-				break;
-			case 70:
+			case KEY_CODE.F:
 				toggleFullScreen();
 				break;
 			case 84:
@@ -120,7 +116,6 @@ var keyFunctionDown = function (e) {
 				}
 				else {
 					alert("Tropp fort");
-					carIndex = vehicleAssets.length - 1;
 					easterEggPresses = 0;
 				}
 				break;
@@ -129,30 +124,29 @@ var keyFunctionDown = function (e) {
 }
 
 var keyFunctionUp = function (e) {
-	console.log('up')
 	if (keys[e.keyCode]) {
 		keys[e.keyCode] = false;
 		switch (e.keyCode) {
-			case 65:
-			case 68:
+			case KEY_CODE.A:
+			case KEY_CODE.D:
 				steeringDir = 0;
 				break;
-			case 87:
-			case 83:
+			case KEY_CODE.W:
+			case KEY_CODE.S:
 				vz = 0.0;
 				break;
-			case 37:
-			case 39:
+			case KEY_CODE.LEFT:
+			case KEY_CODE.RIGHT:
 				deltaCamAngle_1 = 0.0;
 				deltaCamAngle_2 = 0.0;
 				break;
-			case 38:
-			case 40:
+			case KEY_CODE.UP:
+			case KEY_CODE.DOWN:
 				deltaCamElevation_1 = 0.0;
 				deltaCamElevation_2 = 0.0;
 				break;
-			case 88:
-			case 90:
+			case KEY_CODE.X:
+			case KEY_CODE.Z:
 				deltaLookRadius = 0.0;
 				break;
 		}

@@ -1,7 +1,4 @@
 var shaderDir = "shaders/";
-var textureDir = "texture/";
-var JSONRoadsDir = "grass/";
-
 
 // WEBGL HANDLERS
 let vertexNormalHandle = null;
@@ -20,6 +17,27 @@ let lightTypeHandle = null;
 let eyePositionHandle = null;
 let materialSpecColorHandle = null;
 let materialSpecPowerHandle = null;
+
+
+// CONSTANTS
+const KEY_CODE = {
+    'A': 65,
+    'W': 87,
+    'S': 83,
+    'D': 68,
+    'I': 73,
+    'F': 70,
+    'UP': 38,
+    'DOWN': 40,
+    'LEFT': 37,
+    'RIGHT': 39,
+    'R': 82,
+    'V': 86,
+    'X': 88,
+    'Z': 90,
+    'F': 70
+
+};
 
 let prevVz = 0;
 
@@ -72,9 +90,9 @@ var playerY = 0.0;
 var playerZ = 0.0;
 var playerAngle = 0.0;
 
-var deltaCarAngle = 0.0;
+var deltaPlayerAngle = 0.0;
 
-var vz = 0.0;			// control input for moving the player
+// var vz = 0.0;			// control input for moving the player
 var preVz = 0.0;
 var playerLinAcc = 0.0;
 var playerLinVel = 0.0;
@@ -108,6 +126,9 @@ var neighborMargin = 1;
 var lookRadius = 1.0;
 var deltaLookRadius = 0.0;
 
+let vx = 0, vy = 0, vz = 0;
+let rvx = 0, rvy = 0, rvz = 0;
+let theta = 0, psi = 0;
 
 // camera orientation variation for first-person view
 var deltaCamAngle_1 = 0.0;
@@ -150,7 +171,7 @@ var assetsObj = [
 var texture = [
     'texture/texture_birb.png',
     'texture/Texture_01.jpg',
-    'grass/grass-pattern.jpg'
+    'texture/grass-pattern.jpg'
 ]
 
 var roadAssetsJSONs = [
@@ -169,12 +190,6 @@ var roadAssetsJSONs = [
 ];
 
 var assets = []
-var textures = [
-    'texture/Texture_01.png',
-    'texture/texture_birb.png'
-]
-
-
 
 var sunRise = 0.0;
 var dayLightColor = [0.6, 0.8, 0.95];

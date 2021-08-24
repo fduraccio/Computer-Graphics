@@ -25,11 +25,10 @@ async function main() {
     var ambientAlphaHandle = gl.getUniformLocation(program, 'lambertColor');
     var textLocation = gl.getUniformLocation(program, "u_texture");
     var uvAttributeLocation = gl.getAttribLocation(program, "a_uv");
+	var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');
 
 
     var img = loadTextures();
-    var i;
-
 
     // load bird
     redAsset = await loadAsset(redObj[0], img[0])
@@ -40,18 +39,17 @@ async function main() {
     }
     console.log(assets)
 
-    grass = await loadAsset('grass/grass2.obj', img[2])
+    grass = await loadAsset('object/grass2.obj', img[2])
 
     //Define the scene Graph
 
-    localMatrix = utils.multiplyMatrices(utils.MakeTranslateMatrix(40, 0, 0), utils.multiplyMatrices(utils.MakeRotateXMatrix(0), utils.MakeScaleMatrix(10, 10, 10)))
-    worldMatrix = localMatrix
-
-    localMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(0, 40, 0), utils.multiplyMatrices(utils.MakeRotateXMatrix(45), utils.MakeScaleMatrix(30, 30, 30)))
-    worldMatrix2 = localMatrix2
-
-    localMatrix3 = utils.multiplyMatrices(utils.MakeTranslateMatrix(0, 0, 40), utils.multiplyMatrices(utils.MakeRotateXMatrix(0), utils.MakeScaleMatrix(30, 30, 30)))
-    worldMatrix3 = localMatrix3
+	var W = utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0);
+	
+	var nC = utils.multiplyMatrixVector(W, [lookRadius*driverPosX, lookRadius*driverPosY, lookRadius*driverPosZ, 1.0]);
+	
+	cx = nC[0];
+	cy = nC[1];
+	cz = nC[2];
 
     requestAnimationFrame(drawScene);
 
@@ -65,17 +63,20 @@ async function main() {
 
             // directionalLightDir = [-Math.sin(sunRise), -Math.cos(sunRise), 0.0];
 
-            var WVP = computeWPV();
+            var WVP = computeWPV(vz, steeringDir);
 
             worldMatrix = WVP[0];
             viewMatrix = WVP[1];
             perspectiveMatrix = WVP[2];
+
+            
 
             // generateMap();
         }
 
         lastUpdateTime = currentTime;
     }
+
     function drawScene(time) {
         time *= 0.001;
 
@@ -99,27 +100,20 @@ async function main() {
         gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        perspectiveMatrix = utils.MakePerspective(65, canvas.width / canvas.height, 1, 2000)
+        // projectionMatrix = utils.multiplyMatrices(perspectiveMatrix, viewMatrix);
 
-        // update WV matrix
-        cz = lookRadius * Math.cos(utils.degToRad(-angle)) * Math.cos(utils.degToRad(-elevation));
-        cx = lookRadius * Math.sin(utils.degToRad(-angle)) * Math.cos(utils.degToRad(-elevation));
-        cy = lookRadius * Math.sin(utils.degToRad(-elevation));
-        viewMatrix = utils.MakeView(cx, cy, cz, elevation, -angle);
-        projectionMatrix = utils.multiplyMatrices(perspectiveMatrix, viewMatrix);
+        // worldMatrix = utils.MakeWorld(cx + Math.cos(sunRise) * roadScale * 10, roadScale * 10, cz + Math.cos(sunRise) * roadScale * 10, 0.0, 0.0, 0.0, roadScale * 0.25);
+        // worldMatrix = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.5), worldMatrix);
 
-        worldMatrix = utils.MakeWorld(cx + Math.cos(sunRise) * roadScale * 10, roadScale * 10, cz + Math.cos(sunRise) * roadScale * 10, 0.0, 0.0, 0.0, roadScale * 0.25);
-        worldMatrix = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.5), worldMatrix);
+        // worldMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(40, 0, 0), worldMatrix)
+        // worldMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(20, 0, 0), worldMatrix)
 
-        worldMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(40, 0, 0), worldMatrix)
-        worldMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(20, 0, 0), worldMatrix)
+        drawAsset(grass, worldMatrix, viewMatrix, perspectiveMatrix)
+        drawAsset(redAsset, worldMatrix, viewMatrix, perspectiveMatrix)
+        drawAsset(assets[0], worldMatrix, viewMatrix, perspectiveMatrix)
+        // drawAsset(assets[1], worldMatrix2, viewMatrix, perspectiveMatrix)
 
-        // drawAsset(grass, worldMatrix, viewMatrix)
-        drawAsset(redAsset, worldMatrix, viewMatrix)
-        drawAsset(assets[0], worldMatrix3, viewMatrix)
-        drawAsset(assets[1], worldMatrix2, viewMatrix)
-
-        requestAnimationFrame(drawScene);
+		window.requestAnimationFrame(drawScene);
 
     }
 
@@ -177,19 +171,15 @@ async function main() {
 
     function drawAsset(asset, worldMatrix, viewMatrix, perspectiveMatrix) {
 
-        // Compute the projection matrix 
-        var aspect = gl.canvas.width / gl.canvas.height;
-        var projectionMatrix = utils.MakePerspective(50.0, aspect, 1.0, 2000.0);
-
-        var viewProjectionMatrix = utils.multiplyMatrices(projectionMatrix, viewMatrix);
-
+        var vwmatrix = utils.multiplyMatrices(viewMatrix, worldMatrix);
+		var projectionMatrix = utils.multiplyMatrices(perspectiveMatrix, vwmatrix);
+        var normalMatrix = utils.invertMatrix(utils.transposeMatrix(vwmatrix));
+        
         gl.useProgram(program);
-
-        var projectionMatrix = utils.multiplyMatrices(viewProjectionMatrix, worldMatrix);
-        var normalMatrix = utils.invertMatrix(utils.transposeMatrix(worldMatrix));
 
         gl.uniformMatrix4fv(matrixLocation, gl.FALSE, utils.transposeMatrix(projectionMatrix));
         gl.uniformMatrix4fv(normalMatrixPositionHandle, gl.FALSE, utils.transposeMatrix(normalMatrix));
+        gl.uniformMatrix4fv(vertexMatrixPositionHandle, gl.FALSE, utils.transposeMatrix(vwmatrix));
 
         gl.uniform3fv(materialDiffColorHandle, [0.6, 0.6, 0.0]);
         gl.uniform3fv(lightColorHandle, directionalLightColor);
@@ -199,7 +189,6 @@ async function main() {
         gl.bindTexture(gl.TEXTURE_2D, asset.texture[asset.id]);
 
         gl.bindVertexArray(asset.vao[asset.id]);
-
         gl.drawElements(gl.TRIANGLES, asset.bufferLength[asset.id], gl.UNSIGNED_SHORT, 0);
 
     }
@@ -249,7 +238,6 @@ async function main() {
 async function init() {
 
     var canvas = document.getElementById("canvas");
-
 
     canvas.addEventListener("mousedown", doMouseDown, false);
     canvas.addEventListener("mouseup", doMouseUp, false);
