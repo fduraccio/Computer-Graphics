@@ -88,20 +88,20 @@ function computeWPV(vz, steeringDir) {
 
 	var nC = utils.multiplyMatrixVector(W, [lookRadius * driverPosX, lookRadius * (driverPosY - lookAtPosY) + lookAtPosY, lookRadius * driverPosZ, 1.0]);
 
-	
+
 
 	// camera position
-	
-		cx = nC[0];
-		cy = nC[1];
-		cz = nC[2];
-	
-	
 
-	
-		V = utils.MakeView(cx, cy, cz, elevation, angle);
-	
-	
+	cx = nC[0];
+	cy = nC[1];
+	cz = nC[2];
+
+
+
+
+	V = utils.MakeView(cx, cy, cz, elevation, angle);
+
+
 
 	return [W, V, P];
 

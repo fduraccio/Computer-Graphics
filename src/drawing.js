@@ -105,12 +105,12 @@ async function main() {
         // worldMatrix = utils.MakeWorld(cx + Math.cos(sunRise) * roadScale * 10, roadScale * 10, cz + Math.cos(sunRise) * roadScale * 10, 0.0, 0.0, 0.0, roadScale * 0.25);
         // worldMatrix = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.5), worldMatrix);
 
-        // worldMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(40, 0, 0), worldMatrix)
+        worldMatrix2 = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.5), worldMatrix)
         // worldMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(20, 0, 0), worldMatrix)
 
         drawAsset(grass, worldMatrix, viewMatrix, perspectiveMatrix)
-        drawAsset(redAsset, worldMatrix, viewMatrix, perspectiveMatrix)
-        drawAsset(assets[0], worldMatrix, viewMatrix, perspectiveMatrix)
+        drawAsset(redAsset, worldMatrix2, viewMatrix, perspectiveMatrix)
+        // drawAsset(assets[0], worldMatrix, viewMatrix, perspectiveMatrix)
         // drawAsset(assets[1], worldMatrix2, viewMatrix, perspectiveMatrix)
 
 		window.requestAnimationFrame(drawScene);
