@@ -21,6 +21,9 @@ let materialSpecPowerHandle = null;
 
 // CONSTANTS
 const KEY_CODE = {
+    'INVIO': 13,
+    'HELPPANEL': 72,
+    'OPTIONS': 111, //a casa
     'A': 65,
     'W': 87,
     'S': 83,
@@ -39,9 +42,15 @@ const KEY_CODE = {
 
 };
 
+
+//Panel
+var helpPanel;
+var canvasPanel;
+var mainPanel;
+
+keys=[13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
 let prevVz = 0;
 
-let keys = [];
 var vao = []
 var bufferLength = []
 var texture = []
@@ -52,6 +61,7 @@ var lastUpdateTime = (new Date).getTime();
 
 var playerIndex = 0;
 var playerLength = [];
+
 
 var simpleCam = true;
 

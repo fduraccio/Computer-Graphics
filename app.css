@@ -1,0 +1,109 @@
+
+
+body {
+    background-color: gray;
+    color: black;
+    font-family: "Clear Sans", Arial, sans-serif;
+    overflow: hidden;
+}
+
+
+
+#help-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#main-panel {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+#scene {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#scene button {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: .5em;
+    border: none;
+    background-position: center;
+    background-size: cover;
+    flex-grow: 1;
+    /* Text */
+    color: white;
+    text-shadow: 0 0 .25em black;
+    font-size: xxx-large;
+    font-weight: bold;
+    /* Transition */
+    transition: max-height 4s ease;
+}
+
+#scene button:hover {
+    height: inherit;
+}
+
+#scene button[value="game"] {
+    background-color: #71ab21;
+    background-image: url(../env/foresta.png);
+}
+button{
+    cursor: pointer;
+}
+
+kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+    color: #333;
+    display: inline-block;
+    font-size: .85em;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+}
+
+.helpPannel {
+    background-color: rgba(37, 61, 26, 0.85);
+}
+
+.panel {
+    padding: 2em;
+}
+
+.textColor{
+    color: white;
+}
+
+canvas {
+    background-color: white;
+}
+
+#controls {
+    float: left;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+#controls>span {
+    font-size: x-large;
+    text-decoration-line: underline;
+    font-weight: bold;
+}
+
+
+

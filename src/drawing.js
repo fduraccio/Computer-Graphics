@@ -233,9 +233,29 @@ async function main() {
 
 }
 
+function doResize() {
+    // set canvas dimensions
+    if((window.innerWidth > 40) && (window.innerHeight > 240)) {
+        canvas.width  = window.innerWidth - 16;
+        canvas.height = window.innerHeight - 200;
+        var w = canvas.clientWidth;
+        var h = canvas.clientHeight;
+        
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        gl.viewport(0.0, 0.0, w, h);
+        
+        aspectRatio = w/h;
+    }
+}
+
+
 
 
 async function init() {
+    helpPanel = document.getElementById("help-panel");
+    helpPanel.style.display = "none";
+    canvasPanel = document.getElementById("canvas-panel");
+    canvasPanel.style.display = "none";
 
     var canvas = document.getElementById("canvas");
 
@@ -245,6 +265,7 @@ async function init() {
     window.addEventListener("keyup", keyFunctionUp, false);
     canvas.addEventListener("mousewheel", doMouseWheel, false);
     window.addEventListener("keydown", keyFunctionDown, false);
+    window.addEventListener("keypress", keyPanelFunction, false);
 
     gl = canvas.getContext("webgl2");
     if (!gl) {
@@ -253,6 +274,7 @@ async function init() {
     }
 
     aspectRatio = canvas.clientWidth / canvas.clientHeight;
+    window.onresize = doResize();
 
     utils.resizeCanvasToDisplaySize(gl.canvas);
 
