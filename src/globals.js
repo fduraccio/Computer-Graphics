@@ -42,13 +42,16 @@ const KEY_CODE = {
 
 };
 
+//un input parte solo se è collegato a queste keys
+keys=[13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
+
 
 //Panel
 var helpPanel;
 var canvasPanel;
 var mainPanel;
 
-keys=[13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
+
 let prevVz = 0;
 
 var vao = []

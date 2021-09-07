@@ -252,10 +252,6 @@ function doResize() {
 
 
 async function init() {
-    helpPanel = document.getElementById("help-panel");
-    helpPanel.style.display = "none";
-    canvasPanel = document.getElementById("canvas-panel");
-    canvasPanel.style.display = "none";
 
     var canvas = document.getElementById("canvas");
 
