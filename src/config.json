@@ -4,61 +4,71 @@
             "name": "bird",
             "type": "bird",
             "attachPoint": "",
-            "obj": "object/red.obj"
+            "obj": "object/red.obj",
+            "texture": "texture/texture_birb.png"
         },
         {
             "name": "plant",
             "type": "plant",
             "attachPoint": "",
-            "obj": "object/plant.obj"
+            "obj": "object/plant.obj",
+            "texture": "texture/Texture_01.png"
         },
         {
             "name": "tree1",
             "type": "tree",
             "attachPoint": "",
-            "obj": "object/tree1.obj"
+            "obj": "object/tree1.obj",
+            "texture": "texture/Texture_01.png"
         },
         {
             "name": "tree2",
             "type": "tree",
             "attachPoint": "",
-            "obj": "object/tree2.obj"
+            "obj": "object/tree2.obj",
+            "texture": "texture/Texture_01.png"
         },
         {
             "name": "tree3",
             "type": "tree",
             "attachPoint": "",
-            "obj": "object/tree3.obj"
+            "obj": "object/tree3.obj",
+            "texture": "texture/Texture_01.png"
         },
         {
             "name": "tree4",
             "type": "tree",
             "attachPoint": "",
-            "obj": "object/tree4.obj"
+            "obj": "object/tree4.obj",
+            "texture": "texture/Texture_01.png"
         },
         {
             "name": "rock1",
             "type": "rock",
             "attachPoint": "",
-            "obj": "object/rock1.obj"
+            "obj": "object/rock1.obj",
+            "texture": "texture/Texture_01.png"
         },
         {
             "name": "rock2",
             "type": "rock",
             "attachPoint": "",
-            "obj": "object/rock2.obj"
+            "obj": "object/rock2.obj",
+            "texture": "texture/Texture_01.png"
         },
         {
             "name": "rock3",
             "type": "rock",
             "attachPoint": "",
-            "obj": "object/rock3.obj"
+            "obj": "object/rock3.obj",
+            "texture": "texture/Texture_01.png"
         },
         {
             "name": "smallrock",
             "type": "rock",
             "attachPoint": "",
-            "obj": "object/smallrock.obj"
+            "obj": "object/smallrock.obj",
+            "texture": "texture/Texture_01.png"
         }
     ],
     "nodes": "",

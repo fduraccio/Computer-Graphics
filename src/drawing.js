@@ -13,7 +13,7 @@ async function main() {
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
     gl.clearColor(0.85, 0.85, 0.85, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.enable(gl.DEPTH_TEST);
+
 
     var positionAttributeLocation = gl.getAttribLocation(program, "inPosition");
     var normalAttributeLocation = gl.getAttribLocation(program, "inNormal");
@@ -25,31 +25,42 @@ async function main() {
     var ambientAlphaHandle = gl.getUniformLocation(program, 'lambertColor');
     var textLocation = gl.getUniformLocation(program, "u_texture");
     var uvAttributeLocation = gl.getAttribLocation(program, "a_uv");
-	var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');
+    var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');
 
 
     var img = loadTextures();
+    let sceneConfig = await (await fetch(`src/config.json`)).json();
 
-    // load bird
-    redAsset = await loadAsset(redObj[0], img[0])
 
-    // load asset
-    for (var i = 0; i < assetsObj.length; i++) {
-        assets[i] = await loadAsset(assetsObj[i], img[1]);
+    i = 0
+    var bird;
+    var tree = []
+    var rock = []
+
+    for (let model of sceneConfig.models) {
+        if (model.type == "bird") {
+            bird = await loadAsset(model.obj, img[0])
+        }
+        if (model.type == "tree") {
+            tree.push(await loadAsset(model.obj, img[1]))
+
+        }
+        if (model.type == "rock") {
+            rock.push(await loadAsset(model.obj, img[1]))
+        }
     }
-    console.log(assets)
 
-    grass = await loadAsset('object/grass2.obj', img[2])
+    // grass = await loadAsset('object/grass2.obj', img[2])
 
     //Define the scene Graph
 
-	var W = utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0);
-	
-	var nC = utils.multiplyMatrixVector(W, [lookRadius*driverPosX, lookRadius*driverPosY, lookRadius*driverPosZ, 1.0]);
-	
-	cx = nC[0];
-	cy = nC[1];
-	cz = nC[2];
+    var W = utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0);
+
+    var nC = utils.multiplyMatrixVector(W, [lookRadius * driverPosX, lookRadius * driverPosY, lookRadius * driverPosZ, 1.0]);
+
+    cx = nC[0];
+    cy = nC[1];
+    cz = nC[2];
 
     requestAnimationFrame(drawScene);
 
@@ -69,8 +80,6 @@ async function main() {
             viewMatrix = WVP[1];
             perspectiveMatrix = WVP[2];
 
-            
-
             // generateMap();
         }
 
@@ -81,7 +90,8 @@ async function main() {
         time *= 0.001;
 
         animate();
-        // sky color
+
+        // sky color that change with time
         skyAlpha = Math.min(Math.max((Math.cos(sunRise) / Math.cos(utils.degToRad(60.0)) + 1) / 2, 0.0), 1.0);
 
         var th = 0.5;
@@ -100,20 +110,26 @@ async function main() {
         gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        // projectionMatrix = utils.multiplyMatrices(perspectiveMatrix, viewMatrix);
 
-        // worldMatrix = utils.MakeWorld(cx + Math.cos(sunRise) * roadScale * 10, roadScale * 10, cz + Math.cos(sunRise) * roadScale * 10, 0.0, 0.0, 0.0, roadScale * 0.25);
-        // worldMatrix = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.5), worldMatrix);
+        //da creare una mappa del mondo in cui posizionare gli oggetti
+        for (var x = 0; x < 2; x++) {
+            for (var y = 0; y < tree.length; y++) {
 
-        worldMatrix2 = utils.multiplyMatrices(utils.MakeRotateXMatrix(0.5), worldMatrix)
-        // worldMatrix2 = utils.multiplyMatrices(utils.MakeTranslateMatrix(20, 0, 0), worldMatrix)
 
-        drawAsset(grass, worldMatrix, viewMatrix, perspectiveMatrix)
-        drawAsset(redAsset, worldMatrix2, viewMatrix, perspectiveMatrix)
-        // drawAsset(assets[0], worldMatrix, viewMatrix, perspectiveMatrix)
-        // drawAsset(assets[1], worldMatrix2, viewMatrix, perspectiveMatrix)
+                worldMatrix = utils.MakeWorld(-roadDistance * (x - 2), 0.0, roadDistance * (y - 2), 0.0, 2 * 90, 0.0, roadScale);
 
-		window.requestAnimationFrame(drawScene);
+                ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.0, 0.9 + x / 2, 0.0, 180, 0.0, 0.5);
+                ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
+                drawAsset(tree[y], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+
+                // ornamentLocalMatrix = utils.MakeWorld(-0.8, 0.034, 0.0, 0.0, 180, 0.0, 0.2);
+                // ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
+                // drawAsset(rock[y], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+
+            }
+        }
+
+        window.requestAnimationFrame(drawScene);
 
     }
 
@@ -163,7 +179,6 @@ async function main() {
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 
-        gl.enable(gl.DEPTH_TEST);
         gl.bindVertexArray(null);
 
         return { "id": i, "vao": vao, "texture": texture, "bufferLength": bufferLength };
@@ -172,9 +187,9 @@ async function main() {
     function drawAsset(asset, worldMatrix, viewMatrix, perspectiveMatrix) {
 
         var vwmatrix = utils.multiplyMatrices(viewMatrix, worldMatrix);
-		var projectionMatrix = utils.multiplyMatrices(perspectiveMatrix, vwmatrix);
+        var projectionMatrix = utils.multiplyMatrices(perspectiveMatrix, vwmatrix);
         var normalMatrix = utils.invertMatrix(utils.transposeMatrix(vwmatrix));
-        
+
         gl.useProgram(program);
 
         gl.uniformMatrix4fv(matrixLocation, gl.FALSE, utils.transposeMatrix(projectionMatrix));
@@ -235,16 +250,16 @@ async function main() {
 
 function doResize() {
     // set canvas dimensions
-    if((window.innerWidth > 40) && (window.innerHeight > 240)) {
-        canvas.width  = window.innerWidth - 16;
+    if ((window.innerWidth > 40) && (window.innerHeight > 240)) {
+        canvas.width = window.innerWidth - 16;
         canvas.height = window.innerHeight - 200;
         var w = canvas.clientWidth;
         var h = canvas.clientHeight;
-        
+
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.viewport(0.0, 0.0, w, h);
-        
-        aspectRatio = w/h;
+
+        aspectRatio = w / h;
     }
 }
 
@@ -263,16 +278,13 @@ async function init() {
     window.addEventListener("keydown", keyFunctionDown, false);
     window.addEventListener("keypress", keyPanelFunction, false);
 
-    gl = canvas.getContext("webgl2");
-    if (!gl) {
-        alert("Error: WebGL not supported by your browser!");
-        return;
-    }
+    gl = initWebGL(canvas)
 
     aspectRatio = canvas.clientWidth / canvas.clientHeight;
     window.onresize = doResize();
 
-    utils.resizeCanvasToDisplaySize(gl.canvas);
+    scene = new Scene();
+
 
     // load and compile shaders
     await utils.loadFiles([shaderDir + 'vs.glsl', shaderDir + 'fs.glsl'], function (shaderText) {
@@ -288,12 +300,29 @@ async function init() {
 
 }
 
-window.onload = init;
-
-
 // load an object .obj
 async function initMesh(objDir) {
     var objStr = await utils.get_objstr(objDir);
     return new OBJ.Mesh(objStr);
 }
 
+function initWebGL(canvas) {
+    /** @type {WebGL2RenderingContext} */
+    let gl = canvas.getContext("webgl2");
+    if (!gl) {
+        console.error("GL context not opened");
+        return;
+    }
+
+    // Resize canvas to fill page
+    utils.resizeCanvasToDisplaySize(gl.canvas);
+
+    // Set global options
+    // gl.enable(gl.CULL_FACE);
+    gl.enable(gl.DEPTH_TEST);
+    gl.depthFunc(gl.LEQUAL); // so the skybox passes the test at 1.0
+
+    return gl;
+}
+
+window.onload = init;

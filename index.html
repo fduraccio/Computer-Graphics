@@ -1,41 +1,44 @@
 <html>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title> Bird Hunt</title>
-        <link rel="stylesheet" href="./app.css">
-        <script type="text/javascript" src="src/globals.js"></script>
-        <script type="text/javascript" src="src/input.js"></script>
-        <script type="text/javascript" src="lib/webgl-obj-loader.min.js"></script>
-        <script type="text/javascript" src="lib/utils.js"></script>
-        <script type="text/javascript" src="src/vars.js"></script>
-        <script type="text/javascript" src="src/drawing.js"></script>
-        <script type="text/javascript" src="src/player.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Bird Hunt</title>
+    <link rel="stylesheet" href="./app.css">
+    <script type="text/javascript" src="src/globals.js"></script>
+    <script type="text/javascript" src="src/input.js"></script>
+    <script type="text/javascript" src="lib/webgl-obj-loader.min.js"></script>
+    <script type="text/javascript" src="lib/utils.js"></script>
+    <script type="text/javascript" src="src/vars.js"></script>
+    <script type="text/javascript" src="src/drawing.js"></script>
+    <script type="text/javascript" src="src/player.js"></script>
+    <script type="text/javascript" src="src/scene.js"></script>
 
 
-    </head>
 
-    <body>
-        <div id="main-panel">
-            <h1>
-                <img id="main-logo" src="./env/logo.png">
-            </h1>
-            <div id="scene">
-                <!-- Will be filled programmatically -->
-                <button value="game" onClick="changeState()">Click here to start the Game</button>
-            </div>
+</head>
+
+<body>
+    <div id="main-panel">
+        <h1>
+            <img id="main-logo" src="./env/logo.png">
+        </h1>
+        <div id="scene">
+            <!-- Will be filled programmatically -->
+            <button value="game" onClick="changeState()">Click here to start the Game</button>
         </div>
-        <div id="canvas-panel" style="display: none;">
-            <canvas id="canvas" width="1024" height="769">
-            </canvas>
-        </div>
+    </div>
 
-        
-        <div id="help-panel" class="helpPannel panel" style="display: none;">
-            <h1>Controls</h1>
-            <table>
-                <tbody><tr>
+    <canvas id="canvas" width="1024" height="769">
+    </canvas>
+
+
+
+    <div id="help-panel" class="helpPannel panel" style="display: none;">
+        <h1>Controls</h1>
+        <table>
+            <tbody>
+                <tr>
                     <td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td>
                     <td class="textColor">Move around</td>
                 </tr>
@@ -63,12 +66,13 @@
                     <td><kbd>Alt</kbd> + <kbd>H</kbd></td>
                     <td class="textColor">Show this help screen</td>
                 </tr>
-            </tbody></table>
-            <h1> PRESS ENTER TO CONTINUE</h1>
-        </div>
+            </tbody>
+        </table>
+        <h1> PRESS ENTER TO CONTINUE</h1>
+    </div>
 
-            
-            <!--<div id="controls">
+
+    <!--<div id="controls">
                 <span>Choose your Strategy</span>
                 <div class="row">
                     <div class="col-12" style="padding: 10px">
@@ -101,6 +105,6 @@
                     </div>
                 </div>
             </div>-->
-    </body>
+</body>
 
 </html>

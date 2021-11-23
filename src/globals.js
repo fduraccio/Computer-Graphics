@@ -131,6 +131,8 @@ var ASdr = 0.5;	// Not used yet
 
 var fov = 70;
 var aspectRatio;
+// road map matrix ((2*mapDim+1)^2 elements)
+var roadMap;
 
 // camera visibility margins
 var lineMargin = 1 / Math.sqrt(2);

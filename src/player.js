@@ -52,7 +52,7 @@ function computeWPV(vz, steeringDir) {
 
 	deltaPlayerAngle = -playerAngle;
 
-	odom_offset = (1 / 2) * 0.8;
+	odom_offset = (2 / 2) * 0.8;
 
 	ackermann(playerLinVel, steeringAngle);
 

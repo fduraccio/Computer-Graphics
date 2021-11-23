@@ -155,43 +155,43 @@ var keyFunctionUp = function (e) {
 }
 
 var keyPanelFunction = function (e) {
-	
+
 	if (checkKey(e.keyCode)) {
 		console.log(e.keyCode)
 		switch (e.keyCode) {
 			case KEY_CODE.INVIO:
 				helpPanel = document.getElementById("help-panel");
-        		helpPanel.style.display = "none";
-        		e.preventDefault();
-        	break;
+				helpPanel.style.display = "none";
+				e.preventDefault();
+				break;
 			case KEY_CODE.HELPPANEL:
 				helpPanel = document.getElementById("help-panel");
-        		helpPanel.style.display = "block";
-        		e.preventDefault();
-			break;
-				 
+				helpPanel.style.display = "block";
+				e.preventDefault();
+				break;
+
 		}
 
-		
+
 	}
-	
+
 }
 
 
-function changeState(){
+function changeState() {
 	mainPanel = document.getElementById("main-panel");
 	mainPanel.style.display = "none";
 	helpPanel = document.getElementById("help-panel");
-    helpPanel.style.display = "block";
-    canvasPanel = document.getElementById("canvas-panel");
-    canvasPanel.style.display = "block";
+	helpPanel.style.display = "block";
+	canvasPanel = document.getElementById("canvas");
+	canvasPanel.style.display = "block";
 
-	
+
 }
 
-function checkKey(keyCode){
-	for(i=0; i<keys.length; i++){
-		if(keyCode==keys[i]){
+function checkKey(keyCode) {
+	for (i = 0; i < keys.length; i++) {
+		if (keyCode == keys[i]) {
 			return true;
 		}
 	}
