@@ -10,12 +10,13 @@ var keyFunctionDown = function (e) {
 				steeringDir = -1;
 				break;
 			case KEY_CODE.W:
-				vz = vz + 1.0;
-				break;
-			case KEY_CODE.S:
 				vz = vz - 1.0;
 				break;
+			case KEY_CODE.S:
+				vz = vz + 1.0;
+				break;
 			case KEY_CODE.LEFT:
+				console.log("left")
 				if (firstPersonView) {
 					deltaCamAngle_1 += 1.0;
 				}
@@ -24,6 +25,7 @@ var keyFunctionDown = function (e) {
 				}
 				break;
 			case KEY_CODE.RIGHT:
+				console.log("right")
 				if (firstPersonView) {
 					deltaCamAngle_1 -= 1.0;
 				}

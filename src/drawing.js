@@ -29,11 +29,13 @@ async function main() {
 
 
     var img = loadTextures();
+    console.log(img)
     let sceneConfig = await (await fetch(`json/config.json`)).json();
 
 
     i = 0
     var bird;
+    var floor;
     var tree = []
     var rock = []
 
@@ -47,6 +49,10 @@ async function main() {
         }
         if (model.type == "rock") {
             rock.push(await loadAsset(model.obj, img[1]))
+        }
+
+        if(model.type == "floor") {
+            floor = await loadAsset(model.obj, img[3])
         }
     }
 
@@ -110,13 +116,14 @@ async function main() {
         gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+        
 
         //da creare una mappa del mondo in cui posizionare gli oggetti
         for (var x = 0; x < 2; x++) {
             for (var y = 0; y < tree.length; y++) {
 
 
-                worldMatrix = utils.MakeWorld(-roadDistance * (x - 2), 0.0, roadDistance * (y - 2), 0.0, 2 * 90, 0.0, roadScale);
+                worldMatrix = utils.MakeWorld(-roadDistance * (x - 2), -5.0, roadDistance * (y - 2), 0.0, 2 * 90, 0.0, roadScale);
 
                 ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.0, 0.9 + x / 2, 0.0, 180, 0.0, 0.5);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
@@ -128,6 +135,18 @@ async function main() {
 
             }
         }
+
+        for(x=0; x<15; x++){
+            worldMatrix = utils.MakeWorld(-280+(x * 40), -8.0, 300.0, 0.0, 0.0, 0.0, 6);
+            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
+
+        }
+
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0, -15.0, 0, 0.0, 270.0, 0.0, 1), utils.MakeScaleNuMatrix(2, 2, 1));
+
+        ornamentLocalMatrix = utils.MakeWorld(0.0, 0.0, 0.9 + 2/ 2, 0.0, 180, 0.0, 1);
+        ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
+        drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)
 
         window.requestAnimationFrame(drawScene);
 

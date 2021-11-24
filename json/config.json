@@ -69,6 +69,14 @@
             "attachPoint": "",
             "obj": "object/smallrock.obj",
             "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "floor",
+            "type": "floor",
+            "attachPoint": "",
+            "obj": "object/grass2.obj",
+            "texture": "texture/grass2.png"
+
         }
     ],
     "nodes": "",
