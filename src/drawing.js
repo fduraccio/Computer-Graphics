@@ -29,7 +29,7 @@ async function main() {
 
 
     var img = loadTextures();
-    let sceneConfig = await (await fetch(`src/config.json`)).json();
+    let sceneConfig = await (await fetch(`json/config.json`)).json();
 
 
     i = 0
