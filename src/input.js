@@ -10,10 +10,10 @@ var keyFunctionDown = function (e) {
 				steeringDir = -1;
 				break;
 			case KEY_CODE.W:
-				vz = vz - 1.0;
+				vz = vz + 1.0;
 				break;
 			case KEY_CODE.S:
-				vz = vz + 1.0;
+				vz = vz - 1.0;
 				break;
 			case KEY_CODE.LEFT:
 				console.log("left")

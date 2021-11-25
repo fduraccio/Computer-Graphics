@@ -75,8 +75,7 @@
             "type": "floor",
             "attachPoint": "",
             "obj": "object/grass2.obj",
-            "texture": "texture/grass2.png"
-
+            "texture": "texture/grass3.png"
         },
         {
             "name": "cloud",
@@ -85,6 +84,12 @@
             "obj": "object/cloud.obj",
             "texture": "texture/Texture_01.jpg"
 
+        },
+        {   "name": "flower",
+            "type": "flower",
+            "attachPoint": "",
+            "obj": "object/flower.obj",
+            "texture": "texture/Texture_01.jpg"
         }
 
     ],

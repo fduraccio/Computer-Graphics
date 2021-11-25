@@ -29,17 +29,11 @@ async function main() {
 
 
     var img = loadTextures();
-    console.log(img)
     let sceneConfig = await (await fetch(`json/config.json`)).json();
 
 
     i = 0
-    var bird;
-    var floor;
-    var cloud;
-    var tree = []
-    var rock = []
-
+    
     for (let model of sceneConfig.models) {
         if (model.type == "bird") {
             bird = await loadAsset(model.obj, img[0])
@@ -52,15 +46,18 @@ async function main() {
             rock.push(await loadAsset(model.obj, img[1]))
         }
 
-        if(model.type == "floor") {
+        if (model.type == "floor") {
             floor = await loadAsset(model.obj, img[3])
         }
-        if(model.type == "cloud"){
+
+        if (model.type == "cloud") {
             cloud = await loadAsset(model.obj, img[4])
         }
-    }
 
-    // grass = await loadAsset('object/grass2.obj', img[2])
+        if (model.type == "flower") {
+            flower = await loadAsset(model.obj, img[1])
+        }
+    }
 
     //Define the scene Graph
 
@@ -96,12 +93,16 @@ async function main() {
         lastUpdateTime = currentTime;
     }
 
+    /**
+     * Draws the scene
+     * @param {*} time 
+     */
     function drawScene(time) {
         time *= 0.001;
 
         animate();
 
-        // sky color that change with time
+        // sky color that changes with time
         skyAlpha = Math.min(Math.max((Math.cos(sunRise) / Math.cos(utils.degToRad(60.0)) + 1) / 2, 0.0), 1.0);
 
         var th = 0.5;
@@ -120,12 +121,10 @@ async function main() {
         gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        
 
-        //da creare una mappa del mondo in cui posizionare gli oggetti
-        for (var x = 0; x < 2; x++) {
+        //TODO creare una mappa del mondo in cui posizionare gli oggetti
+        for (var x = 0; x < 5; x++) {
             for (var y = 0; y < tree.length; y++) {
-
 
                 worldMatrix = utils.MakeWorld(-roadDistance * (x - 2), -5.0, roadDistance * (y - 2), 0.0, 2 * 90, 0.0, roadScale);
 
@@ -133,27 +132,31 @@ async function main() {
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                 drawAsset(tree[y], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
 
-                // ornamentLocalMatrix = utils.MakeWorld(-0.8, 0.034, 0.0, 0.0, 180, 0.0, 0.2);
+                ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.0, 1 + y, 0.0, 180, 0.0, 0.5);
+                ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
+                drawAsset(flower, ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+
+                // ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.0, 3 + y, 0.0, 180, 0.0, 0.5);
                 // ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
-                // drawAsset(rock[y], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+                // drawAsset(rock[3], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
 
             }
         }
 
 
-        // border area
-        for (x=0; x<15; x++){
+        // Border area
+        for (x = 0; x < 15; x++) {
 
-            worldMatrix = utils.MakeWorld(-280+(x * 40), -8.0, 300.0, 0.0, 0.0, 0.0, 6);
+            worldMatrix = utils.MakeWorld(-280 + (x * 40), -8.0, 300.0, 0.0, 0.0, 0.0, 6);
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
 
-            worldMatrix = utils.MakeWorld(280, -8.0, 300.0 - (x*40) , 90.0, 0.0, 0.0, 6);
+            worldMatrix = utils.MakeWorld(280, -8.0, 300.0 - (x * 40), 90.0, 0.0, 0.0, 6);
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
 
-            worldMatrix = utils.MakeWorld(-280+(x * 40), -8.0, -290.0, 0.0, 0.0, 0.0, 6);
+            worldMatrix = utils.MakeWorld(-280 + (x * 40), -8.0, -290.0, 0.0, 0.0, 0.0, 6);
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
 
-            worldMatrix = utils.MakeWorld(-280, -8.0, 300.0 - (x*40) , 90.0, 0.0, 0.0, 6);
+            worldMatrix = utils.MakeWorld(-280, -8.0, 300.0 - (x * 40), 90.0, 0.0, 0.0, 6);
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
         }
 
@@ -175,6 +178,11 @@ async function main() {
     }
 
 
+    /**
+     * Loads obj asset from the given directory 
+     * @param {string} assetDir 
+     * @param {string} texture 
+     */
     async function loadAsset(assetDir, texture) {
 
         var vao = [];
@@ -225,6 +233,13 @@ async function main() {
         return { "id": i, "vao": vao, "texture": texture, "bufferLength": bufferLength };
     }
 
+    /**
+     * Draws the given asset in the position determined by the matrices
+     * @param {Object} asset 
+     * @param {*} worldMatrix 
+     * @param {*} viewMatrix 
+     * @param {*} perspectiveMatrix 
+     */
     function drawAsset(asset, worldMatrix, viewMatrix, perspectiveMatrix) {
 
         var vwmatrix = utils.multiplyMatrices(viewMatrix, worldMatrix);
@@ -249,8 +264,10 @@ async function main() {
 
     }
 
+    /**
+     * Loads Textures   TODO: da rivedere la logica
+     */
     function loadTextures() {
-
         // load textures
         var imgtxs = [];
         for (var i = 0; i < texture.length; i++) {
@@ -305,8 +322,6 @@ function doResize() {
 }
 
 
-
-
 async function init() {
 
     var canvas = document.getElementById("canvas");
@@ -326,7 +341,6 @@ async function init() {
 
     scene = new Scene();
 
-
     // load and compile shaders
     await utils.loadFiles([shaderDir + 'vs.glsl', shaderDir + 'fs.glsl'], function (shaderText) {
         var vertexShader = utils.createShader(gl, gl.VERTEX_SHADER, shaderText[0]);
@@ -341,12 +355,19 @@ async function init() {
 
 }
 
-// load an object .obj
+/**
+ * Loads an .obj file
+ * @param {string} objDir 
+ */
 async function initMesh(objDir) {
     var objStr = await utils.get_objstr(objDir);
     return new OBJ.Mesh(objStr);
 }
 
+/**
+ * Initializes WebGL
+ * @param {HTMLElement} canvas 
+ */
 function initWebGL(canvas) {
     /** @type {WebGL2RenderingContext} */
     let gl = canvas.getContext("webgl2");
