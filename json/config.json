@@ -77,7 +77,16 @@
             "obj": "object/grass2.obj",
             "texture": "texture/grass2.png"
 
+        },
+        {
+            "name": "cloud",
+            "type": "cloud",
+            "attachPoint": "",
+            "obj": "object/cloud.obj",
+            "texture": "texture/Texture_01.jpg"
+
         }
+
     ],
     "nodes": "",
     "programs": "",

@@ -36,6 +36,7 @@ async function main() {
     i = 0
     var bird;
     var floor;
+    var cloud;
     var tree = []
     var rock = []
 
@@ -53,6 +54,9 @@ async function main() {
 
         if(model.type == "floor") {
             floor = await loadAsset(model.obj, img[3])
+        }
+        if(model.type == "cloud"){
+            cloud = await loadAsset(model.obj, img[4])
         }
     }
 
@@ -136,16 +140,34 @@ async function main() {
             }
         }
 
-        for(x=0; x<15; x++){
+
+        // border area
+        for (x=0; x<15; x++){
+
             worldMatrix = utils.MakeWorld(-280+(x * 40), -8.0, 300.0, 0.0, 0.0, 0.0, 6);
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
 
+            worldMatrix = utils.MakeWorld(280, -8.0, 300.0 - (x*40) , 90.0, 0.0, 0.0, 6);
+            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
+
+            worldMatrix = utils.MakeWorld(-280+(x * 40), -8.0, -290.0, 0.0, 0.0, 0.0, 6);
+            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
+
+            worldMatrix = utils.MakeWorld(-280, -8.0, 300.0 - (x*40) , 90.0, 0.0, 0.0, 6);
+            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
         }
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0, -15.0, 0, 0.0, 270.0, 0.0, 1), utils.MakeScaleNuMatrix(2, 2, 1));
+        worldMatrix = utils.MakeWorld(0, 50.0, 0, 0.0, 0.0, 0.0, 0.5);
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
 
-        ornamentLocalMatrix = utils.MakeWorld(0.0, 0.0, 0.9 + 2/ 2, 0.0, 180, 0.0, 1);
-        ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
+        worldMatrix = utils.MakeWorld(0.0, 50.0, 0.0, 90.0, 0.0, 0.0, 0.5);
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
+
+        worldMatrix = utils.MakeWorld(0.0, 50.0, 0.0, -90.0, 0.0, 0.0, 0.5);
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
+
+        // draw floor
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0, -15.0, 0, 0.0, 270.0, 0.0, 1), utils.MakeScaleNuMatrix(2, 2, 1));
         drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)
 
         window.requestAnimationFrame(drawScene);
