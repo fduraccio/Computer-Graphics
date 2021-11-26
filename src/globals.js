@@ -38,12 +38,12 @@ const KEY_CODE = {
     'V': 86,
     'X': 88,
     'Z': 90,
-    'F': 70
-
+    'F': 70,
+    'SHIFT': 16
 };
 
 //un input parte solo se è collegato a queste keys
-keys=[13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
+keys = [13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
 
 //Assets arrays
 var bird;
@@ -74,11 +74,10 @@ var playerLength = [];
 
 
 var simpleCam = true;
-var simpleMotion = false;
+var simpleMotion = true; //change to make to 
 
 var distance = 8.0;		// distance between car wheel axes
 var odom_offset = 4.0;	// offset distance between ackermann odometry center and car model origin
-
 
 // camera position w.r.t. car (object space)
 var driverPosX = 0.0;
@@ -112,7 +111,7 @@ var playerAngle = 0.0;
 var deltaPlayerAngle = 0.0;
 
 angle = playerAngle % 360 - 180;
-var elevation = 0.01;
+var elevation = 10.0;
 var lookRadius = 10.0;
 
 // var vz = 0.0;			// control input for moving the player

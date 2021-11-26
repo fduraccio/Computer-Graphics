@@ -1,10 +1,10 @@
-
 async function main() {
 
     var dirLightAlpha = -utils.degToRad(-60);
     var dirLightBeta = -utils.degToRad(120);
     var directionalLight = [Math.cos(dirLightAlpha) * Math.cos(dirLightBeta),
-    Math.sin(dirLightAlpha), Math.cos(dirLightAlpha) * Math.sin(dirLightBeta)];
+        Math.sin(dirLightAlpha), Math.cos(dirLightAlpha) * Math.sin(dirLightBeta)
+    ];
     var directionalLightColor = [0.8, 1.0, 1.0];
 
     window.onresize = doResize;
@@ -33,15 +33,15 @@ async function main() {
 
 
     i = 0
-    
+
     for (let model of sceneConfig.models) {
         if (model.type == "bird") {
             bird = await loadAsset(model.obj, img[0])
         }
         if (model.type == "tree") {
             tree.push(await loadAsset(model.obj, img[1]))
-
         }
+
         if (model.type == "rock") {
             rock.push(await loadAsset(model.obj, img[1]))
         }
@@ -110,8 +110,7 @@ async function main() {
             skyColor[0] = (skyAlpha * sunsetLightColor[0] + (th - skyAlpha) * darkLightColor[0]) / th;
             skyColor[1] = (skyAlpha * sunsetLightColor[1] + (th - skyAlpha) * darkLightColor[1]) / th;
             skyColor[2] = (skyAlpha * sunsetLightColor[2] + (th - skyAlpha) * darkLightColor[2]) / th;
-        }
-        else {
+        } else {
             skyColor[0] = ((1 - skyAlpha) * sunsetLightColor[0] + (skyAlpha - th) * dayLightColor[0]) / (1 - th);
             skyColor[1] = ((1 - skyAlpha) * sunsetLightColor[1] + (skyAlpha - th) * dayLightColor[1]) / (1 - th);
             skyColor[2] = ((1 - skyAlpha) * sunsetLightColor[2] + (skyAlpha - th) * dayLightColor[2]) / (1 - th);
@@ -123,7 +122,7 @@ async function main() {
 
 
         //TODO creare una mappa del mondo in cui posizionare gli oggetti
-        for (var x = 0; x < 5; x++) {
+        for (var x = 0; x < 4; x++) {
             for (var y = 0; y < tree.length; y++) {
 
                 worldMatrix = utils.MakeWorld(-roadDistance * (x - 2), -5.0, roadDistance * (y - 2), 0.0, 2 * 90, 0.0, roadScale);
@@ -135,10 +134,6 @@ async function main() {
                 ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.0, 1 + y, 0.0, 180, 0.0, 0.5);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                 drawAsset(flower, ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
-
-                // ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.0, 3 + y, 0.0, 180, 0.0, 0.5);
-                // ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
-                // drawAsset(rock[3], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
 
             }
         }
@@ -160,19 +155,19 @@ async function main() {
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
         }
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0, 0.0, 0.0, 0.0, 0.5), 
-        utils.MakeTranslateMatrix(Math.cos(time/100* 2*Math.PI)*100,0.0 ,0.0));
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0, 0.0, 0.0, 0.0, 0.5),
+            utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, 90.0, 0.0, 0.0, 0.5), 
-        utils.MakeTranslateMatrix( Math.cos(time/100 * 2*Math.PI)*100, 0.0 ,0.0));
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, 90.0, 0.0, 0.0, 0.5),
+            utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
 
         worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, -90.0, 0.0, 0.0, 0.5),
-        utils.MakeTranslateMatrix(Math.cos(time/100* 2*Math.PI)*100, 0.0 ,0.0));
+            utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
 
-        // draw floor
+        // Draws thefloor
         worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0, -15.0, 0, 0.0, 270.0, 0.0, 1), utils.MakeScaleNuMatrix(2, 2, 1));
         drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)
 
@@ -275,7 +270,7 @@ async function main() {
         var imgtxs = [];
         for (var i = 0; i < texture.length; i++) {
             imgtxs[i] = new Image();
-            imgtxs[i].onload = function () {
+            imgtxs[i].onload = function() {
                 var textureId = gl.createTexture();
                 gl.activeTexture(gl.TEXTURE0 + 0);
                 gl.bindTexture(gl.TEXTURE_2D, textureId);
@@ -345,7 +340,7 @@ async function init() {
     scene = new Scene();
 
     // load and compile shaders
-    await utils.loadFiles([shaderDir + 'vs.glsl', shaderDir + 'fs.glsl'], function (shaderText) {
+    await utils.loadFiles([shaderDir + 'vs.glsl', shaderDir + 'fs.glsl'], function(shaderText) {
         var vertexShader = utils.createShader(gl, gl.VERTEX_SHADER, shaderText[0]);
         var fragmentShader = utils.createShader(gl, gl.FRAGMENT_SHADER, shaderText[1]);
 

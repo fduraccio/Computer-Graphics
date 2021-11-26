@@ -20,13 +20,32 @@
 
 <body>
     <div id="main-panel">
-        <h1>
-            <img id="main-logo" src="./env/logo.png">
-        </h1>
-        <div id="scene">
-            <!-- Will be filled programmatically -->
-            <button value="game" onClick="changeState()">Click here to start the Game</button>
+        <div class="container">
+            <div class="container-btn">
+                <div class="btn-btn">
+
+                    <button class="btn" onClick="changeSettings()">
+                        <img src="/env/gear.png" class="icon-gear-size" alt="">
+                    </button>
+                </div>
+            </div>
+            <div id="game" class="d-flex justify-content-center">
+
+                <h1 class="bird-hunt-font font-size-100 text-color-white">
+                    Bird Hunt
+                </h1>
+                <div id="button" value="game" onClick="changeState()">
+                    <button class="navButton">
+                        <span class="bird-hunt-font font-size-55">PLAY</span>
+                    </button>
+
+                </div>
+            </div>
+
         </div>
+    </div>
+    <div>
+        <h1></h1>
     </div>
 
     <canvas id="canvas" width="1024" height="769">

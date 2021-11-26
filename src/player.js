@@ -53,7 +53,7 @@ function computeWPV(vz, steeringDir) {
 		if (vz > 0.1) {
 			if (preVz > 0.1) {
 				playerLinAcc = playerLinAcc + ATur * deltaT;
-				if (playerLinAcc > mAT) playerLinAcc = mAT;
+				if (playerLinAcc > mAT) playerLinAcc = mAT*2;
 			} else if (playerLinAcc < sAT) playerLinAcc = sAT;
 		} else if (vz > -0.1) {
 			playerLinAcc = playerLinAcc - ATdr * deltaT * Math.sign(playerLinAcc);
