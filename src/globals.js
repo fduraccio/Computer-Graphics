@@ -198,7 +198,8 @@ var texture = [
     'texture/Texture_01.jpg',
     'texture/grass-pattern.jpg',
     'texture/grass3.png',
-    'texture/cloudColour.png'
+    'texture/cloudColour.png',
+    'texture/images.jpeg'
 ]
 
 var roadAssetsJSONs = [

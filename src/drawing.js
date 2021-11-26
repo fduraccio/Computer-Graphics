@@ -51,7 +51,7 @@ async function main() {
         }
 
         if (model.type == "cloud") {
-            cloud = await loadAsset(model.obj, img[4])
+            cloud = await loadAsset(model.obj, img[5])
         }
 
         if (model.type == "flower") {
