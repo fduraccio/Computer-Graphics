@@ -179,6 +179,9 @@ var redObj = ['object/red.obj'];
 
 var redAsset;
 
+var W, V, P;
+var V_old;
+var collisionChecked=true;
 var assetsObj = [
     'object/flower.obj',
     'object/plant.obj',
@@ -217,6 +220,15 @@ var roadAssetsJSONs = [
 ];
 
 var assets = []
+
+var collisionFriction = 0.9;
+var collisionDetected = false;
+var mapDim = 7;
+
+var Nx = Math.round(-playerX/roadDistance);
+var Ny = Math.round(playerZ/roadDistance);
+
+var cityDensity = 2.5;
 
 var sunRise = 0.0;
 var dayLightColor = [0.6, 0.8, 0.95];

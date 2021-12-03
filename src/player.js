@@ -35,7 +35,6 @@ function ackermann(v, steering_angle) {
  * @param {*} steeringDir 
  */
 function computeWPV(vz, steeringDir) {
-	var W, V, P;
 
 	// compute time interval
 	var deltaT;
@@ -77,6 +76,8 @@ function computeWPV(vz, steeringDir) {
 
 	}
 
+	
+
 	// magic for moving the player
 	var steeringAngle = steeringDir * maxSteering;
 	prevPlayerAngle = playerAngle;
@@ -87,6 +88,7 @@ function computeWPV(vz, steeringDir) {
 
 	playerY = 1 / 300 * 3.5;
 
+	
 	P = utils.MakePerspective(fov, aspectRatio, 0.1, 1000.0);
 
 	W = utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0);
@@ -114,11 +116,35 @@ function computeWPV(vz, steeringDir) {
 	var nC = utils.multiplyMatrixVector(W, [0, lookRadius * (driverPosY - lookAtPosY) + lookAtPosY, lookRadius * driverPosZ, 1.0]);
 
 	// camera position
+	
 	cx = nC[0];
 	cy = nC[1];
 	cz = nC[2];
 
-	V = utils.MakeView(cx, cy, cz, elevation, angle);
+	var collisionChecked=checkCollision1();
+	
+	if(collisionChecked){
+		V = utils.MakeView(cx, cy, cz, elevation, angle);
+		V_old=V;
+	}
+	
 
-	return [W, V, P];
+	return [W, V_old, P];
+}
+
+function checkCollision1(){
+	var localPos =[cx, cy, cz, 1]
+	var check1, check2, check3, check4;
+	
+	check1=CheckCollision(300, localPos[2], 1)
+	
+	check2=CheckCollision(280, localPos[0], 1)
+
+	check3=CheckCollision(-290, localPos[2], -1)
+
+	check4=CheckCollision(-280, localPos[0], -1);
+	//console.log(check1, check2, check3, check4)
+
+	return !check1 && !check2 && !check3 && !check4;
+	
 }

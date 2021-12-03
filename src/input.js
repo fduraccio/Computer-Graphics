@@ -8,8 +8,8 @@ var keyFunctionDown = function(e) {
             case KEY_CODE.D:
                 steeringDir = -1;
                 break;
-            case KEY_CODE.W:
-                vz = vz + 1.0;
+            case KEY_CODE.W:	
+					vz = vz + 1.0;
                 break;
             case KEY_CODE.S:
                 vz = vz - 1.0;
@@ -158,6 +158,7 @@ var keyPanelFunction = function(e) {
         console.log(e.keyCode)
         switch (e.keyCode) {
             case KEY_CODE.INVIO:
+				console.log(e)
                 helpPanel = document.getElementById("help-panel");
                 helpPanel.style.display = "none";
                 e.preventDefault();
