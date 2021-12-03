@@ -125,7 +125,7 @@ async function main() {
         for (var x = 0; x < 4; x++) {
             for (var y = 0; y < tree.length; y++) {
 
-                worldMatrix = utils.MakeWorld(-roadDistance * (x - 2), -5.0, roadDistance * (y - 2), 0.0, 2 * 90, 0.0, roadScale);
+                worldMatrix = utils.MakeWorld(-roadDistance * (x - 2), -9.0, roadDistance * (y - 2), 0.0, 2 * 90, 0.0, roadScale);
 
                 ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.0, 0.9 + x / 2, 0.0, 180, 0.0, 0.5);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
@@ -155,6 +155,15 @@ async function main() {
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
         }
 
+        for (x = 0; x < 15; x++) {
+            for (y = 0; y < 15; y++) {
+
+                worldMatrix = utils.MakeWorld(-280 + (x * 40), -10, 300.0 - (y * 40), 0.0, 270, 0.0, 0.2);
+                drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)
+
+            }
+        }
+
         worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0, 0.0, 0.0, 0.0, 0.5),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
@@ -167,9 +176,9 @@ async function main() {
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
 
-        // Draws thefloor
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0, -15.0, 0, 0.0, 270.0, 0.0, 1), utils.MakeScaleNuMatrix(2, 2, 1));
-        drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)
+        // Draws the floor
+        // worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0, -15.0, 0, 0.0, 270.0, 0.0, 1), utils.MakeScaleNuMatrix(2, 2, 1));
+        // drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)
 
         window.requestAnimationFrame(drawScene);
 
@@ -336,8 +345,6 @@ async function init() {
 
     aspectRatio = canvas.clientWidth / canvas.clientHeight;
     window.onresize = doResize();
-
-    scene = new Scene();
 
     // load and compile shaders
     await utils.loadFiles([shaderDir + 'vs.glsl', shaderDir + 'fs.glsl'], function(shaderText) {

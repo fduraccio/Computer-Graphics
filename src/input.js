@@ -8,8 +8,8 @@ var keyFunctionDown = function(e) {
             case KEY_CODE.D:
                 steeringDir = -1;
                 break;
-            case KEY_CODE.W:	
-					vz = vz + 1.0;
+            case KEY_CODE.W:
+                vz = vz + 1.0;
                 break;
             case KEY_CODE.S:
                 vz = vz - 1.0;
@@ -43,63 +43,14 @@ var keyFunctionDown = function(e) {
                 }
                 break;
             case KEY_CODE.R:
-                if (firstPersonView) {
-                    angle = playerAngle % 360 - 180;
-                    elevation = 0.0;
-                    deltaCamAngle_1 = 0.0;
-                    deltaCamElevation_1 = 0.0;
-                    deltaCamAngle_2 = 0.0;
-                    deltaCamElevation_2 = 0.0;
-                    lookRadius = 1.0;
-                    deltaLookRadius = 0.0;
-                } else {
-                    driverPosX = 0;
-                    driverPosY = 5;
-                    driverPosZ = -10;
-                    camAngle = Math.atan2(driverPosX, driverPosZ) / Math.PI * 180 + carAngle;
-                    planarDist = Math.sqrt(Math.pow(driverPosX, 2) + Math.pow(driverPosZ, 2));
-                    camElevation = -Math.atan2(driverPosY - lookAtPosY, planarDist) / Math.PI * 180;
-                    deltaCamAngle_2 = 0.0;
-                    deltaCamElevation_2 = 0.0;
-                    lookRadius = 1.0;
-                    deltaLookRadius = 0.0;
-                }
-                break;
-            case KEY_CODE.V:
-                if (firstPersonView) {
-                    firstPersonView = false;
-                    driverPosX = 0;
-                    driverPosY = 5;
-                    driverPosZ = -10;
-                    camAngle = Math.atan2(driverPosX, driverPosZ) / Math.PI * 180 + carAngle;
-                    planarDist = Math.sqrt(Math.pow(driverPosX, 2) + Math.pow(driverPosZ, 2));
-                    camElevation = -Math.atan2(driverPosY - lookAtPosY, planarDist) / Math.PI * 180;
-                    deltaCamAngle_1 = 0.0;
-                    deltaCamElevation_1 = 0.0;
-                    deltaCamAngle_2 = 0.0;
-                    deltaCamElevation_2 = 0.0;
-                    lookRadius = 1.0;
-                    deltaLookRadius = 0.0;
-                } else {
-                    firstPersonView = true;
-                    driverPosX = 0;
-                    driverPosY = 3;
-                    driverPosZ = 0;
-                    camAngle = carAngle % 360 - 180;
-                    camElevation = 0.0;
-                    deltaCamAngle_1 = 0.0;
-                    deltaCamElevation_1 = 0.0;
-                    deltaCamAngle_2 = 0.0;
-                    deltaCamElevation_2 = 0.0;
-                    lookRadius = 1.0;
-                    deltaLookRadius = 0.0;
-                }
-                break;
-            case KEY_CODE.X:
-                deltaLookRadius = -0.01;
-                break;
-            case KEY_CODE.Z:
-                deltaLookRadius = 0.01;
+                angle = playerAngle % 360 - 180;
+                elevation = 0.0;
+                deltaCamAngle_1 = 0.0;
+                deltaCamElevation_1 = 0.0;
+                deltaCamAngle_2 = 0.0;
+                deltaCamElevation_2 = 0.0;
+                lookRadius = 1.0;
+                deltaLookRadius = 0.0;
                 break;
             case KEY_CODE.F:
                 toggleFullScreen();
@@ -153,12 +104,9 @@ var keyFunctionUp = function(e) {
 }
 
 var keyPanelFunction = function(e) {
-
     if (checkKey(e.keyCode)) {
-        console.log(e.keyCode)
         switch (e.keyCode) {
             case KEY_CODE.INVIO:
-				console.log(e)
                 helpPanel = document.getElementById("help-panel");
                 helpPanel.style.display = "none";
                 e.preventDefault();
@@ -168,7 +116,6 @@ var keyPanelFunction = function(e) {
                 helpPanel.style.display = "block";
                 e.preventDefault();
                 break;
-
         }
     }
 }
@@ -194,8 +141,8 @@ function checkKey(keyCode) {
         }
     }
     return false;
-
 }
+
 var mouseState = false;
 var lastMouseX = -100,
     lastMouseY = -100;
