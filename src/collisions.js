@@ -15,9 +15,8 @@ function checkCollision(one, two, weight) {
 /**
  * Checks the collision in the environment
  */
-function checkCollisionEnv() {
-    var localPos = [cx, cy, cz, 1]
+function checkCollisionEnv(localPos) {
 
-    return checkCollision(270, localPos[2], 1) || checkCollision(270, localPos[0], 1) ||
-        checkCollision(-270, localPos[2], -1) || checkCollision(-270, localPos[0], -1);
+    return checkCollision(270, localPos[2], 1) || checkCollision(250, localPos[0], 1) ||
+        checkCollision(-260, localPos[2], -1) || checkCollision(-250, localPos[0], -1);
 }

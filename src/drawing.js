@@ -63,7 +63,7 @@ async function main() {
 
     var W = utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0);
 
-    var nC = utils.multiplyMatrixVector(W, [lookRadius * driverPosX, lookRadius * driverPosY, lookRadius * driverPosZ, 1.0]);
+    var nC = utils.multiplyMatrixVector(W, [driverPosX, driverPosY, driverPosZ, 1.0]);
 
     cx = nC[0];
     cy = nC[1];
@@ -156,7 +156,7 @@ async function main() {
         }
 
         for (x = 0; x < 15; x++) {
-            for (y = 0; y < 15; y++) {
+            for (y = 0; y < 16; y++) {
 
                 worldMatrix = utils.MakeWorld(-280 + (x * 40), -10, 300.0 - (y * 40), 0.0, 270, 0.0, 0.2);
                 drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)

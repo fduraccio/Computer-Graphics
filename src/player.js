@@ -71,16 +71,19 @@ function computeWPV(vz, steeringDir) {
         }
 
     }
+	var collisionDetected = checkCollisionEnv([cx, cy, cz, 1]);
+	if(collisionDetected){
+		playerLinVel = -5.0; 
+	}
 
     // magic for moving the player
     var steeringAngle = steeringDir * maxSteering;
     prevPlayerAngle = playerAngle;
     deltaPlayerAngle = -playerAngle;
-    odom_offset = (1 / 3) * 0.8;
+    odom_offset = (1 / 2) * 0.8;
 
     ackermann(playerLinVel, steeringAngle);
 
-    playerY = 1 / 300 * 3.5;
 
     P = utils.MakePerspective(fov, aspectRatio, 0.1, 1000.0);
 
@@ -93,30 +96,22 @@ function computeWPV(vz, steeringDir) {
     elevation += deltaCamElevation_1 + deltaCamElevation_2;
     camRoll = 0.0;
 
-    var nLookRadius = lookRadius + deltaLookRadius;
-    if ((nLookRadius >= 0.8) && (nLookRadius <= 1.5) && !firstPersonView) {
-        lookRadius = nLookRadius;
-    }
 
-    var driverPos;
+	var minElev = -60.0;
+	var maxElev = 60.0;
+		
+	elevation = Math.min(Math.max(elevation, minElev), maxElev);
 
-    // define camera (target) position
-    var minElev = -60.0;
-    var maxElev = 60.0;
 
-    elevation = Math.min(Math.max(elevation, minElev), maxElev);
-
-    var nC = utils.multiplyMatrixVector(W, [0, lookRadius * (driverPosY - lookAtPosY) + lookAtPosY, lookRadius * driverPosZ, 1.0]);
+    var nC = utils.multiplyMatrixVector(W, [driverPosX, 0.0, driverPosZ, 1.0]);
 
     // camera position
     cx = nC[0];
     cy = nC[1];
     cz = nC[2];
 
-    var collisionDetected = checkCollisionEnv();
-
     if (!collisionDetected) {
-        V = utils.MakeView(cx, cy, cz, elevation, angle);
+        V = utils.MakeView(cx, cy, cz, elevation, angle);	
     }
 
     return [W, V, P];

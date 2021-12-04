@@ -84,7 +84,6 @@ var driverPosX = 0.0;
 var driverPosY = 3.0;
 var driverPosZ = 0.0;
 
-var lookAtPosY = 2.5;
 
 var planarDist = Math.sqrt(Math.pow(driverPosX, 2) + Math.pow(driverPosZ, 2));
 
@@ -96,7 +95,6 @@ var cz = 10.0;
 var elevation = 0.0;
 var angle = 0.0;
 
-var lookRadius = 10.0;
 
 var firstPersonView = true;
 
@@ -112,7 +110,6 @@ var deltaPlayerAngle = 0.0;
 
 angle = playerAngle % 360 - 180;
 var elevation = 10.0;
-var lookRadius = 10.0;
 
 // var vz = 0.0;			// control input for moving the player
 var preVz = 0.0;
@@ -204,31 +201,12 @@ var texture = [
     'texture/images.jpeg'
 ]
 
-var roadAssetsJSONs = [
-    "road01.json",
-    "road02.json",
-    "road03.json",
-    "road04.json",
-    "road05.json",
-    "road06.json",
-    "road07.json",
-    "road09.json",
-    "road10.json",
-    "road11.json",
-    "road12.json",
-    "road13.json"
-];
 
 var assets = []
 
-var collisionFriction = 0.9;
-var collisionDetected = false;
-var mapDim = 7;
 
-var Nx = Math.round(-playerX/roadDistance);
-var Ny = Math.round(playerZ/roadDistance);
 
-var cityDensity = 2.5;
+
 
 var sunRise = 0.0;
 var dayLightColor = [0.6, 0.8, 0.95];
