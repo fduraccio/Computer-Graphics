@@ -1,5 +1,10 @@
 async function main() {
 
+    var randomPosition = [];
+    for (i = 0; i < 100; i++) {
+        randomPosition[i] = Math.round(Math.random() * 5);
+
+    }
     var dirLightAlpha = -utils.degToRad(-60);
     var dirLightBeta = -utils.degToRad(120);
     var directionalLight = [Math.cos(dirLightAlpha) * Math.cos(dirLightBeta),
@@ -26,17 +31,16 @@ async function main() {
     var uvAttributeLocation = gl.getAttribLocation(program, "a_uv");
     var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');
 
+    var objectAll = []
 
     var img = loadTextures();
     let sceneConfig = await (await fetch(`json/config.json`)).json();
-
-
-    i = 0
 
     for (let model of sceneConfig.models) {
         if (model.type == "bird") {
             bird = await loadAsset(model.obj, img[0])
         }
+
         if (model.type == "tree") {
             tree.push(await loadAsset(model.obj, img[1]))
         }
@@ -56,7 +60,10 @@ async function main() {
         if (model.type == "flower") {
             flower = await loadAsset(model.obj, img[1])
         }
+
     }
+
+
 
     //Define the scene Graph
 
@@ -120,38 +127,50 @@ async function main() {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 
+
+        var i = 0
+        var trees = sceneConfig.attachmentPos[0].trees // di n.random
+        var type = sceneConfig.attachmentPos[0].treeType // di n.random
+
+
         //TODO creare una mappa del mondo in cui posizionare gli oggetti
-        for (var x = 0; x < 4; x++) {
-            for (var y = 0; y < tree.length; y++) {
+        for (var x = 0; x < 10; x++) {
+            for (var y = 0; y < 8; y++) {
 
-                worldMatrix = utils.MakeWorld(-roadDistance * (x - 2), -9.0, roadDistance * (y - 2), 0.0, 2 * 90, 0.0, roadScale);
+                worldMatrix = utils.MakeWorld(trees[y][0] - (x * 40), trees[y][1], trees[y][2] - (y * 60), trees[y][3], trees[y][4], trees[y][5], trees[y][6]);
+                drawAsset(tree[randomPosition[(y) + (10 * x)]], worldMatrix, viewMatrix, perspectiveMatrix);
 
-                ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.0, 0.9 + x / 2, 0.0, 180, 0.0, 0.5);
+
+                ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.01, 3 + y + (x * 1), 0.0, 0.0, 0.0, 0.7);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
-                drawAsset(tree[y], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+                if (choice) drawAsset(rock[3], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+                else drawAsset(tree[0], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
 
-                ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.0, 1 + y, 0.0, 180, 0.0, 0.5);
+                ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.01, 1, 0.0, 0.0, 0.0, 1);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                 drawAsset(flower, ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+                choice = !choice
 
             }
         }
 
+        var borderArea = sceneConfig.attachmentPos[0].borderArea; // di n.random
 
         // Border area
         for (x = 0; x < 15; x++) {
 
-            worldMatrix = utils.MakeWorld(-280 + (x * 40), -8.0, 300.0, 0.0, 0.0, 0.0, 6);
+            worldMatrix = utils.MakeWorld(borderArea[0][0] + (x * 40), borderArea[0][1], borderArea[0][2], borderArea[0][3], borderArea[0][4], borderArea[0][5], borderArea[0][6]);
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
 
-            worldMatrix = utils.MakeWorld(280, -8.0, 300.0 - (x * 40), 90.0, 0.0, 0.0, 6);
+            worldMatrix = utils.MakeWorld(borderArea[1][0], borderArea[1][1], borderArea[1][2] - (x * 40), borderArea[1][3], borderArea[1][4], borderArea[1][5], borderArea[1][6]);
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
 
-            worldMatrix = utils.MakeWorld(-280 + (x * 40), -8.0, -290.0, 0.0, 0.0, 0.0, 6);
+            worldMatrix = utils.MakeWorld(borderArea[2][0] + (x * 40), borderArea[2][1], borderArea[2][2], borderArea[2][3], borderArea[2][4], borderArea[2][5], borderArea[2][6]);
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
 
-            worldMatrix = utils.MakeWorld(-280, -8.0, 300.0 - (x * 40), 90.0, 0.0, 0.0, 6);
+            worldMatrix = utils.MakeWorld(borderArea[3][0], borderArea[3][1], borderArea[3][2] - (x * 40), borderArea[3][3], borderArea[3][4], borderArea[3][5], borderArea[3][6]);
             drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
+
         }
 
         for (x = 0; x < 15; x++) {
@@ -177,12 +196,7 @@ async function main() {
 
 
         worldMatrix = utils.MakeWorld(0.0, 8.0, 25.0, 180.0, 0.0, 0.0, 10.0);
-        drawAsset(bird, worldMatrix, viewMatrix, perspectiveMatrix)
-
-
-        // Draws the floor
-        // worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0, -15.0, 0, 0.0, 270.0, 0.0, 1), utils.MakeScaleNuMatrix(2, 2, 1));
-        // drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)
+        // drawAsset(bird, worldMatrix, viewMatrix, perspectiveMatrix)
 
         window.requestAnimationFrame(drawScene);
 

@@ -1,6 +1,5 @@
 {
-    "models": [
-        {
+    "models": [{
             "name": "bird",
             "type": "bird",
             "attachPoint": "",
@@ -9,7 +8,7 @@
         },
         {
             "name": "plant",
-            "type": "plant",
+            "type": "tree",
             "attachPoint": "",
             "obj": "object/plant.obj",
             "texture": "texture/Texture_01.png"
@@ -26,6 +25,13 @@
             "type": "tree",
             "attachPoint": "",
             "obj": "object/tree2.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "stump",
+            "type": "tree",
+            "attachPoint": "",
+            "obj": "object/stump.obj",
             "texture": "texture/Texture_01.png"
         },
         {
@@ -85,14 +91,39 @@
             "texture": "texture/Texture_01.jpg"
 
         },
-        {   "name": "flower",
+        {
+            "name": "flower",
             "type": "flower",
             "attachPoint": "",
             "obj": "object/flower.obj",
             "texture": "texture/Texture_01.jpg"
         }
-
     ],
+
+    "attachmentPos": [{
+        "treeType": [1, 2, 3, 2, 4, 1, 2, 3, 4],
+        "trees": [
+            [270, -9.0, 280, 0.0, 0.0, 0.0, 10],
+            [220, -9.0, 220, 0.0, 0.0, 0.0, 10],
+            [200, -9.0, 240, 0.0, 0.0, 0.0, 10],
+            [210, -9.0, 250, 0.0, 0.0, 0.0, 10],
+            [230, -9.0, 260, 0.0, 0.0, 0.0, 10],
+            [260, -9.0, 270, 0.0, 0.0, 0.0, 10],
+            [250, -9.0, 230, 0.0, 0.0, 0.0, 10],
+            [240, -9.0, 220, 0.0, 0.0, 0.0, 10],
+            [240, -9.0, 210, 0.0, 0.0, 0.0, 10],
+            [260, -9.0, 230, 0.0, 0.0, 0.0, 10]
+        ],
+        "rocks": [],
+        "bird": [],
+        "borderArea": [
+            [-280, -8.0, 300.0, 0.0, 0.0, 0.0, 6],
+            [280, -8.0, 300.0, 90.0, 0.0, 0.0, 6],
+            [-280, -8.0, -290.0, 0.0, 0.0, 0.0, 6],
+            [-280, -8.0, 300.0, 90.0, 0.0, 0.0, 6]
+        ]
+    }],
+
     "nodes": "",
     "programs": "",
     "rootNode": "",

@@ -46,6 +46,7 @@ const KEY_CODE = {
 keys = [13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
 
 //Assets arrays
+var i = 0;
 var bird;
 var floor;
 var cloud;
@@ -53,8 +54,10 @@ var tree = []
 var rock = []
 var flower;
 
-var birdPosition=[[0.0, 8.0, 25.0], 3.0]
-//Panel
+var birdPosition = [
+        [0.0, 8.0, 25.0], 3.0
+    ]
+    //Panel
 var helpPanel;
 var canvasPanel;
 var mainPanel;
@@ -77,8 +80,8 @@ var playerLength = [];
 var simpleCam = true;
 var simpleMotion = true; //change to make to 
 
-var distance = 8.0;		// distance between car wheel axes
-var odom_offset = 4.0;	// offset distance between ackermann odometry center and car model origin
+var distance = 8.0; // distance between car wheel axes
+var odom_offset = 4.0; // offset distance between ackermann odometry center and car model origin
 
 // camera position w.r.t. car (object space)
 var driverPosX = 0.0;
@@ -117,8 +120,8 @@ var preVz = 0.0;
 var playerLinAcc = 0.0;
 var playerLinVel = 0.0;
 
-var steeringDir = 0;	// 1 = steering left, 0 = going straight, -1 = steering right
-var maxSteering = 40;	// max steering angle in degree
+var steeringDir = 0; // 1 = steering left, 0 = going straight, -1 = steering right
+var maxSteering = 40; // max steering angle in degree
 
 // running dynamic coefficients
 var sAT = 0.5;
@@ -130,10 +133,10 @@ var mBT = 0.9;
 var BTur = 5.0;
 var BTdr = 5.5;
 var Tfric = Math.log(0.05);
-var sAS = 0.1;	// Not used yet
+var sAS = 0.1; // Not used yet
 var mAS = 108.0;
-var ASur = 1.0;	// Not used yet
-var ASdr = 0.5;	// Not used yet
+var ASur = 1.0; // Not used yet
+var ASdr = 0.5; // Not used yet
 
 
 var fov = 70;
@@ -148,9 +151,14 @@ var neighborMargin = 1;
 var lookRadius = 1.0;
 var deltaLookRadius = 0.0;
 
-let vx = 0, vy = 0, vz = 0;
-let rvx = 0, rvy = 0, rvz = 0;
-let theta = 0, psi = 0;
+let vx = 0,
+    vy = 0,
+    vz = 0;
+let rvx = 0,
+    rvy = 0,
+    rvz = 0;
+let theta = 0,
+    psi = 0;
 
 // camera orientation variation for first-person view
 var deltaCamAngle_1 = 0.0;
@@ -174,12 +182,12 @@ var sidewalkWidth = roadDistance * 0.25;
 let sceneObjects = [];
 
 var redObj = ['object/red.obj'];
-
+var choice = false
 var redAsset;
 
 var W, V, P;
 var V_old;
-var collisionChecked=true;
+var collisionChecked = true;
 var assetsObj = [
     'object/flower.obj',
     'object/plant.obj',
