@@ -182,7 +182,7 @@ var sidewalkWidth = roadDistance * 0.25;
 let sceneObjects = [];
 
 var redObj = ['object/red.obj'];
-var choice = false
+var choice = -1
 var redAsset;
 
 var W, V, P;

@@ -71,10 +71,10 @@ function computeWPV(vz, steeringDir) {
         }
 
     }
-	var collisionDetected = checkCollisionEnv([cx, cy, cz, 1]);
-	if(collisionDetected){
-		playerLinVel = -5.0; 
-	}
+    var collisionDetected = checkCollisionEnv([cx, cy, cz, 1]);
+    if (collisionDetected) {
+        playerLinVel = -5.0;
+    }
 
     // magic for moving the player
     var steeringAngle = steeringDir * maxSteering;
@@ -97,10 +97,10 @@ function computeWPV(vz, steeringDir) {
     camRoll = 0.0;
 
 
-	var minElev = -60.0;
-	var maxElev = 60.0;
-		
-	elevation = Math.min(Math.max(elevation, minElev), maxElev);
+    var minElev = -60.0;
+    var maxElev = 60.0;
+
+    elevation = Math.min(Math.max(elevation, minElev), maxElev);
 
 
     var nC = utils.multiplyMatrixVector(W, [driverPosX, 0.0, driverPosZ, 1.0]);
@@ -111,7 +111,7 @@ function computeWPV(vz, steeringDir) {
     cz = nC[2];
 
     if (!collisionDetected) {
-        V = utils.MakeView(cx, cy, cz, elevation, angle);	
+        V = utils.MakeView(cx, cy, cz, elevation, angle);
     }
 
     return [W, V, P];

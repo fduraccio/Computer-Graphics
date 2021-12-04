@@ -1,7 +1,7 @@
 async function main() {
 
     var randomPosition = [];
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < 200; i++) {
         randomPosition[i] = Math.round(Math.random() * 5);
 
     }
@@ -135,24 +135,24 @@ async function main() {
 
         //TODO creare una mappa del mondo in cui posizionare gli oggetti
         for (var x = 0; x < 10; x++) {
-            for (var y = 0; y < 8; y++) {
+            for (var y = 0; y < 20; y++) {
+                worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * 54), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
+                drawAsset(tree[randomPosition[(y + (20 * x))]], worldMatrix, viewMatrix, perspectiveMatrix);
 
-                worldMatrix = utils.MakeWorld(trees[y][0] - (x * 40), trees[y][1], trees[y][2] - (y * 60), trees[y][3], trees[y][4], trees[y][5], trees[y][6]);
-                drawAsset(tree[randomPosition[(y) + (10 * x)]], worldMatrix, viewMatrix, perspectiveMatrix);
 
-
-                ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.01, 3 + y + (x * 1), 0.0, 0.0, 0.0, 0.7);
+                ornamentLocalMatrix = utils.MakeWorld(1.0, 0.1, 1.0, 0.0, 0.0, 0.0, 0.5);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
-                if (choice) drawAsset(rock[3], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+                if (choice == -1) drawAsset(rock[3], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
                 else drawAsset(tree[0], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
 
-                ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.01, 1, 0.0, 0.0, 0.0, 1);
+                ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.1, 1, 0.0, 0.0, 0.0, 1);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                 drawAsset(flower, ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
-                choice = !choice
+                choice = choice * choice
 
             }
         }
+
 
         var borderArea = sceneConfig.attachmentPos[0].borderArea; // di n.random
 
