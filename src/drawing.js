@@ -148,7 +148,7 @@ async function main() {
                 ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.1, 1, 0.0, 0.0, 0.0, 1);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                 drawAsset(flower, ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
-                choice = choice * choice
+                choice = choice * -1.0
 
             }
         }
