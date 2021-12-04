@@ -1,6 +1,5 @@
 function normaliseVector(vec) {
     var magnitude = Math.sqrt(vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2]);
-    console.log("Magnitude" + magnitude);
     var normVec = [vec[0] / magnitude, vec[1] / magnitude, vec[2] / magnitude];
     return normVec;
 }
@@ -8,10 +7,8 @@ function normaliseVector(vec) {
 
 function myOnMouseUp(ev) {
     //These commented lines of code only work if the canvas is full screen
-    console.log("ClientX " + ev.clientX + " ClientY " + ev.clientY);
     var normX = (2 * ev.clientX) / gl.canvas.width - 1;
     var normY = 1 - (2 * ev.clientY) / gl.canvas.height;
-    console.log("NormX " + normX + " NormY " + normY);
 
     //This is a way of calculating the coordinates of the click in the canvas taking into account its possible displacement in the page
     /*var top = 0.0, left = 0.0;
@@ -51,9 +48,8 @@ function myOnMouseUp(ev) {
 
 
     var hit = raySphereIntersection(rayStartPoint, normalisedRayDir, birdPosition[0], birdPosition[1]);
-    console.log(mainPanel)
 
-    // alert(hit)
+    alert(hit)
 
 }
 

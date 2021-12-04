@@ -134,7 +134,7 @@ async function main() {
 
 
         //TODO creare una mappa del mondo in cui posizionare gli oggetti
-        for (var x = 0; x < 10; x++) {
+        for (var x = 1; x < 10; x++) {
             for (var y = 0; y < 20; y++) {
                 worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * 54), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
                 drawAsset(tree[randomPosition[(y + (20 * x))]], worldMatrix, viewMatrix, perspectiveMatrix);
@@ -195,8 +195,8 @@ async function main() {
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
 
 
-        worldMatrix = utils.MakeWorld(0.0, 8.0, 25.0, 180.0, 0.0, 0.0, 10.0);
-        // drawAsset(bird, worldMatrix, viewMatrix, perspectiveMatrix)
+        worldMatrix = utils.MakeWorld(0.0, 8.0, 25.0, 180.0, 0.0, 0.0, 3.0);
+         drawAsset(bird, worldMatrix, viewMatrix, perspectiveMatrix)
 
         window.requestAnimationFrame(drawScene);
 
