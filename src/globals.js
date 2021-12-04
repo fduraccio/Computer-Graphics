@@ -53,6 +53,7 @@ var tree = []
 var rock = []
 var flower;
 
+var birdPosition=[[0.0, 8.0, 25.0], 3.0]
 //Panel
 var helpPanel;
 var canvasPanel;

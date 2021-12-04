@@ -7,7 +7,6 @@ async function main() {
     ];
     var directionalLightColor = [0.8, 1.0, 1.0];
 
-    window.onresize = doResize;
 
     //SET Global states (viewport size, viewport background color, Depth test)
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -176,6 +175,11 @@ async function main() {
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
 
+
+        worldMatrix = utils.MakeWorld(0.0, 8.0, 25.0, 180.0, 0.0, 0.0, 10.0);
+        drawAsset(bird, worldMatrix, viewMatrix, perspectiveMatrix)
+
+
         // Draws the floor
         // worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0, -15.0, 0, 0.0, 270.0, 0.0, 1), utils.MakeScaleNuMatrix(2, 2, 1));
         // drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)
@@ -296,36 +300,7 @@ async function main() {
         return imgtxs
     }
 
-    function doResize() {
-        // set canvas dimensions
-        if ((window.innerWidth > 40) && (window.innerHeight > 240)) {
-            canvas.width = window.innerWidth - 16;
-            canvas.height = window.innerHeight - 200;
-            var w = canvas.clientWidth;
-            var h = canvas.clientHeight;
 
-            gl.clearColor(0.0, 0.0, 0.0, 1.0);
-            gl.viewport(0.0, 0.0, w, h);
-
-            aspectRatio = w / h;
-        }
-    }
-
-}
-
-function doResize() {
-    // set canvas dimensions
-    if ((window.innerWidth > 40) && (window.innerHeight > 240)) {
-        canvas.width = window.innerWidth - 16;
-        canvas.height = window.innerHeight - 200;
-        var w = canvas.clientWidth;
-        var h = canvas.clientHeight;
-
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
-        gl.viewport(0.0, 0.0, w, h);
-
-        aspectRatio = w / h;
-    }
 }
 
 
@@ -344,7 +319,6 @@ async function init() {
     gl = initWebGL(canvas)
 
     aspectRatio = canvas.clientWidth / canvas.clientHeight;
-    window.onresize = doResize();
 
     // load and compile shaders
     await utils.loadFiles([shaderDir + 'vs.glsl', shaderDir + 'fs.glsl'], function(shaderText) {

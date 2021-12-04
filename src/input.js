@@ -148,6 +148,7 @@ var lastMouseX = -100,
     lastMouseY = -100;
 
 function doMouseDown(event) {
+	console.log(event)
     lastMouseX = event.pageX;
     lastMouseY = event.pageY;
     mouseState = true;
@@ -157,6 +158,7 @@ function doMouseUp(event) {
     lastMouseX = -100;
     lastMouseY = -100;
     mouseState = false;
+	myOnMouseUp(event);
 }
 
 function doMouseMove(event) {
