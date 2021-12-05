@@ -77,6 +77,7 @@ var lastUpdateTime = (new Date).getTime();
 
 var playerIndex = 0;
 var playerLength = [];
+var timeOfWinner;
 
 
 var simpleCam = true;
@@ -104,7 +105,7 @@ var angle = 0.0;
 
 var firstPersonView = true;
 
-var nomePlayer;
+var namePlayer;
 
 // player pose
 var playerX = 0.0;

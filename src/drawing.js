@@ -441,6 +441,8 @@ async function readTextFile(file)
             {
                 allText = rawFile.responseText;
                 allText = allText.split("-");
+                //per rimuovere le regex
+                allText[9]=allText[9].split("\n")[0];
                 console.log(allText)
             }
         }
