@@ -54,7 +54,7 @@ var tree = []
 var rock = []
 var flower;
 var enableMovement = true;
-var allText;
+var allText = []
 var birdPosition, birdPos;
     //Panel
 var helpPanel;

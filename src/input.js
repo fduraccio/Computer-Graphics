@@ -124,8 +124,8 @@ var keyPanelFunction = function(e) {
 
 
 function startGame() {
-    nomePlayer = document.getElementById("namePlayer").value;
-    if (nomePlayer[0] == ' ' || nomePlayer == '') {
+    namePlayer = document.getElementById("namePlayer").value;
+    if (namePlayer[0] == ' ' || namePlayer == '') {
         alert("Inserire nome senza lasciare spazi all'inizio")
     } else {
         namePlayerPanel = document.getElementById("namePlayer-panel");

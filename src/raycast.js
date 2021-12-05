@@ -7,7 +7,6 @@ function normaliseVector(vec) {
 
 function myOnMouseUp(ev) {
     //These commented lines of code only work if the canvas is full screen
-    console.log(ev)
     var normX = (2 * ev.clientX) / gl.canvas.width - 1;
     var normY = 1 - (2 * ev.clientY) / gl.canvas.height;
 
@@ -92,24 +91,24 @@ function winners(ev) {
 }
 
 function updateRanking(time) {
-    let changed = false;
     let ranking = [];
     for (x = 1; x < 10; x += 2) {
-        if (allText[x] >= time && !changed) {
+        if (allText[x] >= time) {
             ranking.push(namePlayer);
             ranking.push(time)
-            changed = true;
-        } else {
-            ranking.push(allText[x - 1]);
-            ranking.push(allText[x]);
-        }
+            ranking=ranking.concat(allText.slice(x-1,8))
+            break;
+        } 
+        ranking.push(allText[x - 1]);
+        ranking.push(allText[x]);
     }
     allText = ranking;
     let writeResult = '';
-    console.log(ranking)
     for (x = 0; x < ranking.length; x++) {
-        writeResult += ranking[x] + "-";
+        writeResult += x+1!=ranking.length ? ranking[x] + "-" : ranking[x];
     }
+
+    //fare la scrittura sul file ed è fatta
     console.log(writeResult)
 
 }
