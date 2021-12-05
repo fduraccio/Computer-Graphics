@@ -54,9 +54,7 @@ var tree = []
 var rock = []
 var flower;
 
-var birdPosition = [
-        [0.0, 8.0, 25.0], 1.0
-    ]
+var birdPosition, birdPos;
     //Panel
 var helpPanel;
 var canvasPanel;
