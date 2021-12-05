@@ -62,6 +62,7 @@ var canvasPanel;
 var mainPanel;
 var winnerPanel;
 var classificaPanel;
+var namePlayerPanel;
 
 
 let prevVz = 0;
@@ -103,7 +104,7 @@ var angle = 0.0;
 
 var firstPersonView = true;
 
-
+var nomePlayer;
 
 // player pose
 var playerX = 0.0;
