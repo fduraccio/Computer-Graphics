@@ -54,13 +54,14 @@ var tree = []
 var rock = []
 var flower;
 var enableMovement = true;
-
+var allText;
 var birdPosition, birdPos;
     //Panel
 var helpPanel;
 var canvasPanel;
 var mainPanel;
 var winnerPanel;
+var classificaPanel;
 
 
 let prevVz = 0;
