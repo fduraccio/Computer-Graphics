@@ -49,7 +49,7 @@ function myOnMouseUp(ev) {
 
     var hit = raySphereIntersection(rayStartPoint, normalisedRayDir, birdPosition[0], birdPosition[1]);
     alert(hit)
-    if(hit){
+    if (hit) {
         winners();
     }
 
@@ -80,9 +80,9 @@ function raySphereIntersection(rayStartPoint, rayNormalisedDir, sphereCentre, sp
 
 }
 
-function winners(){
-    alert("entro");
+function winners() {
+    // alert("entro");
     enableMovement = false;
-    winnerPanel=document.getElementById("winner-panel");
+    winnerPanel = document.getElementById("winner-panel");
     winnerPanel.style.display = "block";
 }

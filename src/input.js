@@ -105,35 +105,37 @@ var keyFunctionUp = function(e) {
 
 var keyPanelFunction = function(e) {
     //if (checkKey(e.keyCode)) {
-	switch (e.keyCode) {
-		case KEY_CODE.INVIO:
-			helpPanel = document.getElementById("help-panel");
-			helpPanel.style.display = "none";
-			e.preventDefault();
-			break;
-		case KEY_CODE.HELPPANEL:
-			helpPanel = document.getElementById("help-panel");
-			helpPanel.style.display = "block";
-			e.preventDefault();
-			break;
-	}
+    switch (e.keyCode) {
+        case KEY_CODE.INVIO:
+            helpPanel = document.getElementById("help-panel");
+            helpPanel.style.display = "none";
+            winnerPanel = document.getElementById("winner-panel");
+            winnerPanel.style.display = "none";
+            e.preventDefault();
+            break;
+        case KEY_CODE.HELPPANEL:
+            helpPanel = document.getElementById("help-panel");
+            helpPanel.style.display = "block";
+            e.preventDefault();
+            break;
+    }
     //}
 }
 
 
 function startGame() {
-	nomePlayer=document.getElementById("namePlayer").value;
-	if(nomePlayer[0] ==' ' || nomePlayer ==''){
-		alert("Inserire nome senza lasciare spazi all'inizio")
-	}else{
-		init();
-    	mainPanel = document.getElementById("main-panel");
-    	mainPanel.style.display = "none";
-    	helpPanel = document.getElementById("help-panel");
-    	helpPanel.style.display = "block";
-		namePlayerPanel = document.getElementById("namePlayer-panel");
-    	namePlayerPanel.style.display = "none";
-	}
+    nomePlayer = document.getElementById("namePlayer").value;
+    if (nomePlayer[0] == ' ' || nomePlayer == '') {
+        alert("Inserire nome senza lasciare spazi all'inizio")
+    } else {
+        init();
+        mainPanel = document.getElementById("main-panel");
+        mainPanel.style.display = "none";
+        helpPanel = document.getElementById("help-panel");
+        helpPanel.style.display = "block";
+        namePlayerPanel = document.getElementById("namePlayer-panel");
+        namePlayerPanel.style.display = "none";
+    }
 }
 
 function changeState() {
@@ -144,14 +146,14 @@ function changeState() {
 }
 
 function changeSettings() {
-	classificaPanel= document.getElementById("classifica-panel");
-	classificaPanel.style.display = "block";
-	console.log(allText[0])
-	document.getElementById("firstPlayer").innerHTML = allText[0]+ "    " + allText[1];
-	document.getElementById("secondPlayer").innerHTML = allText[2]+ "    " + allText[3];
-	document.getElementById("thirdPlayer").innerHTML = allText[4]+ "    " + allText[5];
-	document.getElementById("fourthPlayer").innerHTML = allText[6]+ "    " + allText[7];
-	document.getElementById("fifthPlayer").innerHTML = allText[8]+ "    " + allText[9];
+    classificaPanel = document.getElementById("classifica-panel");
+    classificaPanel.style.display = "block";
+    console.log(allText[0])
+    document.getElementById("firstPlayer").innerHTML = allText[0] + "    " + allText[1];
+    document.getElementById("secondPlayer").innerHTML = allText[2] + "    " + allText[3];
+    document.getElementById("thirdPlayer").innerHTML = allText[4] + "    " + allText[5];
+    document.getElementById("fourthPlayer").innerHTML = allText[6] + "    " + allText[7];
+    document.getElementById("fifthPlayer").innerHTML = allText[8] + "    " + allText[9];
 }
 
 function checkKey(keyCode) {

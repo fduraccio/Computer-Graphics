@@ -7,11 +7,32 @@ body {
 
 #help-panel {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    background-color: transparent;
+    background-image: url(../env/control.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
     color: white;
+    width: 500px;
+    height: 500px;
 }
+
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.help-container {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 #winner-panel {
     position: absolute;
     top: 50%;
@@ -47,6 +68,10 @@ body {
     background-image: url(../env/start_page.png);
     background-repeat: no-repeat;
     background-size: 100%;
+}
+
+.text-center {
+    text-align: center;
 }
 
 #scene {
@@ -92,24 +117,30 @@ button {
 }
 
 kbd {
-    background-color: #eee;
+    background-color: #ac9380;
     border-radius: 3px;
     border: 1px solid #b4b4b4;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
-    color: #333;
+    box-shadow: 0 1px 1px rgb(207 78 78 / 20%), 0 2px 0 0 rgb(255 255 255 / 70%) inset;
+    color: rgb(255 255 255 / 70%);
     display: inline-block;
-    font-size: .85em;
+    font-size: 25px;
     font-weight: 700;
     line-height: 1;
     padding: 2px 4px;
     white-space: nowrap;
 }
 
+.padding-left-80 {
+    padding-left: 80px;
+}
 
+.font-size-24 {
+    font-size: 24px;
+}
 
 .panel {
     padding: 2em;
-    background-color: rgba(37, 61, 26, 0.85);  
+    background-color: rgba(230, 213, 166, 0.85);
 }
 
 .textColor {
@@ -220,6 +251,12 @@ canvas {
 
 .font-size-55 {
     font-size: 55px;
+}
+
+.table {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .container {

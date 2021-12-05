@@ -44,13 +44,32 @@
 
         </div>
     </div>
-    
+
     <div id="canvas-container" style="position: relative" hidden="">
-        
+
+    </div>
+
+    <div id="chnage-settings-panel" class="panel" style="display: none;">
+        <h1>Choose your setting</h1>
+
+
+
     </div>
 
     <div id="winner-panel" class="panel" style="display: none;">
-        <h1>HAI VINTO</h1>
+        <h1 class="bird-hunt-font">YOU WIN!</h1>
+        <div>
+            <div>
+                <div class="btn-btn">
+
+                    <button class="btn" onClick="changeSettings()">
+                        <img src="/env/restart-icon.png" class="icon-gear-size" alt="">
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
 
@@ -95,42 +114,51 @@
     </div>
 
 
-    <div id="help-panel" class="panel" style="display: none;">
-        <h1>Controls</h1>
-        <table>
-            <tbody>
-                <tr>
-                    <td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td>
-                    <td class="textColor">Move around</td>
-                </tr>
-                <tr>
-                    <td><kbd>Shift</kbd></td>
-                    <td class="textColor">Run</td>
-                </tr>
-                <tr>
-                    <td><kbd>L</kbd></td>
-                    <td class="textColor">Toggle torch</td>
-                </tr>
-                <tr>
-                    <td><kbd>H</kbd></td>
-                    <td class="textColor">Toggle help arrow</td>
-                </tr>
-                <tr>
-                    <td><kbd>Alt</kbd> + <kbd>O</kbd></td>
-                    <td class="textColor">Show options panel</td>
-                </tr>
-                <tr>
-                    <td><kbd>Alt</kbd> + <kbd>S</kbd></td>
-                    <td class="textColor">Show side panel</td>
-                </tr>
-                <tr>
-                    <td><kbd>Alt</kbd> + <kbd>H</kbd></td>
-                    <td class="textColor">Show this help screen</td>
-                </tr>
-            </tbody>
-        </table>
-        <h1> PRESS ENTER TO CONTINUE</h1>
+
+    <div class="help-container">
+        <div id="help-panel" class="panel" style="display: none;">
+            <div class="control-panel">
+
+                <h1 class="bird-hunt-font text-center">Controls</h1>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td>
+                            <td class="textColor bird-hunt-font padding-left-80 font-size-24">Move around</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>Shift</kbd></td>
+                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Run</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>L</kbd></td>
+                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Toggle torch</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>H</kbd></td>
+                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Toggle help arrow</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>Alt</kbd> + <kbd>O</kbd></td>
+                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Show options panel</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>Alt</kbd> + <kbd>S</kbd></td>
+                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Show side panel</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>Alt</kbd> + <kbd>H</kbd></td>
+                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Show this help screen</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h1 class="bird-hunt-font text-center"> PRESS ENTER TO CONTINUE</h1>
+            </div>
+
+        </div>
     </div>
+
+
 
 
     <!--<div id="controls">
