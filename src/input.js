@@ -128,13 +128,12 @@ function startGame() {
     if (nomePlayer[0] == ' ' || nomePlayer == '') {
         alert("Inserire nome senza lasciare spazi all'inizio")
     } else {
-        init();
-        mainPanel = document.getElementById("main-panel");
-        mainPanel.style.display = "none";
-        helpPanel = document.getElementById("help-panel");
-        helpPanel.style.display = "block";
         namePlayerPanel = document.getElementById("namePlayer-panel");
         namePlayerPanel.style.display = "none";
+        helpPanel = document.getElementById("help-panel");
+        helpPanel.style.display = "block";
+        init();
+
     }
 }
 

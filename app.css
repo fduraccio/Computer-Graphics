@@ -7,21 +7,16 @@ body {
 
 #help-panel {
     position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
 }
 
 .input-size {
     height: 42px;
     width: 260px;
-}
-
-#namePlayer-panel {
-    width: 300px;
-    height: 300px;
-}
-
-#winner-panel {
-    width: 300px;
-    height: 300px;
 }
 
 .control-panel {
@@ -48,6 +43,8 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+    width: 300px;
+    height: 300px;
 }
 
 #classifica-panel {
@@ -59,6 +56,8 @@ body {
 }
 
 #namePlayer-panel {
+    width: 300px;
+    height: 300px;
     position: absolute;
     top: 50%;
     left: 50%;

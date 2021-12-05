@@ -83,32 +83,32 @@ function raySphereIntersection(rayStartPoint, rayNormalisedDir, sphereCentre, sp
 
 function winners(ev) {
     // alert("entro");
-    timeOfWinner=Math.round(ev.timeStamp/1000)
+    timeOfWinner = Math.round(ev.timeStamp / 1000)
     enableMovement = false;
     winnerPanel = document.getElementById("winner-panel");
     winnerPanel.style.display = "block";
-    document.getElementById("winner-time").innerHTML=timeOfWinner
+    document.getElementById("winner-time").innerHTML = timeOfWinner
     updateRanking(timeOfWinner);
 }
 
-function updateRanking(time){
+function updateRanking(time) {
     let changed = false;
     let ranking = [];
-    for(x=1; x<10; x+=2){
-        if(allText[x] >= time && !changed){
+    for (x = 1; x < 10; x += 2) {
+        if (allText[x] >= time && !changed) {
             ranking.push(namePlayer);
             ranking.push(time)
             changed = true;
-        }else{
-            ranking.push(allText[x-1]);
+        } else {
+            ranking.push(allText[x - 1]);
             ranking.push(allText[x]);
         }
     }
-    allText=ranking;
-    let writeResult='';
+    allText = ranking;
+    let writeResult = '';
     console.log(ranking)
-    for(x=0; x<ranking.length; x++){
-        writeResult+=ranking[x]+"-";
+    for (x = 0; x < ranking.length; x++) {
+        writeResult += ranking[x] + "-";
     }
     console.log(writeResult)
 
