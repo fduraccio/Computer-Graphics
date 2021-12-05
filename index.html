@@ -57,19 +57,38 @@
     </div>
 
     <div id="winner-panel" class="panel" style="display: none;">
-        <h1 class="bird-hunt-font">YOU WIN!</h1>
-        <div>
+        <div class="control-panel">
+            <h1 class="bird-hunt-font text-center font-size-50 margin-bottom-0">YOU WIN!</h1>
+            <h1 class="bird-hunt-font text-center margin-bottom-0">Your time is</h1>
+            <h1 class="bird-hunt-font text-center font-size-30">
+                <span id="winner-time">
+
+                </span>
+                <span>
+                    s
+                </span>
+
+            </h1>
+
+
             <div>
-                <div class="btn-btn">
+                <div>
+                    <div class="btn-btn">
 
-                    <button class="btn" onClick="changeSettings()">
-                        <img src="/env/restart-icon.png" class="icon-gear-size" alt="">
-                    </button>
+                        <button class="btn" onClick="">
+                            <img src="/env/restart-icon.png" class="icon-gear-size" alt="">
+                        </button>
+
+                        <button class="btn margin-left-40" onClick="changeSettings()">
+                            <img src="/env/trophy.png" class="icon-gear-size" alt="">
+                        </button>
+                    </div>
+
+
+
                 </div>
-
             </div>
         </div>
-
     </div>
 
 
@@ -87,11 +106,11 @@
                 </tr>
                 <tr>
                     <td><kbd>3</kbd></td>
-                    <td id="thirdPlayer"  class="textColor"></td>
+                    <td id="thirdPlayer" class="textColor"></td>
                 </tr>
                 <tr>
                     <td><kbd>4</kbd></td>
-                    <td id="fourthPlayer"class="textColor"></td>
+                    <td id="fourthPlayer" class="textColor"></td>
                 </tr>
                 <tr>
                     <td><kbd>5</kbd></td>
@@ -105,18 +124,19 @@
     </div>
 
     <div id="namePlayer-panel" class="panel" style="display: none;">
-        <h1>Inserisci qui il tuo nome</h1>
-        <input type="text" id="namePlayer">
-        <button class="btn" onClick="startGame()">
-            Clicca
-        </button>
-
+        <div class="control-panel">
+            <h1 class="bird-hunt-font text-center">Insert here your nickname</h1>
+            <input type="text" id="namePlayer" class="input-size">
+            <button class="navButton" onClick="startGame()">
+                <span class="bird-hunt-font font-size-45">Next </span>
+            </button>
+        </div>
     </div>
 
 
 
     <div class="help-container">
-        <div id="help-panel" class="panel" style="display: none;">
+        <div id="help-panel" class="panel primary-panel" style="display: none;">
             <div class="control-panel">
 
                 <h1 class="bird-hunt-font text-center">Controls</h1>

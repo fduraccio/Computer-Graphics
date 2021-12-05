@@ -7,13 +7,21 @@ body {
 
 #help-panel {
     position: absolute;
-    background-color: transparent;
-    background-image: url(../env/control.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    color: white;
-    width: 500px;
-    height: 500px;
+}
+
+.input-size {
+    height: 42px;
+    width: 260px;
+}
+
+#namePlayer-panel {
+    width: 300px;
+    height: 300px;
+}
+
+#winner-panel {
+    width: 300px;
+    height: 300px;
 }
 
 .control-panel {
@@ -21,6 +29,7 @@ body {
     flex-direction: column;
     align-content: center;
     justify-content: space-around;
+    align-items: center;
     height: 100%;
 }
 
@@ -56,7 +65,6 @@ body {
     transform: translate(-50%, -50%);
     color: white;
 }
-
 
 #main-panel {
     width: 100%;
@@ -140,7 +148,13 @@ kbd {
 
 .panel {
     padding: 2em;
-    background-color: rgba(230, 213, 166, 0.85);
+    background-color: transparent;
+    background-image: url(../env/control.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    width: 500px;
+    height: 500px;
 }
 
 .textColor {
@@ -227,6 +241,14 @@ canvas {
     font-size: 110px;
 }
 
+.margin-bottom-0 {
+    margin-bottom: 0px;
+}
+
+.margin-left-40 {
+    margin-left: 40px;
+}
+
 .padding-bottom-96 {
     padding-bottom: 96px;
 }
@@ -251,6 +273,14 @@ canvas {
 
 .font-size-55 {
     font-size: 55px;
+}
+
+.font-size-45 {
+    font-size: 45px;
+}
+
+.font-size-50 {
+    font-size: 50px;
 }
 
 .table {
