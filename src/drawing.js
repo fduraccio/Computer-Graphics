@@ -156,42 +156,42 @@ async function main() {
                             ornamentLocalMatrix = utils.MakeWorld(0.0, 0.3, 0.0, 0.0, 0.0, 0.0, 0.5);
                             ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                             birdPos=utils.multiplyMatrixVector(worldMatrix, [0.0, 0.3, 0.0, 1])
-                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 1];
+                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 3];
                             drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix) 
                             break;
                         case "tree1": 
                             ornamentLocalMatrix = utils.MakeWorld(0.0, 2.9, 0.3, 0.0, 0.0, 0.0, 0.5);
                             ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                             birdPos=utils.multiplyMatrixVector(worldMatrix, [0.0, 2.9, 0.3, 1])
-                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 1];
+                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 3];
                             drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix) 
                             break;
                         case "tree2":
                             ornamentLocalMatrix = utils.MakeWorld(0.15, 4.5, 0.0, 0.0, 0.0, 0.0, 0.5);
                             ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                             birdPos=utils.multiplyMatrixVector(worldMatrix, [0.15, 4.5, 0.0, 1])
-                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 1];
+                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 3];
                             drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix)  
                             break;
                         case "tree3": 
                             ornamentLocalMatrix = utils.MakeWorld(-0.2, 2.75, 0.01, 0.0, 0.0, 0.0, 0.5);
                             ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                             birdPos=utils.multiplyMatrixVector(worldMatrix, [-0.2, 2.75, 0.01, 1])
-                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 1];
+                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 3];
                             drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix) 
                             break;
                         case "tree4": 
                             ornamentLocalMatrix = utils.MakeWorld(-0.65, 2.8, -0.3, 0.0, 0.0, 0.0, 0.5);
                             ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                             birdPos=utils.multiplyMatrixVector(worldMatrix, [-0.65, 2.8, -0.3, 1])
-                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 1];
+                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 3];
                             drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix) 
                             break;
                         case "stump": 
                             ornamentLocalMatrix = utils.MakeWorld(0.0, 0.75, 0.1, 0.0, 0.0, 0.0, 0.5);
                             ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                             birdPos=utils.multiplyMatrixVector(worldMatrix, [0.0, 0.75, 0.1, 1])
-                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 1];
+                            birdPosition=[[birdPos[0], birdPos[1], birdPos[2]], 3];
                             drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix) 
                             break;
                     }

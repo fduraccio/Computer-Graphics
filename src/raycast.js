@@ -82,6 +82,7 @@ function raySphereIntersection(rayStartPoint, rayNormalisedDir, sphereCentre, sp
 
 function winners(){
     alert("entro");
+    enableMovement = false;
     winnerPanel=document.getElementById("winner-panel");
     winnerPanel.style.display = "block";
 }

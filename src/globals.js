@@ -53,6 +53,7 @@ var cloud;
 var tree = []
 var rock = []
 var flower;
+var enableMovement = true;
 
 var birdPosition, birdPos;
     //Panel

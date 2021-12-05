@@ -3,16 +3,16 @@ var keyFunctionDown = function(e) {
         keys[e.keyCode] = true;
         switch (e.keyCode) {
             case KEY_CODE.A:
-                steeringDir = 1;
+                if (enableMovement) steeringDir = 1;
                 break;
             case KEY_CODE.D:
-                steeringDir = -1;
+                if (enableMovement) steeringDir = -1;
                 break;
             case KEY_CODE.W:
-                vz = vz + 1.0;
+                if (enableMovement) vz = vz + 1.0;
                 break;
             case KEY_CODE.S:
-                vz = vz - 1.0;
+                if (enableMovement) vz = vz - 1.0;
                 break;
             case KEY_CODE.LEFT:
                 if (firstPersonView) {

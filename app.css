@@ -12,6 +12,13 @@ body {
     transform: translate(-50%, -50%);
     color: white;
 }
+#winner-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
 
 #main-panel {
     width: 100%;
