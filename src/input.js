@@ -104,30 +104,29 @@ var keyFunctionUp = function(e) {
 }
 
 var keyPanelFunction = function(e) {
-    if (checkKey(e.keyCode)) {
-        switch (e.keyCode) {
-            case KEY_CODE.INVIO:
-                helpPanel = document.getElementById("help-panel");
-                helpPanel.style.display = "none";
-                e.preventDefault();
-                break;
-            case KEY_CODE.HELPPANEL:
-                helpPanel = document.getElementById("help-panel");
-                helpPanel.style.display = "block";
-                e.preventDefault();
-                break;
-        }
-    }
+    //if (checkKey(e.keyCode)) {
+	switch (e.keyCode) {
+		case KEY_CODE.INVIO:
+			helpPanel = document.getElementById("help-panel");
+			helpPanel.style.display = "none";
+			e.preventDefault();
+			break;
+		case KEY_CODE.HELPPANEL:
+			helpPanel = document.getElementById("help-panel");
+			helpPanel.style.display = "block";
+			e.preventDefault();
+			break;
+	}
+    //}
 }
 
 
 function changeState() {
+	init();
     mainPanel = document.getElementById("main-panel");
     mainPanel.style.display = "none";
     helpPanel = document.getElementById("help-panel");
     helpPanel.style.display = "block";
-    canvasPanel = document.getElementById("canvas");
-    canvasPanel.style.display = "block";
 }
 
 function changeSettings() {

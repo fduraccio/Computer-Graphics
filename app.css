@@ -81,12 +81,11 @@ kbd {
     white-space: nowrap;
 }
 
-.helpPannel {
-    background-color: rgba(37, 61, 26, 0.85);
-}
+
 
 .panel {
     padding: 2em;
+    background-color: rgba(37, 61, 26, 0.85);  
 }
 
 .textColor {

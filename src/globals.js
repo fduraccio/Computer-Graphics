@@ -59,6 +59,7 @@ var birdPosition, birdPos;
 var helpPanel;
 var canvasPanel;
 var mainPanel;
+var winnerPanel;
 
 
 let prevVz = 0;

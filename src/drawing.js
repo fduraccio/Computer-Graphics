@@ -1,7 +1,6 @@
 async function main() {
 
     var randomPosBird = Math.round(Math.random()*200) 
-    alert(randomPosBird)
     var randomPosition = [];
     for (i = 0; i < 200; i++) {
         randomPosition[i] = Math.round(Math.random() * 5);
@@ -152,7 +151,6 @@ async function main() {
                 drawAsset(flower, ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
 
                 if(y + ( x * 20 ) == randomPosBird){
-                    console.log(tree[randomPosition[(y + (20 * x))]][1])
                     switch (tree[randomPosition[(y + (20 * x))]][1]){
                         case "plant":   
                             ornamentLocalMatrix = utils.MakeWorld(0.0, 0.3, 0.0, 0.0, 0.0, 0.0, 0.5);
@@ -199,7 +197,6 @@ async function main() {
                     }
 
                 }
-                console.log(ornamentWorldMatrix)
                 choice = choice * -1.0
 
             }
@@ -369,15 +366,18 @@ async function main() {
 
 async function init() {
 
-    var canvas = document.getElementById("canvas");
+    let canvas = document.createElement("canvas");
+    let canvasContainer = document.getElementById("canvas-container");
+    canvasContainer.hidden = false;
+    canvasContainer.appendChild(canvas);
 
     canvas.addEventListener("mousedown", doMouseDown, false);
     canvas.addEventListener("mouseup", doMouseUp, false);
     canvas.addEventListener("mousemove", doMouseMove, false);
-    window.addEventListener("keyup", keyFunctionUp, false);
+    document.addEventListener("keyup", keyFunctionUp);
     canvas.addEventListener("mousewheel", doMouseWheel, false);
-    window.addEventListener("keydown", keyFunctionDown, false);
-    window.addEventListener("keypress", keyPanelFunction, false);
+    document.addEventListener("keydown", keyFunctionDown);
+    document.addEventListener("keypress", keyPanelFunction);
 
     gl = initWebGL(canvas)
 
@@ -429,4 +429,4 @@ function initWebGL(canvas) {
     return gl;
 }
 
-window.onload = init;
+//window.onload = init;

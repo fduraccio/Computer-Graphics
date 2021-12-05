@@ -48,8 +48,10 @@ function myOnMouseUp(ev) {
 
 
     var hit = raySphereIntersection(rayStartPoint, normalisedRayDir, birdPosition[0], birdPosition[1]);
-
     alert(hit)
+    if(hit){
+        winners();
+    }
 
 }
 
@@ -76,4 +78,10 @@ function raySphereIntersection(rayStartPoint, rayNormalisedDir, sphereCentre, sp
     //Now we can say that the ray will hit the sphere 
     return true;
 
+}
+
+function winners(){
+    alert("entro");
+    winnerPanel=document.getElementById("winner-panel");
+    winnerPanel.style.display = "block";
 }
