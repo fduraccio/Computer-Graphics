@@ -1,179 +1,156 @@
 <html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Bird Hunt</title>
+        <link rel="stylesheet" href="./app.css" />
+        <script type="text/javascript" src="src/globals.js"></script>
+        <script type="text/javascript" src="src/input.js"></script>
+        <script type="text/javascript" src="lib/webgl-obj-loader.min.js"></script>
+        <script type="text/javascript" src="lib/utils.js"></script>
+        <script type="text/javascript" src="src/drawing.js"></script>
+        <script type="text/javascript" src="src/player.js"></script>
+        <script type="text/javascript" src="lib/quaternion.min.js"></script>
+        <script type="text/javascript" src="src/collisions.js"></script>
+        <script type="text/javascript" src="src/raycast.js"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Bird Hunt</title>
-    <link rel="stylesheet" href="./app.css">
-    <script type="text/javascript" src="src/globals.js"></script>
-    <script type="text/javascript" src="src/input.js"></script>
-    <script type="text/javascript" src="lib/webgl-obj-loader.min.js"></script>
-    <script type="text/javascript" src="lib/utils.js"></script>
-    <script type="text/javascript" src="src/drawing.js"></script>
-    <script type="text/javascript" src="src/player.js"></script>
-    <script type="text/javascript" src="lib/quaternion.min.js"></script>
-    <script type="text/javascript" src="src/collisions.js"></script>
-    <script type="text/javascript" src="src/raycast.js"></script>
-
-
-</head>
-
-<body>
-    <div id="main-panel">
-        <div class="container">
-            <div class="container-btn">
-                <div class="btn-btn">
-
-                    <button class="btn" onClick="changeSettings()">
-                        <img src="/env/gear.png" class="icon-gear-size" alt="">
-                    </button>
-                </div>
-            </div>
-            <div id="game" class="d-flex justify-content-center">
-
-                <h1 class="bird-hunt-font font-size-100 text-color-white">
-                    Bird Hunt
-                </h1>
-                <div id="button" value="game" onClick="changeState()">
-                    <button class="navButton">
-                        <span class="bird-hunt-font font-size-55">PLAY</span>
-                    </button>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="canvas-container" style="position: relative" hidden="">
-
-    </div>
-
-    <div id="chnage-settings-panel" class="panel" style="display: none;">
-        <h1>Choose your setting</h1>
-
-
-
-    </div>
-
-    <div id="winner-panel" class="panel" style="display: none;">
-        <div class="control-panel">
-            <h1 class="bird-hunt-font text-center font-size-50 margin-bottom-0">YOU WIN!</h1>
-            <h1 class="bird-hunt-font text-center margin-bottom-0">Your time is</h1>
-            <h1 class="bird-hunt-font text-center font-size-30">
-                <span id="winner-time">
-                </span>
-                <span>
-                    s
-                </span>
-            </h1>
-            <div>
-                <div>
+    <body>
+        <div id="main-panel">
+            <div class="container">
+                <div class="container-btn">
                     <div class="btn-btn">
-                        <button class="btn" onClick="">
-                            <img src="/env/restart-icon.png" class="icon-gear-size" alt="">
+                        <button class="btn" onClick="changeSettings()">
+                            <img src="/env/gear.png" class="icon-gear-size" alt="" />
                         </button>
-
-                        <button class="btn margin-left-40" onClick="changeSettings()">
-                            <img src="/env/trophy.png" class="icon-gear-size" alt="">
+                    </div>
+                </div>
+                <div id="game" class="d-flex justify-content-center">
+                    <h1 class="bird-hunt-font font-size-100 text-color-white">Bird Hunt</h1>
+                    <div id="button" value="game" onClick="changeState()">
+                        <button class="navButton">
+                            <span class="bird-hunt-font font-size-55">PLAY</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <div id="canvas-container" style="position: relative" hidden=""></div>
 
-    <div id="classifica-panel" class="panel" style="display: none;">
-
-        <table>
-            <tbody>
-                <tr>
-                    <td><kbd>1</kbd> </td>
-                    <td id="firstPlayer" class="textColor"></td>
-                </tr>
-                <tr>
-                    <td><kbd>2</kbd></td>
-                    <td id="secondPlayer" class="textColor"></td>
-                </tr>
-                <tr>
-                    <td><kbd>3</kbd></td>
-                    <td id="thirdPlayer" class="textColor"></td>
-                </tr>
-                <tr>
-                    <td><kbd>4</kbd></td>
-                    <td id="fourthPlayer" class="textColor"></td>
-                </tr>
-                <tr>
-                    <td><kbd>5</kbd></td>
-                    <td id="fifthPlayer" class="textColor"></td>
-                </tr>
-            </tbody>
-        </table>
-        <button onClick="classificaPanel.style.display='none'">
-            CLICK
-        </button>
-    </div>
-
-    <div id="namePlayer-panel" class="panel" style="display: none;">
-        <div class="control-panel">
-            <h1 class="bird-hunt-font text-center">Insert here your nickname</h1>
-            <input type="text" id="namePlayer" class="input-size">
-            <button class="navButton" onClick="startGame()">
-                <span class="bird-hunt-font font-size-45">Next </span>
-            </button>
+        <div id="chnage-settings-panel" class="panel" style="display: none">
+            <h1>Choose your setting</h1>
         </div>
-    </div>
 
-
-
-    <div class="help-container">
-        <div id="help-panel" class="panel" style="display: none;">
+        <div id="winner-panel" class="panel" style="display: none">
             <div class="control-panel">
+                <h1 class="bird-hunt-font text-center font-size-50 margin-bottom-0">YOU WIN!</h1>
+                <h1 class="bird-hunt-font text-center margin-bottom-0">Your time is</h1>
+                <h1 class="bird-hunt-font text-center font-size-30"><span id="winner-time"></span><span>s</span></h1>
+                <div>
+                    <div>
+                        <div class="btn-btn">
+                            <button class="btn" onClick="">
+                                <img src="/env/restart-icon.png" class="icon-gear-size" alt="" />
+                            </button>
 
-                <h1 class="bird-hunt-font text-center">Controls</h1>
-                <table class="table">
+                            <button class="btn margin-left-40" onClick="changeSettings()">
+                                <img src="/env/trophy.png" class="icon-gear-size" alt="" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="classifica-panel" class="panel" style="display: none">
+            <div class="control-panel">
+                <h1 class="bird-hunt-font text-center my-0">Leaderboard</h1>
+
+                <table class="table-leaderboard">
                     <tbody>
                         <tr>
-                            <td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td>
-                            <td class="textColor bird-hunt-font padding-left-80 font-size-24">Move around</td>
+                            <td><kbd>1</kbd></td>
+                            <td class="textColor bird-hunt-font padding-left-80 font-size-24" id="firstPlayer" class="textColor"></td>
                         </tr>
                         <tr>
-                            <td><kbd>Shift</kbd></td>
-                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Run</td>
+                            <td><kbd>2</kbd></td>
+                            <td class="textColor bird-hunt-font padding-left-80 font-size-24" id="secondPlayer" class="textColor"></td>
                         </tr>
                         <tr>
-                            <td><kbd>L</kbd></td>
-                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Toggle torch</td>
+                            <td><kbd>3</kbd></td>
+                            <td class="textColor bird-hunt-font padding-left-80 font-size-24" id="thirdPlayer" class="textColor"></td>
                         </tr>
                         <tr>
-                            <td><kbd>H</kbd></td>
-                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Toggle help arrow</td>
+                            <td><kbd>4</kbd></td>
+                            <td class="textColor bird-hunt-font padding-left-80 font-size-24" id="fourthPlayer" class="textColor"></td>
                         </tr>
                         <tr>
-                            <td><kbd>Alt</kbd> + <kbd>O</kbd></td>
-                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Show options panel</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Alt</kbd> + <kbd>S</kbd></td>
-                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Show side panel</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Alt</kbd> + <kbd>H</kbd></td>
-                            <td class="bird-hunt-font textColor padding-left-80 font-size-24">Show this help screen</td>
+                            <td><kbd>5</kbd></td>
+                            <td class="textColor bird-hunt-font padding-left-80 font-size-24" id="fifthPlayer" class="textColor"></td>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-                <h1 class="bird-hunt-font text-center"> PRESS ENTER TO CONTINUE</h1>
+
+                <button class="navButton" onClick="startGame()">
+                    <span class="bird-hunt-font font-size-45">Go back </span>
+                </button>
             </div>
-
         </div>
-    </div>
 
+        <div id="namePlayer-panel" class="panel" style="display: none">
+            <div class="control-panel">
+                <h1 class="bird-hunt-font text-center">Insert here your nickname</h1>
+                <input type="text" id="namePlayer" class="input-size" />
+                <button class="navButton" onClick="startGame()">
+                    <span class="bird-hunt-font font-size-45">Next </span>
+                </button>
+            </div>
+        </div>
 
+        <div class="help-container">
+            <div id="help-panel" class="panel" style="display: none">
+                <div class="control-panel">
+                    <h1 class="bird-hunt-font text-center">Controls</h1>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td>
+                                <td class="textColor bird-hunt-font padding-left-80 font-size-24">Move around</td>
+                            </tr>
+                            <tr>
+                                <td><kbd>Shift</kbd></td>
+                                <td class="bird-hunt-font textColor padding-left-80 font-size-24">Run</td>
+                            </tr>
+                            <tr>
+                                <td><kbd>L</kbd></td>
+                                <td class="bird-hunt-font textColor padding-left-80 font-size-24">Toggle torch</td>
+                            </tr>
+                            <tr>
+                                <td><kbd>H</kbd></td>
+                                <td class="bird-hunt-font textColor padding-left-80 font-size-24">Toggle help arrow</td>
+                            </tr>
+                            <tr>
+                                <td><kbd>Alt</kbd> + <kbd>O</kbd></td>
+                                <td class="bird-hunt-font textColor padding-left-80 font-size-24">Show options panel</td>
+                            </tr>
+                            <tr>
+                                <td><kbd>Alt</kbd> + <kbd>S</kbd></td>
+                                <td class="bird-hunt-font textColor padding-left-80 font-size-24">Show side panel</td>
+                            </tr>
+                            <tr>
+                                <td><kbd>Alt</kbd> + <kbd>H</kbd></td>
+                                <td class="bird-hunt-font textColor padding-left-80 font-size-24">Show this help screen</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h1 class="bird-hunt-font text-center">PRESS ENTER TO CONTINUE</h1>
+                </div>
+            </div>
+        </div>
 
-
-    <!--<div id="controls">
+        <!--<div id="controls">
                 <span>Choose your Strategy</span>
                 <div class="row">
                     <div class="col-12" style="padding: 10px">
@@ -206,6 +183,5 @@
                     </div>
                 </div>
             </div>-->
-</body>
-
+    </body>
 </html>

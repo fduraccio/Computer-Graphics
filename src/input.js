@@ -147,7 +147,7 @@ function changeState() {
 function changeSettings() {
     classificaPanel = document.getElementById("classifica-panel");
     classificaPanel.style.display = "block";
-    console.log(allText[0])
+    // console.log(allText[0])
     document.getElementById("firstPlayer").innerHTML = allText[0] + "    " + allText[1];
     document.getElementById("secondPlayer").innerHTML = allText[2] + "    " + allText[3];
     document.getElementById("thirdPlayer").innerHTML = allText[4] + "    " + allText[5];
