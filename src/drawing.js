@@ -21,7 +21,7 @@ async function main() {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 
-    var positionAttributeLocation = gl.getAttribLocation(program, "inPosition");
+    /*var positionAttributeLocation = gl.getAttribLocation(program, "inPosition");
     var normalAttributeLocation = gl.getAttribLocation(program, "inNormal");
     var matrixLocation = gl.getUniformLocation(program, "matrix");
     var materialDiffColorHandle = gl.getUniformLocation(program, 'mDiffColor');
@@ -31,7 +31,37 @@ async function main() {
     var ambientAlphaHandle = gl.getUniformLocation(program, 'lambertColor');
     var textLocation = gl.getUniformLocation(program, "u_texture");
     var uvAttributeLocation = gl.getAttribLocation(program, "a_uv");
-    var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');
+    var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');*/
+
+    // set memory locations defined in the shaders
+	var positionAttributeLocation = gl.getAttribLocation(program, "inPosition");  
+	var uvAttributeLocation = gl.getAttribLocation(program, "a_uv");   
+	var normalAttributeLocation = gl.getAttribLocation(program, "inNormal");   
+	var textLocation = gl.getUniformLocation(program, "u_texture");
+	
+	var matrixLocation = gl.getUniformLocation(program, "matrix"); 
+	var normalMatrixPositionHandle = gl.getUniformLocation(program, 'nMatrix');
+	var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');
+	
+	var eyePositionHandle = gl.getUniformLocation(program, 'eyePosition');
+	var lightDirectionHandle = gl.getUniformLocation(program, 'lightDirection');
+	var spotLightPos1Handle = gl.getUniformLocation(program, 'spotLightPos1');
+	var spotLightPos2Handle = gl.getUniformLocation(program, 'spotLightPos2');
+	var spotLightDirHandle = gl.getUniformLocation(program, 'spotLightDir');
+	
+	var materialSpecPowerHandle = gl.getUniformLocation(program, 'mSpecPower');
+	var ambientCoeffHandle = gl.getUniformLocation(program, 'ambCoeff');
+	var ambientAlphaHandle = gl.getUniformLocation(program, 'ambAlpha');
+	var spotLightTargetHandle = gl.getUniformLocation(program, 'spotLightTarget');
+	var spotLightDecayHandle = gl.getUniformLocation(program, 'spotLightDecay');
+	var outerConeHandle = gl.getUniformLocation(program, 'outerCone');
+	var innerConeHandle = gl.getUniformLocation(program, 'innerCone');
+	
+	var materialEmissColorHandle = gl.getUniformLocation(program, 'mEmissColor');
+	var lightColorHandle = gl.getUniformLocation(program, 'lightColor');
+	var materialSpecColorHandle = gl.getUniformLocation(program, 'mSpecColor');
+	var spotLightColorHandle = gl.getUniformLocation(program, 'spotLightColor');
+
 
     var objectAll = []
 
@@ -87,7 +117,14 @@ async function main() {
 
             sunRise = ((sunRise + deltaC / 500 + Math.PI) % (2 * Math.PI)) - Math.PI;
 
-            // directionalLightDir = [-Math.sin(sunRise), -Math.cos(sunRise), 0.0];
+            directionalLightDir = [-Math.sin(sunRise), -Math.cos(sunRise), 0.0];
+
+            if(Math.abs(sunRise) < utils.degToRad(60.0)) {
+				spotLight = [0.0, 0.0, 0.0];
+			}
+			else {
+				spotLight = spotLightColor;
+			}
 
             var WVP = computeWPV(vz, steeringDir);
 
@@ -128,6 +165,40 @@ async function main() {
         gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+        lightDirMatrix = utils.invertMatrix(utils.transposeMatrix(viewMatrix));
+			
+        lDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(lightDirMatrix), directionalLightDir);
+        
+        // car headlights positions in object space
+        var spotLightPos1 = [1.5, 2.7719475, 0];
+        //spotLightPos2 = [-carWidth[carIndex]/2*0.7, carHeight[carIndex]*0.25, carLength[carIndex]/2];
+        
+        spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0));
+        spotLightMatrix_inv_t = utils.invertMatrix(utils.transposeMatrix(spotLightMatrix));
+        
+        var spotPos1 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos1[0], spotLightPos1[1], spotLightPos1[2], 1.0]);
+        //spotPos2 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos2[0], spotLightPos2[1], spotLightPos2[2], 1.0]);
+        spotDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(spotLightMatrix_inv_t), spotLightDir);
+        
+        lightAlpha = Math.min(Math.max((Math.cos(sunRise) - Math.sin(utils.degToRad(-10.0)))/(Math.sin(utils.degToRad(30.0)) - Math.sin(utils.degToRad(-10.0))), 0.0), 1.0);		
+        dirLightColor = [lightAlpha*directionalLightColor[0], lightAlpha*directionalLightColor[1], lightAlpha*directionalLightColor[2]];
+        
+        // set uniforms
+        gl.uniform3fv(lightDirectionHandle, lDir);
+        gl.uniform3fv(lightColorHandle, dirLightColor);
+        gl.uniform3fv(materialSpecColorHandle, specularColor);
+        gl.uniform1f(materialSpecPowerHandle, specularPower);    
+        gl.uniform3fv(eyePositionHandle, [0.0, 0.0, 0.0]);
+        gl.uniform3fv(spotLightColorHandle, spotLight);
+        gl.uniform3fv(spotLightPos1Handle, [spotPos1[0], spotPos1[1], spotPos1[2]]);
+        //gl.uniform3fv(spotLightPos2Handle, [spotPos2[0], spotPos2[1], spotPos2[2]]);
+        gl.uniform3fv(spotLightDirHandle, spotDir);
+        gl.uniform1f(spotLightTargetHandle, spotLightTarget);
+        gl.uniform1f(spotLightDecayHandle, spotLightDecay);
+        gl.uniform1f(outerConeHandle, outerCone);
+        gl.uniform1f(innerConeHandle, innerCone);
+        gl.uniform1f(ambientCoeffHandle, ambientLightCoeff);
+        gl.uniform1f(ambientAlphaHandle, ambientLightAlpha);
 
 
         var i = 0
@@ -330,16 +401,17 @@ async function main() {
         var projectionMatrix = utils.multiplyMatrices(perspectiveMatrix, vwmatrix);
         var normalMatrix = utils.invertMatrix(utils.transposeMatrix(vwmatrix));
 
-        gl.useProgram(program);
+        //gl.useProgram(program);
 
         gl.uniformMatrix4fv(matrixLocation, gl.FALSE, utils.transposeMatrix(projectionMatrix));
         gl.uniformMatrix4fv(normalMatrixPositionHandle, gl.FALSE, utils.transposeMatrix(normalMatrix));
         gl.uniformMatrix4fv(vertexMatrixPositionHandle, gl.FALSE, utils.transposeMatrix(vwmatrix));
 
-        gl.uniform3fv(materialDiffColorHandle, [0.6, 0.6, 0.0]);
+        /*gl.uniform3fv(materialDiffColorHandle, [0.6, 0.6, 0.0]);
         gl.uniform3fv(lightColorHandle, directionalLightColor);
         gl.uniform3fv(lightDirectionHandle, directionalLight);
-        gl.uniform1f(ambientAlphaHandle, ambientLightAlpha);
+        gl.uniform1f(ambientAlphaHandle, ambientLightAlpha);*/
+        gl.uniform3fv(materialEmissColorHandle, [0.0, 0.0, 0.0]);
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, asset.texture[asset.id]);
 

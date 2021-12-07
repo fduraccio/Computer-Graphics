@@ -80,6 +80,11 @@ var playerIndex = 0;
 var playerLength = [];
 var timeOfWinner;
 
+var directionalLightDir = [0.0, -1.0, 0.0];
+var specularColor = [1.0, 1.0, 1.0];     
+var specularPower = 20.0;
+var spotLight;
+
 
 var simpleCam = true;
 var simpleMotion = true; //change to make to 
