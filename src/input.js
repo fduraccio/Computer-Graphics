@@ -145,6 +145,15 @@ function changeState() {
 }
 
 function changeSettings() {
+
+}
+
+function goBack() {
+    classificaPanel = document.getElementById("classifica-panel");
+    classificaPanel.style.display = "none";
+}
+
+function showLeaderboard() {
     classificaPanel = document.getElementById("classifica-panel");
     classificaPanel.style.display = "block";
     // console.log(allText[0])
