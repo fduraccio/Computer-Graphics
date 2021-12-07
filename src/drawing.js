@@ -1,9 +1,9 @@
 async function main() {
 
     startGame = (new Date).getTime();
-    var randomPosBird = Math.round(Math.random() * 200)
+    var randomPosBird = Math.round(Math.random() * 400)
     var randomPosition = [];
-    for (i = 0; i < 200; i++) {
+    for (i = 0; i < 400; i++) {
         randomPosition[i] = Math.round(Math.random() * 5);
 
     }
@@ -170,10 +170,10 @@ async function main() {
         lDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(lightDirMatrix), directionalLightDir);
         
         // car headlights positions in object space
-        var spotLightPos1 = [1.5, 2.7719475, 0];
+        var spotLightPos1 = [4.0, -9.0, 4.0];
         //spotLightPos2 = [-carWidth[carIndex]/2*0.7, carHeight[carIndex]*0.25, carLength[carIndex]/2];
         
-        spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0));
+        spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(playerX, playerY, playerZ, 0.0, angle, 0.0, 1.0));
         spotLightMatrix_inv_t = utils.invertMatrix(utils.transposeMatrix(spotLightMatrix));
         
         var spotPos1 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos1[0], spotLightPos1[1], spotLightPos1[2], 1.0]);
@@ -207,20 +207,21 @@ async function main() {
 
 
         //TODO creare una mappa del mondo in cui posizionare gli oggetti
-        for (var x = 1; x < 10; x++) {
+        for (var x = 1; x < 20; x++) {
             for (var y = 0; y < 20; y++) {
-                worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * 54), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
-                drawAsset(tree[randomPosition[(y + (20 * x))]][0], worldMatrix, viewMatrix, perspectiveMatrix);
+                console.log(choice)
+                worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * 27.0), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
+                drawAsset(tree[randomPosition[(y + (20 * x))]][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
 
                 ornamentLocalMatrix = utils.MakeWorld(1.0, 0.1, 1.0, 0.0, 0.0, 0.0, 0.5);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
-                if (choice == -1) drawAsset(rock[3], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
-                else drawAsset(tree[0][0], ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+                if (choice == -1) drawAsset(rock[3], ornamentWorldMatrix, viewMatrix, perspectiveMatrix, false);
+                else drawAsset(tree[0][0], ornamentWorldMatrix, viewMatrix, perspectiveMatrix, false);
 
                 ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.1, 1, 0.0, 0.0, 0.0, 1);
                 ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
-                drawAsset(flower, ornamentWorldMatrix, viewMatrix, perspectiveMatrix);
+                drawAsset(flower, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, false);
 
                 if (y + (x * 20) == randomPosBird) {
                     switch (tree[randomPosition[(y + (20 * x))]][1]) {
@@ -231,7 +232,7 @@ async function main() {
                             birdPosition = [
                                 [birdPos[0], birdPos[1], birdPos[2]], 3
                             ];
-                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix)
+                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, true)
                             break;
                         case "tree1":
                             ornamentLocalMatrix = utils.MakeWorld(0.0, 2.9, 0.3, 0.0, 0.0, 0.0, 0.5);
@@ -240,7 +241,7 @@ async function main() {
                             birdPosition = [
                                 [birdPos[0], birdPos[1], birdPos[2]], 3
                             ];
-                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix)
+                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, true)
                             break;
                         case "tree2":
                             ornamentLocalMatrix = utils.MakeWorld(0.15, 4.5, 0.0, 0.0, 0.0, 0.0, 0.5);
@@ -249,7 +250,7 @@ async function main() {
                             birdPosition = [
                                 [birdPos[0], birdPos[1], birdPos[2]], 3
                             ];
-                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix)
+                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, true)
                             break;
                         case "tree3":
                             ornamentLocalMatrix = utils.MakeWorld(-0.2, 2.75, 0.01, 0.0, 0.0, 0.0, 0.5);
@@ -258,7 +259,7 @@ async function main() {
                             birdPosition = [
                                 [birdPos[0], birdPos[1], birdPos[2]], 3
                             ];
-                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix)
+                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, true)
                             break;
                         case "tree4":
                             ornamentLocalMatrix = utils.MakeWorld(-0.65, 2.8, -0.3, 0.0, 0.0, 0.0, 0.5);
@@ -267,7 +268,7 @@ async function main() {
                             birdPosition = [
                                 [birdPos[0], birdPos[1], birdPos[2]], 3
                             ];
-                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix)
+                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, true)
                             break;
                         case "stump":
                             ornamentLocalMatrix = utils.MakeWorld(0.0, 0.75, 0.1, 0.0, 0.0, 0.0, 0.5);
@@ -276,7 +277,7 @@ async function main() {
                             birdPosition = [
                                 [birdPos[0], birdPos[1], birdPos[2]], 3
                             ];
-                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix)
+                            drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, true)
                             break;
                     }
 
@@ -293,39 +294,39 @@ async function main() {
         for (x = 0; x < 15; x++) {
 
             worldMatrix = utils.MakeWorld(borderArea[0][0] + (x * 40), borderArea[0][1], borderArea[0][2], borderArea[0][3], borderArea[0][4], borderArea[0][5], borderArea[0][6]);
-            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
+            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
             worldMatrix = utils.MakeWorld(borderArea[1][0], borderArea[1][1], borderArea[1][2] - (x * 40), borderArea[1][3], borderArea[1][4], borderArea[1][5], borderArea[1][6]);
-            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
+            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
             worldMatrix = utils.MakeWorld(borderArea[2][0] + (x * 40), borderArea[2][1], borderArea[2][2], borderArea[2][3], borderArea[2][4], borderArea[2][5], borderArea[2][6]);
-            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
+            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
             worldMatrix = utils.MakeWorld(borderArea[3][0], borderArea[3][1], borderArea[3][2] - (x * 40), borderArea[3][3], borderArea[3][4], borderArea[3][5], borderArea[3][6]);
-            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix);
+            drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
         }
 
         for (x = 0; x < 15; x++) {
             for (y = 0; y < 16; y++) {
 
-                worldMatrix = utils.MakeWorld(-280 + (x * 40), -10, 300.0 - (y * 40), 0.0, 270, 0.0, 0.2);
-                drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix)
+                worldMatrix = utils.MakeWorld(-280 + (x * 40), -10, 300.0 - (y * 40), 0.0, 270.0, 0.0, 0.2);
+                drawAsset(floor, worldMatrix, viewMatrix, perspectiveMatrix, false)
 
             }
         }
 
         worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0, 0.0, 0.0, 0.0, 0.5),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
-        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
 
         worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, 90.0, 0.0, 0.0, 0.5),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
-        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
 
         worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, -90.0, 0.0, 0.0, 0.5),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
-        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix)
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
 
 
         window.requestAnimationFrame(drawScene);
@@ -395,7 +396,7 @@ async function main() {
      * @param {*} viewMatrix 
      * @param {*} perspectiveMatrix 
      */
-    function drawAsset(asset, worldMatrix, viewMatrix, perspectiveMatrix) {
+    function drawAsset(asset, worldMatrix, viewMatrix, perspectiveMatrix, emittedColor) {
 
         var vwmatrix = utils.multiplyMatrices(viewMatrix, worldMatrix);
         var projectionMatrix = utils.multiplyMatrices(perspectiveMatrix, vwmatrix);
@@ -411,7 +412,8 @@ async function main() {
         gl.uniform3fv(lightColorHandle, directionalLightColor);
         gl.uniform3fv(lightDirectionHandle, directionalLight);
         gl.uniform1f(ambientAlphaHandle, ambientLightAlpha);*/
-        gl.uniform3fv(materialEmissColorHandle, [0.0, 0.0, 0.0]);
+        if(!emittedColor) gl.uniform3fv(materialEmissColorHandle, [0.0, 0.0, 0.0]);
+        else gl.uniform3fv(materialEmissColorHandle, [0.3, 0.3, 0.3]);
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, asset.texture[asset.id]);
 
