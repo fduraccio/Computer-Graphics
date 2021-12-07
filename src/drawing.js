@@ -316,15 +316,23 @@ async function main() {
             }
         }
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0, 0.0, 0.0, 0.0, 0.5),
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0, 0.0, 0.0, 0.0, 0.4),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, 90.0, 0.0, 0.0, 0.5),
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, 90.0, 0.0, 0.0, 0.4),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, -90.0, 0.0, 0.0, 0.5),
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, -90.0, 0.0, 0.0, 0.4),
+            utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
+
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(-300.0, 50.0, 0, 0.0, 0.0, 0.0, 0.4),
+            utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
+
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(300.0, 50.0, 0, 0.0, 0.0, 0.0, 0.4),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
         drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
 
