@@ -140,8 +140,12 @@ function startGame() {
 function changeState() {
     mainPanel = document.getElementById("main-panel");
     mainPanel.style.display = "none";
-    namePlayerPanel = document.getElementById("namePlayer-panel");
+    namePlayerPanel = document.getElementById("input-name-panel");
     namePlayerPanel.style.display = "block";
+}
+
+function reload() {
+    window.location.reload();
 }
 
 function changeSettings() {

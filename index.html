@@ -20,13 +20,6 @@
 <body>
     <div id="main-panel">
         <div class="container">
-            <!-- <div class="container-btn">
-                <div class="btn-btn">
-                    <button class="btn" onClick="changeSettings()">
-                            <img src="/env/gear.png" class="icon-gear-size" alt="" />
-                        </button>
-                </div>
-            </div> -->
             <div id="game" class="d-flex justify-content-center">
                 <h1 class="bird-hunt-font font-size-100 text-color-white">Bird Hunt</h1>
                 <div id="button" value="game" onclick="changeState()">
@@ -40,15 +33,25 @@
                     <img src="/env/menu.png" onclick="changeSettings()" class="icon-img" alt="" />
                     <img src="/env/leaderboard.png" onclick="showLeaderboard()" class="icon-img" alt="" />
                 </div>
-
             </div>
-
         </div>
     </div>
 
     <div id="canvas-container" style="position: relative" hidden=""></div>
 
-    <div id="chnage-settings-panel" class="panel" style="display: none">
+    <div id="input-name-panel" class="main-panel" style="display: none">
+        <div id="namePlayer-panel" class="panel">
+            <div class="control-panel">
+                <h1 class="bird-hunt-font text-center">Insert here your nickname</h1>
+                <input type="text" id="namePlayer" class="input-size" />
+                <button class="navButton" onclick="startGame()">
+                    <span class="secondary-font font-size-45">Next </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="change-settings-panel" class="panel" style="display: none">
         <h1>Choose your setting</h1>
     </div>
 
@@ -72,7 +75,6 @@
     <div id="classifica-panel" class="panel" style="display: none">
         <div class="control-panel">
             <h1 class="bird-hunt-font text-center my-0">Leaderboard</h1>
-
             <table class="table-leaderboard">
                 <tbody>
                     <tr>
@@ -105,15 +107,6 @@
         </div>
     </div>
 
-    <div id="namePlayer-panel" class="panel" style="display: none">
-        <div class="control-panel">
-            <h1 class="bird-hunt-font text-center">Insert here your nickname</h1>
-            <input type="text" id="namePlayer" class="input-size" />
-            <button class="navButton" onClick="startGame()">
-                <span class="secondary-font font-size-45">Next </span>
-            </button>
-        </div>
-    </div>
 
     <div class="help-container">
         <div id="help-panel" class="panel" style="display: none">
