@@ -82,7 +82,8 @@ function raySphereIntersection(rayStartPoint, rayNormalisedDir, sphereCentre, sp
 
 function winners(ev) {
     // alert("entro");
-    timeOfWinner = Math.round(ev.timeStamp / 1000)
+    timeOfWinner = (new Date).getTime();
+    timeOfWinner = Math.round((timeOfWinner - startGame)/1000);
     enableMovement = false;
     winnerPanel = document.getElementById("winner-panel");
     winnerPanel.style.display = "block";
@@ -110,5 +111,6 @@ function updateRanking(time) {
 
     //fare la scrittura sul file ed è fatta
     console.log(writeResult)
+    //WriteToFile(writeResult)
 
 }

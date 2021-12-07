@@ -74,6 +74,7 @@ var buff = []
 
 var currentTime;
 var lastUpdateTime = (new Date).getTime();
+var startGame;
 
 var playerIndex = 0;
 var playerLength = [];

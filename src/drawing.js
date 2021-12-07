@@ -1,5 +1,6 @@
 async function main() {
 
+    startGame = (new Date).getTime();
     var randomPosBird = Math.round(Math.random() * 200)
     var randomPosition = [];
     for (i = 0; i < 200; i++) {
@@ -459,5 +460,16 @@ async function readTextFile(file) {
     rawFile.send(null);
 }
 
+function writeToFile(passForm) {
+    const fs = require('fs');
 
+    fs.writeFile(passForm, "Hey there!", function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log("The file was saved!");
+    }); 
+ }
+
+ //window.onload = writeToFile("classifica.txt");
 window.onload = readTextFile("classifica.txt");
