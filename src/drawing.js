@@ -34,33 +34,33 @@ async function main() {
     var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');*/
 
     // set memory locations defined in the shaders
-	var positionAttributeLocation = gl.getAttribLocation(program, "inPosition");  
-	var uvAttributeLocation = gl.getAttribLocation(program, "a_uv");   
-	var normalAttributeLocation = gl.getAttribLocation(program, "inNormal");   
-	var textLocation = gl.getUniformLocation(program, "u_texture");
-	
-	var matrixLocation = gl.getUniformLocation(program, "matrix"); 
-	var normalMatrixPositionHandle = gl.getUniformLocation(program, 'nMatrix');
-	var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');
-	
-	var eyePositionHandle = gl.getUniformLocation(program, 'eyePosition');
-	var lightDirectionHandle = gl.getUniformLocation(program, 'lightDirection');
-	var spotLightPos1Handle = gl.getUniformLocation(program, 'spotLightPos1');
-	var spotLightPos2Handle = gl.getUniformLocation(program, 'spotLightPos2');
-	var spotLightDirHandle = gl.getUniformLocation(program, 'spotLightDir');
-	
-	var materialSpecPowerHandle = gl.getUniformLocation(program, 'mSpecPower');
-	var ambientCoeffHandle = gl.getUniformLocation(program, 'ambCoeff');
-	var ambientAlphaHandle = gl.getUniformLocation(program, 'ambAlpha');
-	var spotLightTargetHandle = gl.getUniformLocation(program, 'spotLightTarget');
-	var spotLightDecayHandle = gl.getUniformLocation(program, 'spotLightDecay');
-	var outerConeHandle = gl.getUniformLocation(program, 'outerCone');
-	var innerConeHandle = gl.getUniformLocation(program, 'innerCone');
-	
-	var materialEmissColorHandle = gl.getUniformLocation(program, 'mEmissColor');
-	var lightColorHandle = gl.getUniformLocation(program, 'lightColor');
-	var materialSpecColorHandle = gl.getUniformLocation(program, 'mSpecColor');
-	var spotLightColorHandle = gl.getUniformLocation(program, 'spotLightColor');
+    var positionAttributeLocation = gl.getAttribLocation(program, "inPosition");
+    var uvAttributeLocation = gl.getAttribLocation(program, "a_uv");
+    var normalAttributeLocation = gl.getAttribLocation(program, "inNormal");
+    var textLocation = gl.getUniformLocation(program, "u_texture");
+
+    var matrixLocation = gl.getUniformLocation(program, "matrix");
+    var normalMatrixPositionHandle = gl.getUniformLocation(program, 'nMatrix');
+    var vertexMatrixPositionHandle = gl.getUniformLocation(program, 'pMatrix');
+
+    var eyePositionHandle = gl.getUniformLocation(program, 'eyePosition');
+    var lightDirectionHandle = gl.getUniformLocation(program, 'lightDirection');
+    var spotLightPos1Handle = gl.getUniformLocation(program, 'spotLightPos1');
+    var spotLightPos2Handle = gl.getUniformLocation(program, 'spotLightPos2');
+    var spotLightDirHandle = gl.getUniformLocation(program, 'spotLightDir');
+
+    var materialSpecPowerHandle = gl.getUniformLocation(program, 'mSpecPower');
+    var ambientCoeffHandle = gl.getUniformLocation(program, 'ambCoeff');
+    var ambientAlphaHandle = gl.getUniformLocation(program, 'ambAlpha');
+    var spotLightTargetHandle = gl.getUniformLocation(program, 'spotLightTarget');
+    var spotLightDecayHandle = gl.getUniformLocation(program, 'spotLightDecay');
+    var outerConeHandle = gl.getUniformLocation(program, 'outerCone');
+    var innerConeHandle = gl.getUniformLocation(program, 'innerCone');
+
+    var materialEmissColorHandle = gl.getUniformLocation(program, 'mEmissColor');
+    var lightColorHandle = gl.getUniformLocation(program, 'lightColor');
+    var materialSpecColorHandle = gl.getUniformLocation(program, 'mSpecColor');
+    var spotLightColorHandle = gl.getUniformLocation(program, 'spotLightColor');
 
 
     var objectAll = []
@@ -119,12 +119,11 @@ async function main() {
 
             directionalLightDir = [-Math.sin(sunRise), -Math.cos(sunRise), 0.0];
 
-            if(Math.abs(sunRise) < utils.degToRad(60.0)) {
-				spotLight = [0.0, 0.0, 0.0];
-			}
-			else {
-				spotLight = spotLightColor;
-			}
+            if (Math.abs(sunRise) < utils.degToRad(60.0)) {
+                spotLight = [0.0, 0.0, 0.0];
+            } else {
+                spotLight = spotLightColor;
+            }
 
             var WVP = computeWPV(vz, steeringDir);
 
@@ -166,28 +165,28 @@ async function main() {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         lightDirMatrix = utils.invertMatrix(utils.transposeMatrix(viewMatrix));
-			
+
         lDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(lightDirMatrix), directionalLightDir);
-        
+
         // car headlights positions in object space
         var spotLightPos1 = [4.0, -9.0, 4.0];
         //spotLightPos2 = [-carWidth[carIndex]/2*0.7, carHeight[carIndex]*0.25, carLength[carIndex]/2];
-        
+
         spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(playerX, playerY, playerZ, 0.0, angle, 0.0, 1.0));
         spotLightMatrix_inv_t = utils.invertMatrix(utils.transposeMatrix(spotLightMatrix));
-        
+
         var spotPos1 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos1[0], spotLightPos1[1], spotLightPos1[2], 1.0]);
         //spotPos2 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos2[0], spotLightPos2[1], spotLightPos2[2], 1.0]);
         spotDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(spotLightMatrix_inv_t), spotLightDir);
-        
-        lightAlpha = Math.min(Math.max((Math.cos(sunRise) - Math.sin(utils.degToRad(-10.0)))/(Math.sin(utils.degToRad(30.0)) - Math.sin(utils.degToRad(-10.0))), 0.0), 1.0);		
-        dirLightColor = [lightAlpha*directionalLightColor[0], lightAlpha*directionalLightColor[1], lightAlpha*directionalLightColor[2]];
-        
+
+        lightAlpha = Math.min(Math.max((Math.cos(sunRise) - Math.sin(utils.degToRad(-10.0))) / (Math.sin(utils.degToRad(30.0)) - Math.sin(utils.degToRad(-10.0))), 0.0), 1.0);
+        dirLightColor = [lightAlpha * directionalLightColor[0], lightAlpha * directionalLightColor[1], lightAlpha * directionalLightColor[2]];
+
         // set uniforms
         gl.uniform3fv(lightDirectionHandle, lDir);
         gl.uniform3fv(lightColorHandle, dirLightColor);
         gl.uniform3fv(materialSpecColorHandle, specularColor);
-        gl.uniform1f(materialSpecPowerHandle, specularPower);    
+        gl.uniform1f(materialSpecPowerHandle, specularPower);
         gl.uniform3fv(eyePositionHandle, [0.0, 0.0, 0.0]);
         gl.uniform3fv(spotLightColorHandle, spotLight);
         gl.uniform3fv(spotLightPos1Handle, [spotPos1[0], spotPos1[1], spotPos1[2]]);
@@ -209,7 +208,7 @@ async function main() {
         //TODO creare una mappa del mondo in cui posizionare gli oggetti
         for (var x = 1; x < 20; x++) {
             for (var y = 0; y < 20; y++) {
-                console.log(choice)
+                // console.log(choice)
                 worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * 27.0), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
                 drawAsset(tree[randomPosition[(y + (20 * x))]][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
@@ -420,7 +419,7 @@ async function main() {
         gl.uniform3fv(lightColorHandle, directionalLightColor);
         gl.uniform3fv(lightDirectionHandle, directionalLight);
         gl.uniform1f(ambientAlphaHandle, ambientLightAlpha);*/
-        if(!emittedColor) gl.uniform3fv(materialEmissColorHandle, [0.0, 0.0, 0.0]);
+        if (!emittedColor) gl.uniform3fv(materialEmissColorHandle, [0.0, 0.0, 0.0]);
         else gl.uniform3fv(materialEmissColorHandle, [0.3, 0.3, 0.3]);
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, asset.texture[asset.id]);
@@ -546,12 +545,12 @@ function writeToFile(passForm) {
     const fs = require('fs');
 
     fs.writeFile(passForm, "Hey there!", function(err) {
-        if(err) {
+        if (err) {
             return console.log(err);
         }
         console.log("The file was saved!");
-    }); 
- }
+    });
+}
 
- //window.onload = writeToFile("classifica.txt");
+//window.onload = writeToFile("classifica.txt");
 window.onload = readTextFile("classifica.txt");

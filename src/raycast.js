@@ -45,26 +45,26 @@ function myOnMouseUp(ev) {
 }
 
 function raySphereIntersection(rayStartPoint, rayNormalisedDir, sphereCentre, sphereRadius) {
-    
+
     var l = [sphereCentre[0] - rayStartPoint[0], sphereCentre[1] - rayStartPoint[1], sphereCentre[2] - rayStartPoint[2]];
     var l_squared = l[0] * l[0] + l[1] * l[1] + l[2] * l[2];
-    
+
     if (l_squared < (sphereRadius * sphereRadius)) {
         return true;
     }
-    
+
     var s = l[0] * rayNormalisedDir[0] + l[1] * rayNormalisedDir[1] + l[2] * rayNormalisedDir[2];
-    
+
     if (s < 0) {
         return false;
     }
-    
+
     var m_squared = l_squared - (s * s);
-    
+
     if (m_squared > (sphereRadius * sphereRadius)) {
         return false;
     }
-     
+
     return true;
 
 }
@@ -72,7 +72,7 @@ function raySphereIntersection(rayStartPoint, rayNormalisedDir, sphereCentre, sp
 function winners(ev) {
     // alert("entro");
     timeOfWinner = (new Date).getTime();
-    timeOfWinner = Math.round((timeOfWinner - startGame)/1000);
+    timeOfWinner = Math.round((timeOfWinner - startGame) / 1000);
     enableMovement = false;
     winnerPanel = document.getElementById("winner-panel");
     winnerPanel.style.display = "block";
@@ -86,20 +86,20 @@ function updateRanking(time) {
         if (allText[x] >= time) {
             ranking.push(namePlayer);
             ranking.push(time)
-            ranking=ranking.concat(allText.slice(x-1,8))
+            ranking = ranking.concat(allText.slice(x - 1, 8))
             break;
-        } 
+        }
         ranking.push(allText[x - 1]);
         ranking.push(allText[x]);
     }
     allText = ranking;
     let writeResult = '';
     for (x = 0; x < ranking.length; x++) {
-        writeResult += x+1!=ranking.length ? ranking[x] + "-" : ranking[x];
+        writeResult += x + 1 != ranking.length ? ranking[x] + "-" : ranking[x];
     }
 
     //fare la scrittura sul file ed è fatta
-    console.log(writeResult)
+    // console.log(writeResult)
     //WriteToFile(writeResult)
 
 }

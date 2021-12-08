@@ -392,3 +392,8 @@ canvas {
     display: flex;
     justify-content: flex-start;
 }
+
+.title {
+    -webkit-text-stroke: 0.1px #6a441b;
+    text-shadow: -3px -3px 0 #f8be45, 3px -3px 0 #f8be45, -3px 3px 0 #f8be45, 3px 3px 0 #f8be45;
+}
