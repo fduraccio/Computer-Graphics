@@ -52,7 +52,29 @@
     </div>
 
     <div id="change-settings-panel" class="panel" style="display: none">
-        <h1>Choose your setting</h1>
+        <h1 class="bird-hunt-font text-center">Choose your setting</h1>
+        <div>
+            <table style="padding-top: 40px">
+                <tbody>
+                    <tr>
+                        <td class="textColor bird-hunt-font font-size-24" class="textColor">
+                            Choose difficulty
+                        </td>
+                        <td style="padding-left: 80px">
+                            <select id="choice" class="select">
+                                <option class="textColor bird-hunt-font" value="1">Easy</option>
+                                <option class="textColor bird-hunt-font" value="2">Medium</option>
+                                <option class="textColor bird-hunt-font" value="3">Difficult</option>
+                            </select>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <button class="navButton" onclick="goBack()" style="margin-top: 200px;margin-left: 150px;">
+                <span class="secondary-font font-size-45">Go back </span>
+            </button>
+        </div>
     </div>
 
     <div id="winner-panel" class="panel" style="display: none">

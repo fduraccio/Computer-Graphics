@@ -1,9 +1,13 @@
 async function main() {
 
+
+    var diff = document.querySelector('#choice')
+    console.log(diff.value);
+    if(diff.value==3) diff.value=2;
     startGame = (new Date).getTime();
-    var randomPosBird = Math.round(Math.random() * 400)
+    var randomPosBird = Math.round(Math.random() * 200 * diff.value)
     var randomPosition = [];
-    for (i = 0; i < 400; i++) {
+    for (i = 0; i < 200 * diff.value; i++) {
         randomPosition[i] = Math.round(Math.random() * 5);
 
     }
@@ -169,14 +173,12 @@ async function main() {
         lDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(lightDirMatrix), directionalLightDir);
 
         // car headlights positions in object space
-        var spotLightPos1 = [4.0, -9.0, 4.0];
-        //spotLightPos2 = [-carWidth[carIndex]/2*0.7, carHeight[carIndex]*0.25, carLength[carIndex]/2];
+        var spotLightPos1 = [0.0, 0.0, 0.0];
 
-        spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(playerX, playerY, playerZ, 0.0, angle, 0.0, 1.0));
-        spotLightMatrix_inv_t = utils.invertMatrix(utils.transposeMatrix(spotLightMatrix));
+        var spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(cx, cy, cz, playerAngle, 0.0, 0.0, 1.0));
+        var spotLightMatrix_inv_t = utils.invertMatrix(utils.transposeMatrix(spotLightMatrix));
 
         var spotPos1 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos1[0], spotLightPos1[1], spotLightPos1[2], 1.0]);
-        //spotPos2 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos2[0], spotLightPos2[1], spotLightPos2[2], 1.0]);
         spotDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(spotLightMatrix_inv_t), spotLightDir);
 
         lightAlpha = Math.min(Math.max((Math.cos(sunRise) - Math.sin(utils.degToRad(-10.0))) / (Math.sin(utils.degToRad(30.0)) - Math.sin(utils.degToRad(-10.0))), 0.0), 1.0);
@@ -206,10 +208,10 @@ async function main() {
 
 
         //TODO creare una mappa del mondo in cui posizionare gli oggetti
-        for (var x = 1; x < 20; x++) {
+        for (var x = 1; x < 10 * diff.value; x++) {
             for (var y = 0; y < 20; y++) {
                 // console.log(choice)
-                worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * 27.0), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
+                worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * (54.0/(diff.value))), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
                 drawAsset(tree[randomPosition[(y + (20 * x))]][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
 
@@ -279,10 +281,9 @@ async function main() {
                             drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, true)
                             break;
                     }
-
                 }
-                choice = choice * -1.0
 
+                choice = choice * -1.0
             }
         }
 

@@ -46,6 +46,7 @@ const KEY_CODE = {
 keys = [13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
 
 //Assets arrays
+var value;
 var i = 0;
 var bird;
 var floor;
@@ -57,12 +58,13 @@ var enableMovement = true;
 var allText = []
 var birdPosition, birdPos;
     //Panel
-var helpPanel;
-var canvasPanel;
-var mainPanel;
-var winnerPanel;
-var classificaPanel;
-var namePlayerPanel;
+var helpPanel,
+    optionPanel,
+    canvasPanel,
+    mainPanel,
+    winnerPanel,
+    classificaPanel,
+    namePlayerPanel;
 
 
 let prevVz = 0;
@@ -122,7 +124,7 @@ var playerAngle = 0.0;
 var deltaPlayerAngle = 0.0;
 
 angle = playerAngle % 360 - 180;
-var elevation = 10.0;
+//var elevation = 10.0;
 
 // var vz = 0.0;			// control input for moving the player
 var preVz = 0.0;

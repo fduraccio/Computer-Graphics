@@ -149,12 +149,16 @@ function reload() {
 }
 
 function changeSettings() {
+	optionPanel = document.getElementById("change-settings-panel");
+	optionPanel.style.display = "block";
 
 }
 
 function goBack() {
     classificaPanel = document.getElementById("classifica-panel");
     classificaPanel.style.display = "none";
+	optionPanel = document.getElementById("change-settings-panel");
+	optionPanel.style.display = "none";
 }
 
 function showLeaderboard() {
