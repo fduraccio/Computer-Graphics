@@ -19,7 +19,6 @@ async function main() {
     var directionalLight = [Math.cos(dirLightAlpha) * Math.cos(dirLightBeta),
         Math.sin(dirLightAlpha), Math.cos(dirLightAlpha) * Math.sin(dirLightBeta)
     ];
-    var directionalLightColor = [0.8, 1.0, 1.0];
 
 
     //SET Global states (viewport size, viewport background color, Depth test)
@@ -176,13 +175,15 @@ async function main() {
         lDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(lightDirMatrix), directionalLightDir);
 
         // car headlights positions in object space
-        var spotLightPos1 = [0.0, 0.0, 0.0];
+        var spotLightPos1 = [20.0, 0.0, 2.5];
 
-        var spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(cx, cy, cz, playerAngle, 0.0, 0.0, 1.0));
+        console.log(playerAngle)
+        console.log(angle)
+        var spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0));
         var spotLightMatrix_inv_t = utils.invertMatrix(utils.transposeMatrix(spotLightMatrix));
 
         var spotPos1 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos1[0], spotLightPos1[1], spotLightPos1[2], 1.0]);
-        spotDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(spotLightMatrix_inv_t), spotLightDir);
+        var spotDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(spotLightMatrix_inv_t), spotLightDir);
 
         lightAlpha = Math.min(Math.max((Math.cos(sunRise) - Math.sin(utils.degToRad(-10.0))) / (Math.sin(utils.degToRad(30.0)) - Math.sin(utils.degToRad(-10.0))), 0.0), 1.0);
         dirLightColor = [lightAlpha * directionalLightColor[0], lightAlpha * directionalLightColor[1], lightAlpha * directionalLightColor[2]];

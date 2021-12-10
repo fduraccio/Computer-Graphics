@@ -134,6 +134,8 @@ var playerLinVel = 0.0;
 var steeringDir = 0; // 1 = steering left, 0 = going straight, -1 = steering right
 var maxSteering = 40; // max steering angle in degree
 
+var directionalLightColor = [1.0, 1.0, 1.0];
+
 // running dynamic coefficients
 var sAT = 0.5;
 var mAT = 2.0;
