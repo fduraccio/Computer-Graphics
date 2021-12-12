@@ -14,7 +14,7 @@ body {
     color: white;
 }
 
-#change-settings-panel{
+#change-settings-panel {
     position: absolute;
     position: absolute;
     top: 50%;
@@ -219,10 +219,11 @@ canvas {
     color: #fefefe;
 }
 
-.select{
+.select {
     width: 300px;
-    height: 50px;
+    height: 34px;
     text-align: center;
+    border-radius: 8px;
 }
 
 .navButton {
@@ -318,6 +319,14 @@ canvas {
     font-size: 45px;
 }
 
+.font-size-40 {
+    font-size: 40px;
+}
+
+.font-size-35 {
+    font-size: 35px;
+}
+
 .font-size-50 {
     font-size: 50px;
 }
@@ -329,8 +338,29 @@ canvas {
 }
 
 .table-leaderboard {
-    height: 50%;
-    width: 70%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.row-tb {
+    padding: 10px;
+    width: 100%;
+    margin: 5px;
+    word-spacing: 8px;
+    display: flex;
+}
+
+.row-style-primary {
+    background-color: rgb(63 148 129);
+    border-radius: 8px;
+}
+
+.row-style-secondary {
+    background-color: rgb(52 105 89);
+    border-radius: 8px;
 }
 
 .my-0 {
@@ -411,4 +441,14 @@ canvas {
 .title {
     -webkit-text-stroke: 0.1px #6a441b;
     text-shadow: -3px -3px 0 #f8be45, 3px -3px 0 #f8be45, -3px 3px 0 #f8be45, 3px 3px 0 #f8be45;
+}
+
+.stars-icon {
+    width: 15%;
+    vertical-align: bottom;
+}
+
+.medal-icon {
+    width: 20%;
+    vertical-align: bottom;
 }

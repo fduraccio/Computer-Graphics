@@ -3,9 +3,9 @@ async function main() {
 
     var difficulty = document.querySelector('#choice')
     console.log(difficulty.value);
-    if(difficulty.value==3) {
-        difficulty.value=2;
-        var tmp= true;
+    if (difficulty.value == 3) {
+        difficulty.value = 2;
+        var tmp = true;
     }
     startGame = (new Date).getTime();
     var randomPosBird = Math.round(Math.random() * 200 * difficulty.value)
@@ -19,6 +19,7 @@ async function main() {
     var directionalLight = [Math.cos(dirLightAlpha) * Math.cos(dirLightBeta),
         Math.sin(dirLightAlpha), Math.cos(dirLightAlpha) * Math.sin(dirLightBeta)
     ];
+    var directionalLightColor = [0.8, 1.0, 1.0];
 
 
     //SET Global states (viewport size, viewport background color, Depth test)
@@ -177,13 +178,11 @@ async function main() {
         // car headlights positions in object space
         var spotLightPos1 = [20.0, 0.0, 2.5];
 
-        console.log(playerAngle)
-        console.log(angle)
-        var spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0));
+        var spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(cx, cy, cz, playerAngle, 0.0, 0.0, 1.0));
         var spotLightMatrix_inv_t = utils.invertMatrix(utils.transposeMatrix(spotLightMatrix));
 
         var spotPos1 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos1[0], spotLightPos1[1], spotLightPos1[2], 1.0]);
-        var spotDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(spotLightMatrix_inv_t), spotLightDir);
+        spotDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(spotLightMatrix_inv_t), spotLightDir);
 
         lightAlpha = Math.min(Math.max((Math.cos(sunRise) - Math.sin(utils.degToRad(-10.0))) / (Math.sin(utils.degToRad(30.0)) - Math.sin(utils.degToRad(-10.0))), 0.0), 1.0);
         dirLightColor = [lightAlpha * directionalLightColor[0], lightAlpha * directionalLightColor[1], lightAlpha * directionalLightColor[2]];
@@ -215,7 +214,7 @@ async function main() {
         for (var x = 1; x < 10 * difficulty.value; x++) {
             for (var y = 0; y < 20; y++) {
                 // console.log(choice)
-                worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * (54.0/(difficulty.value))), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
+                worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * (54.0 / (difficulty.value))), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
                 drawAsset(tree[randomPosition[(y + (20 * x))]][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
 

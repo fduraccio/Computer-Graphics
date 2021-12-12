@@ -149,27 +149,33 @@ function reload() {
 }
 
 function changeSettings() {
-	optionPanel = document.getElementById("change-settings-panel");
-	optionPanel.style.display = "block";
+    optionPanel = document.getElementById("change-settings-panel");
+    optionPanel.style.display = "block";
 
 }
 
 function goBack() {
     classificaPanel = document.getElementById("classifica-panel");
     classificaPanel.style.display = "none";
-	optionPanel = document.getElementById("change-settings-panel");
-	optionPanel.style.display = "none";
+    optionPanel = document.getElementById("change-settings-panel");
+    optionPanel.style.display = "none";
 }
 
 function showLeaderboard() {
     classificaPanel = document.getElementById("classifica-panel");
     classificaPanel.style.display = "block";
     // console.log(allText[0])
-    document.getElementById("firstPlayer").innerHTML = allText[0] + "    " + allText[1];
-    document.getElementById("secondPlayer").innerHTML = allText[2] + "    " + allText[3];
-    document.getElementById("thirdPlayer").innerHTML = allText[4] + "    " + allText[5];
-    document.getElementById("fourthPlayer").innerHTML = allText[6] + "    " + allText[7];
-    document.getElementById("fifthPlayer").innerHTML = allText[8] + "    " + allText[9];
+    document.getElementById("firstPlayer").innerHTML = allText[0];
+    document.getElementById("scoreFirst").innerHTML = allText[1];
+    document.getElementById("secondPlayer").innerHTML = allText[2]
+    document.getElementById("scoreSecond").innerHTML = allText[3];
+    document.getElementById("thirdPlayer").innerHTML = allText[4]
+    document.getElementById("scoreThird").innerHTML = allText[5];
+    document.getElementById("fourthPlayer").innerHTML = allText[6]
+    document.getElementById("scoreFourth").innerHTML = allText[7];
+    document.getElementById("fifthPlayer").innerHTML = allText[8];
+    document.getElementById("scoreFifth").innerHTML = allText[9];
+
 }
 
 function checkKey(keyCode) {
