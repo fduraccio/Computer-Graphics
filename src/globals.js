@@ -220,7 +220,8 @@ var texture = [
     'texture/grass-pattern.jpg',
     'texture/grass3.png',
     'texture/cloudColour.png',
-    'texture/images.jpeg'
+    'texture/images.jpeg',
+    'texture/texture_winter.png'
 ]
 
 

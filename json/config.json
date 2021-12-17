@@ -97,6 +97,13 @@
             "attachPoint": "",
             "obj": "object/flower.obj",
             "texture": "texture/Texture_01.jpg"
+        },
+        {
+            "name": "winter-tree",
+            "type": "winter-tree",
+            "attachPoint": "",
+            "obj": "object/winter-tree.obj",
+            "texture": "texture/Texture_01.png"
         }
     ],
 
