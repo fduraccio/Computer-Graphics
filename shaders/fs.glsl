@@ -20,7 +20,6 @@ uniform vec3 lightColor; //directional light color
 uniform vec3 eyePosition; //Observer's position
 
 uniform vec3 spotLightPos1;
-uniform vec3 spotLightPos2;
 uniform vec3 spotLightDir;
 uniform vec3 spotLightColor;
 uniform float spotLightTarget;
@@ -64,7 +63,6 @@ void main() {
 	
 	vec3 nSpotLightDir = - normalize(spotLightDir);
 	vec3 lx1 = spotLightPos1 - fsPosition;
-	vec3 lx2 = spotLightPos2 - fsPosition;
 	
 	// f_x = f_diff + f_spec
 
@@ -73,9 +71,8 @@ void main() {
 	vec3 dirLight = lightColor * f_BRDF(nLightDirection, nEyeDirection, nNormal);
 	
 	vec3 spotLight1 = spot_light(spotLightColor, lx1, nSpotLightDir) * f_BRDF(lx1, nEyeDirection, nNormal);
-	vec3 spotLight2 = spot_light(spotLightColor, lx2, nSpotLightDir) * f_BRDF(lx2, nEyeDirection, nNormal);
 	
 	vec3 ambientLight = texture(u_texture, uvFS).xyz * ambCoeff * ambAlpha;
 
-	outColor = vec4(clamp(dirLight + spotLight1 + spotLight2 + ambientLight + mEmissColor, 0.0, 1.0), texture(u_texture, uvFS).a);
+	outColor = vec4(clamp(dirLight + spotLight1 + ambientLight + mEmissColor, 0.0, 1.0), texture(u_texture, uvFS).a);
 }

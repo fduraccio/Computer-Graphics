@@ -53,7 +53,6 @@ async function main() {
     var eyePositionHandle = gl.getUniformLocation(program, 'eyePosition');
     var lightDirectionHandle = gl.getUniformLocation(program, 'lightDirection');
     var spotLightPos1Handle = gl.getUniformLocation(program, 'spotLightPos1');
-    var spotLightPos2Handle = gl.getUniformLocation(program, 'spotLightPos2');
     var spotLightDirHandle = gl.getUniformLocation(program, 'spotLightDir');
 
     var materialSpecPowerHandle = gl.getUniformLocation(program, 'mSpecPower');
@@ -174,9 +173,6 @@ async function main() {
         lightDirMatrix = utils.invertMatrix(utils.transposeMatrix(viewMatrix));
 
         lDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(lightDirMatrix), directionalLightDir);
-
-        // car headlights positions in object space
-        var spotLightPos1 = [20.0, 0.0, 2.5];
 
         var spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(cx, cy, cz, playerAngle, 0.0, 0.0, 1.0));
         var spotLightMatrix_inv_t = utils.invertMatrix(utils.transposeMatrix(spotLightMatrix));

@@ -240,13 +240,12 @@ var ambientLightCoeff = 0.3;
 var ambientLightAlpha = 0.0;
 
 var spotLightPos1 = [0.0, 0.0, 0.0];
-var spotLightPos2 = [0.0, 0.0, 0.0]
-var spotLightDir = [0.0, 0.0, 1.0];
-var spotLightColor = [1.0, 1.0, 0.75];
+var spotLightDir = [0.0, -8.0, 13];
+var spotLightColor = [1.0, 1.0, 1.0];
 var spotLightTarget = 8.0;
 var spotLightDecay = 2;
-var outerCone = 120.0;
-var innerCone = 60.0;
+var outerCone = 30.0;
+var innerCone = 20.0;
 
 var viewMatrix;
 var perspectiveMatrix;
