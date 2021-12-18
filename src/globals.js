@@ -68,7 +68,12 @@ var helpPanel,
     mainPanel,
     winnerPanel,
     classificaPanel,
-    namePlayerPanel;
+    namePlayerPanel,
+    timerPanel;
+
+var time_minutes,
+    time_seconds,
+    duration;
 
 
 let prevVz = 0;

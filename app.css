@@ -23,6 +23,16 @@ body {
     color: white;
 }
 
+#timerPanel {
+    width: 50px;
+    height: 70px;
+    position: absolute;
+    top: 14%;
+    left: 94%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
 .input-size {
     height: 42px;
     width: 260px;
@@ -180,6 +190,17 @@ kbd {
     color: white;
     width: 500px;
     height: 500px;
+}
+
+.panel-timer {
+    padding: 2em;
+    background-color: transparent;
+    background-image: url(../env/control.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    width: 150px;
+    height: 100px;
 }
 
 .textColor {

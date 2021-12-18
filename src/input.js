@@ -128,13 +128,44 @@ function startGame() {
     if (namePlayer[0] == ' ' || namePlayer == '') {
         alert("Inserire nome senza lasciare spazi all'inizio")
     } else {
+		time_minutes = 1; // Value in minutes
+		time_seconds = 30; // Value in seconds
+
+		duration = time_minutes * 60 + time_seconds;
+		var element = document.querySelector('#count-down-timer');
+		element.textContent = `${paddedFormat(time_minutes)}:${paddedFormat(time_seconds)}`;
+		startCountDown(--duration, element);
         namePlayerPanel = document.getElementById("namePlayer-panel");
         namePlayerPanel.style.display = "none";
         helpPanel = document.getElementById("help-panel");
         helpPanel.style.display = "block";
+		timerPanel = document.getElementById("timer-panel");
+		timerPanel.style.display = "block";
         init();
 
     }
+}
+
+function paddedFormat(num) {
+	return num < 10 ? "0" + num : num; 
+}
+
+function startCountDown(duration, element) {
+	let secondsRemaining = duration;
+	let min = 0;
+	let sec = 0;
+	
+	let countInterval = setInterval(function () {
+	
+		min = parseInt(secondsRemaining / 60);
+		sec = parseInt(secondsRemaining % 60);
+	
+		element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
+	
+		secondsRemaining = secondsRemaining - 1;
+		if (secondsRemaining < 0) { clearInterval(countInterval) };
+	
+	}, 1000);
 }
 
 function changeState() {
