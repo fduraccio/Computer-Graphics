@@ -8,7 +8,7 @@ function initialPage() {
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    let gameSpeed = 2;
+    let gameSpeed = 4;
 
     const backgroundLayer1 = new Image()
     backgroundLayer1.src = "/init/sky.png";
@@ -29,53 +29,70 @@ function initialPage() {
     const backgroundLayer9 = new Image()
     backgroundLayer9.src = "/init/snow.png";
 
+    class Layer {
 
-    let x = 0;
-    let x2 = 1024
-    let x3 = 0;
-    let x4 = 1024
+        constructor(image, speedModifier, x, y) {
+            this.x = 0;
+            this.y = 0;
+            this.width = 1024;
+            this.height = 400;
+            this.x2 = 1024;
+            this.image = image;
+            this.speedModifier = speedModifier;
+            this.speed = gameSpeed * speedModifier;
+        }
+
+        update() {
+            this.speed = gameSpeed * this.speedModifier;
+            if (this.x <= -this.width) {
+                this.x = this.width + this.x2 - this.speed;
+            }
+            if (this.x2 <= -this.width) {
+                this.x2 = this.width + this.x - this.speed;
+            }
+            this.x = Math.floor(this.x - this.speed)
+            this.x2 = Math.floor(this.x2 - this.speed)
+        }
+
+        draw(posx, posy, width, height) {
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height, posx, posy, width, height)
+            ctx.drawImage(this.image, this.x2, this.y, this.width, this.height, posx, posy, width, height)
+        }
+
+    }
+
+    const layer1 = new Layer(backgroundLayer1, 0.75);
+    const layer3 = new Layer(backgroundLayer3, 0.5);
+    const layer2 = new Layer(backgroundLayer2, 0.75);
+    const layer4 = new Layer(backgroundLayer4, 1.0);
+    const layer5 = new Layer(backgroundLayer5, 0.75);
+    const layer6 = new Layer(backgroundLayer6, 1.0);
+    const layer7 = new Layer(backgroundLayer7, 0.75);
+    const layer8 = new Layer(backgroundLayer8, 0.75);
+    const layer9 = new Layer(backgroundLayer9, 0.25);
+
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        ctx.drawImage(backgroundLayer1, 0, 0, 1024, 400, 0, 0, 2000, 550);
+        layer1.update()
+        layer2.update()
+        layer3.update()
+        layer4.update()
+        layer5.update()
+        layer6.update()
+        layer7.update()
+        layer8.update()
+        layer9.update()
 
-        ctx.drawImage(backgroundLayer3, x, 0, 1024, 400, 0, 80, 2000, 550);
-        ctx.drawImage(backgroundLayer3, x2, 0, 1024, 400, 0, 80, 2000, 550);
-
-        ctx.drawImage(backgroundLayer2, x, 0, 1024, 400, 0, 500, 2000, 550);
-        ctx.drawImage(backgroundLayer2, x2, 0, 1024, 400, 0, 500, 2000, 550);
-
-        ctx.drawImage(backgroundLayer4, x, 0, 1024, 400, 0, 600, 2000, 550);
-        ctx.drawImage(backgroundLayer4, x2, 0, 1024, 400, 0, 600, 2000, 550);
-
-        ctx.drawImage(backgroundLayer4, x, 0, 1024, 400, 0, 600, 2000, 550);
-        ctx.drawImage(backgroundLayer4, x2, 0, 1024, 400, 0, 600, 2000, 550);
-
-        ctx.drawImage(backgroundLayer5, x, 0, 1024, 400, -500, 350, 2000, 550);
-        ctx.drawImage(backgroundLayer5, x2, 0, 1024, 400, -500, 350, 2000, 550);
-
-        ctx.drawImage(backgroundLayer6, x, 0, 1024, 400, 0, 105, 2000, 550);
-        ctx.drawImage(backgroundLayer6, x2, 0, 1024, 400, 0, 105, 2000, 550);
-
-        ctx.drawImage(backgroundLayer7, x, 0, 1024, 400, -200, 450, 2000, 550);
-        ctx.drawImage(backgroundLayer7, x2, 0, 1024, 400, -200, 450, 2000, 550);
-
-        // ctx.drawImage(backgroundLayer8, x, 0, 1024, 400, 100, 450, 2000, 550);
-        // ctx.drawImage(backgroundLayer8, x2, 0, 1024, 400, 100, 450, 2000, 550);
-
-        ctx.drawImage(backgroundLayer9, x3, 0, 1024, 400, 0, 0, 2000, 550);
-        ctx.drawImage(backgroundLayer9, x4, 0, 1024, 400, 0, 0, 2000, 550);
-
-
-        if (x < -1024) x = 1024 + x2 - gameSpeed
-        else x -= gameSpeed
-        if (x2 < -1024) x2 = 1024 + x - gameSpeed
-        else x2 -= gameSpeed
-        if (x3 < -1024) x3 = 1024 + x4 - gameSpeed - 1
-        else x3 -= gameSpeed - 1
-        if (x4 < -1024) x4 = 1024 + x3 - gameSpeed - 1
-        else x4 -= gameSpeed - 1
-
+        layer1.draw(0, 0, 2000, 550)
+        layer3.draw(0, 80, 2000, 550)
+        layer2.draw(0, 500, 2000, 550)
+        layer4.draw(0, 600, 2000, 550)
+        layer5.draw(-400, 350, 2000, 550)
+        layer6.draw(0, 105, 2000, 550)
+        layer7.draw(-600, 450, 2000, 550)
+            // layer8.draw(-100, 450, 2000, 550)
+        layer9.draw(0, 0, 2000, 550)
 
         requestAnimationFrame(animate)
     }
