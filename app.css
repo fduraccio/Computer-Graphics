@@ -24,11 +24,9 @@ body {
 }
 
 #timerPanel {
-    width: 50px;
-    height: 70px;
     position: absolute;
-    top: 14%;
-    left: 94%;
+    top: 55%;
+    left: 36%;
     transform: translate(-50%, -50%);
     color: white;
 }
@@ -203,15 +201,13 @@ kbd {
     height: 500px;
 }
 
-.panel-timer {
-    padding: 2em;
-    background-color: transparent;
-    background-image: url(../env/control.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
+.timer-panel {
     color: white;
-    width: 150px;
-    height: 100px;
+    width: 115%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 95%
 }
 
 .textColor {

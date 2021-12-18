@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <div id="cv-container" style="position: relative" hidden="">
+    <div id="cv-container" style="position: relative" hidden="false">
     </div>
 
 
@@ -51,7 +51,7 @@
         <div id="namePlayer-panel" class="panel">
             <div class="control-panel">
                 <h1 class="secondary-font text-center my-0">Insert here your nickname</h1>
-                <input type="text" id="namePlayer" class="input-size text-center" />
+                <input type="text" id="namePlayer" autocomplete="off" class="input-size text-center" />
                 <button class="navButton" onclick="startGame()">
                     <span class="secondary-font font-size-40">Next</span>
                 </button>
@@ -82,7 +82,7 @@
                     <div style="padding: 0px 20px">
                         <select id="environment" class="select">
                             <option class="textColor bird-hunt-font" value="false">Woodland</option>
-                            <option class="textColor bird-hunt-font"  value="true">Winterland</option>
+                            <option class="textColor bird-hunt-font" value="true">Winterland</option>
                         </select>
                     </div>
                 </div>
@@ -230,10 +230,13 @@
     </div>
 
     <div id="timer-panel" style="display: none">
-        <div id="timerPanel" class="panel-timer">
-            <div>
-                <h1 id="count-down-timer"></h1>
-            </div>
+        <div id="timerPanel" class="timer-panel">
+            <span class="secondary-font font-size-35">
+                Time left:
+
+                <h1 class="secondary-font font-size-40 my-0" id="count-down-timer" style="display:inline"></h1>
+            </span>
+
 
         </div>
     </div>
