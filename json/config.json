@@ -102,7 +102,63 @@
             "name": "winter-tree",
             "type": "winter-tree",
             "attachPoint": "",
-            "obj": "object/winter-tree.obj",
+            "obj": "winter-object/winter-tree.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "winter-tree",
+            "type": "winter-tree",
+            "attachPoint": "",
+            "obj": "winter-object/winter-tree1.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "winter-tree",
+            "type": "winter-tree",
+            "attachPoint": "",
+            "obj": "winter-object/winter-tree2.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "winter-tree",
+            "type": "winter-tree",
+            "attachPoint": "",
+            "obj": "winter-object/winter-tree3.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "winter-tree",
+            "type": "winter-tree",
+            "attachPoint": "",
+            "obj": "winter-object/winter-tree4.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "winter-tree",
+            "type": "winter-tree",
+            "attachPoint": "",
+            "obj": "winter-object/winter-tree5.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "winter-rock",
+            "type": "winter-rock",
+            "attachPoint": "",
+            "obj": "winter-object/winter-rock3.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "winter-plant",
+            "type": "winter-plant",
+            "attachPoint": "",
+            "obj": "winter-object/winter-plant.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "winter-plant",
+            "type": "winter-plant",
+            "attachPoint": "",
+            "obj": "winter-object/winter-plant1.obj",
             "texture": "texture/Texture_01.png"
         }
     ],
@@ -110,7 +166,9 @@
     "attachmentPos": [{
         "treeType": [1, 2, 3, 2, 4, 1, 2, 3, 4],
         "trees": [
-            [-260, -9.0, -270, 0.0, 0.0, 0.0, 10]
+            [-260, -9.0, -270, 0.0, 0.0, 0.0, 10],
+            [-250, -9.0, -260, 0.0, 0.0, 0.0, 6],
+            [-10.0, -9.0, 0.0, 0.0, 0.0, 0.0, 10]
         ],
         "rocks": [],
         "bird": [],

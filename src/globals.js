@@ -52,6 +52,9 @@ var bird;
 var floor;
 var cloud;
 var tree = []
+var winterTree = [],
+    winterRock = [],
+    winterPlant = []
 var rock = []
 var flower;
 var enableMovement = true;
@@ -221,7 +224,8 @@ var texture = [
     'texture/grass3.png',
     'texture/cloudColour.png',
     'texture/images.jpeg',
-    'texture/texture_winter.png'
+    'texture/texture_winter.png',
+    'texture/ snow-floor.jpg'
 ]
 
 

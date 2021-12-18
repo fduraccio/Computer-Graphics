@@ -10,12 +10,13 @@
     <script type="text/javascript" src="src/input.js"></script>
     <script type="text/javascript" src="lib/webgl-obj-loader.min.js"></script>
     <script type="text/javascript" src="lib/utils.js"></script>
-    <script type="text/javascript" src="lib/perlin.js"></script>
+    <!--<script type="text/javascript" src="lib/perlin.js"></script>-->
     <script type="text/javascript" src="src/drawing.js"></script>
     <script type="text/javascript" src="src/player.js"></script>
     <script type="text/javascript" src="lib/quaternion.min.js"></script>
     <script type="text/javascript" src="src/collisions.js"></script>
     <script type="text/javascript" src="src/raycast.js"></script>
+    
 </head>
 
 <body>
@@ -57,14 +58,25 @@
             <h1 class="secondary-font text-center my-0 font-size-35">Choose your setting</h1>
             <div class="table-leaderboard">
                 <div class="row-tb">
-                    <span class="textColor secondary-font font-size-24 text-center" class="textColor">
+                    <span class="textColor padding-div secondary-font font-size-24 text-center" class="textColor">
                         Level
                     </span>
                     <div style="padding: 0px 20px">
                         <select id="choice" class="select">
                             <option class="textColor bird-hunt-font" value="1">Easy</option>
-                            <option class="textColor bird-hunt-font" value="2">Medium</option>
+                            <option class="textColor bird-hunt-font" selected value="2">Medium</option>
                             <option class="textColor bird-hunt-font" value="3">Hard</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row-tb">
+                    <span class="textColor secondary-font font-size-24 text-center" class="textColor ">
+                        Choose Environment
+                    </span>
+                    <div style="padding: 0px 20px">
+                        <select id="environment" class="select">
+                            <option class="textColor bird-hunt-font" value="false">Woodland</option>
+                            <option class="textColor bird-hunt-font"  value="true">Frozen Wood</option>
                         </select>
                     </div>
                 </div>
