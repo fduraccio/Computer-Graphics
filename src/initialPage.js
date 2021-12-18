@@ -11,23 +11,23 @@ function initialPage() {
     let gameSpeed = 4;
 
     const backgroundLayer1 = new Image()
-    backgroundLayer1.src = "/init/sky.png";
+    backgroundLayer1.src = "/init/woodland/sky.png";
     const backgroundLayer2 = new Image()
-    backgroundLayer2.src = "/init/hills.png";
+    backgroundLayer2.src = "/init/woodland/hills.png";
     const backgroundLayer3 = new Image()
-    backgroundLayer3.src = "/init/moutains.png";
+    backgroundLayer3.src = "/init/woodland/moutains.png";
     const backgroundLayer4 = new Image()
-    backgroundLayer4.src = "/init/ground.png";
+    backgroundLayer4.src = "/init/woodland/ground.png";
     const backgroundLayer5 = new Image()
-    backgroundLayer5.src = "/init/tree1.png";
+    backgroundLayer5.src = "/init/woodland/tree1.png";
     const backgroundLayer6 = new Image()
-    backgroundLayer6.src = "/init/tree2.png";
+    backgroundLayer6.src = "/init/woodland/tree2.png";
     const backgroundLayer7 = new Image()
-    backgroundLayer7.src = "/init/snowtree1.png";
+    backgroundLayer7.src = "/init/woodland/snowtree1.png";
     const backgroundLayer8 = new Image()
-    backgroundLayer8.src = "/init/snowtree2.png";
+    backgroundLayer8.src = "/init/woodland/snowtree2.png";
     const backgroundLayer9 = new Image()
-    backgroundLayer9.src = "/init/snow.png";
+    backgroundLayer9.src = "/init/woodland/snow.png";
 
     class Layer {
 

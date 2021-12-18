@@ -25,8 +25,8 @@ body {
 
 #timerPanel {
     position: absolute;
-    top: 55%;
-    left: 36%;
+    top: 20%;
+    left: 85%;
     transform: translate(-50%, -50%);
     color: white;
 }
@@ -103,6 +103,34 @@ body {
     background-image: url(../env/start_page.png);
     background-repeat: no-repeat;
     background-size: 100%;
+}
+
+#main-panel-2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.container-2 {
+    padding: 80px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
 }
 
 .main-panel {
@@ -203,11 +231,11 @@ kbd {
 
 .timer-panel {
     color: white;
-    width: 115%;
+    width: 20%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    height: 95%
+    height: 20%
 }
 
 .textColor {
