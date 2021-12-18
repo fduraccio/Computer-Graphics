@@ -8,7 +8,7 @@ function initialPage() {
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    let gameSpeed = 4;
+    let gameSpeed = 3;
 
     const backgroundLayer1 = new Image()
     backgroundLayer1.src = "/init/woodland/sky.png";

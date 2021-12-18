@@ -179,6 +179,20 @@ function startCountDown(duration, element) {
     }, 1000);
 }
 
+function setBackground() {
+    var selectBox = document.querySelector('#environment')
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value; //TODO:value non è un boolean ma uns stringa, da cambiare
+
+    if (selectedValue === "true") {
+        document.getElementById("main-panel").className =
+            document.getElementById("main-panel").className.replace("main", "winter");
+        return;
+    }
+    document.getElementById("main-panel").className =
+        document.getElementById("main-panel").className.replace("winter", "main");
+
+}
+
 function changeState() {
     mainPanel = document.getElementById("main-panel");
     mainPanel.style.display = "none";

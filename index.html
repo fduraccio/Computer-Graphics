@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <div id="main-panel">
+    <div id="main-panel" class="main-panel">
         <div class="container">
             <div id="game" class="d-flex justify-content-center">
                 <h1 class="bird-hunt-font font-size-100 text-color-white title">Bird Hunt</h1>
@@ -80,9 +80,9 @@
                         Environment
                     </span>
                     <div style="padding: 0px 20px">
-                        <select id="environment" class="select">
-                            <option class="textColor bird-hunt-font" value="false">Woodland</option>
-                            <option class="textColor bird-hunt-font" value="true">Winterland</option>
+                        <select id="environment" class="select" onchange="setBackground()">
+                            <option class="textColor bird-hunt-font" value="false" >Woodland</option>
+                            <option class="textColor bird-hunt-font" value="true" >Winterland</option>
                         </select>
                     </div>
                 </div>
