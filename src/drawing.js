@@ -86,6 +86,9 @@ async function main() {
         if (model.type == "winter-plant") {
             winterPlant.push(await loadAsset(model.obj, img[6]))
         }
+        if (model.type == "snowman") {
+            winterPlant.push(await loadAsset(model.obj, img[6]))
+        }
 
         if (model.type == "rock") {
             rock.push(await loadAsset(model.obj, img[1]))
@@ -291,10 +294,10 @@ async function main() {
             }
         } else {
             //worldMatrix=utils.MakeWorld(trees[2][0], trees[2][1], trees[2][2], trees[2][3], trees[2][4], trees[2][5], trees[2][6]);
-            //drawAsset(winterTree[1][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
+            //drawAsset(snowman[0], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
-            for (var x = 0; x < 20; x++) {
-                for (var y = 0; y < 19; y++) {
+            for (var x = 0; x < 10 * difficulty.value; x++) {
+                for (var y = 0; y < 20; y++) {
                     
                     worldMatrix = utils.MakeWorld(trees[1][0] + (y * 27), trees[1][1], trees[1][2] + (x * (54.0 / (difficulty.value))), trees[1][3], trees[1][4], trees[1][5], trees[1][6]);
                     drawAsset(winterTree[randomPosition[(y + (20 * x))]][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
@@ -308,6 +311,41 @@ async function main() {
                     ornamentLocalMatrix = utils.MakeWorld(-1.0, 0.1, 1, 0.0, 0.0, 0.0, 1);
                     ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
                     drawAsset(winterPlant[0], ornamentWorldMatrix, viewMatrix, perspectiveMatrix, false);
+
+                    if (y + (x * 20) == randomPosBird) {
+                        switch (winterTree[randomPosition[(y + (20 * x))]][1]) {
+                            case "tree":
+                                randomPosBird+=1;
+                                break;
+                            case "tree1":
+                                randomPosBird+=1;
+                                break;
+                            case "tree2":
+                                ornamentLocalMatrix = utils.MakeWorld(0.3, 4.0, 0.0, 0.0, 0.0, 0.0, 0.5);
+                                ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
+                                birdPos = utils.multiplyMatrixVector(worldMatrix, [0.15, 4.5, 0.0, 1])
+                                birdPosition = [
+                                    [birdPos[0], birdPos[1], birdPos[2]], 3
+                                ];
+                                drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, !tmp)
+                                break;
+                            case "tree3":
+                                ornamentLocalMatrix = utils.MakeWorld(-0.2, 2.1, 0.01, 0.0, 0.0, 0.0, 0.5);
+                                ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
+                                birdPos = utils.multiplyMatrixVector(worldMatrix, [-0.2, 2.75, 0.01, 1])
+                                birdPosition = [
+                                    [birdPos[0], birdPos[1], birdPos[2]], 3
+                                ];
+                                drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, !tmp)
+                                break;
+                            case "tree4":
+                                randomPosBird+=1;
+                                break;
+                            case "tree5":
+                                randomPosBird+=1;
+                                break;
+                        }
+                    }
 
                     
 

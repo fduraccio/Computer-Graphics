@@ -99,42 +99,42 @@
             "texture": "texture/Texture_01.jpg"
         },
         {
-            "name": "winter-tree",
+            "name": "tree",
             "type": "winter-tree",
             "attachPoint": "",
             "obj": "winter-object/winter-tree.obj",
             "texture": "texture/Texture_01.png"
         },
         {
-            "name": "winter-tree",
+            "name": "tree1",
             "type": "winter-tree",
             "attachPoint": "",
             "obj": "winter-object/winter-tree1.obj",
             "texture": "texture/Texture_01.png"
         },
         {
-            "name": "winter-tree",
+            "name": "tree2",
             "type": "winter-tree",
             "attachPoint": "",
             "obj": "winter-object/winter-tree2.obj",
             "texture": "texture/Texture_01.png"
         },
         {
-            "name": "winter-tree",
+            "name": "tree3",
             "type": "winter-tree",
             "attachPoint": "",
             "obj": "winter-object/winter-tree3.obj",
             "texture": "texture/Texture_01.png"
         },
         {
-            "name": "winter-tree",
+            "name": "tree4",
             "type": "winter-tree",
             "attachPoint": "",
             "obj": "winter-object/winter-tree4.obj",
             "texture": "texture/Texture_01.png"
         },
         {
-            "name": "winter-tree",
+            "name": "tree5",
             "type": "winter-tree",
             "attachPoint": "",
             "obj": "winter-object/winter-tree5.obj",
@@ -159,6 +159,20 @@
             "type": "winter-plant",
             "attachPoint": "",
             "obj": "winter-object/winter-plant1.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "snowman",
+            "type": "snowman",
+            "attachPoint": "",
+            "obj": "winter-object/snowman_1.obj",
+            "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "snowman",
+            "type": "snowman",
+            "attachPoint": "",
+            "obj": "winter-object/snowman_2.obj",
             "texture": "texture/Texture_01.png"
         }
     ],

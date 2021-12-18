@@ -54,7 +54,8 @@ var cloud;
 var tree = []
 var winterTree = [],
     winterRock = [],
-    winterPlant = []
+    winterPlant = [],
+    snowman = []
 var rock = []
 var flower;
 var enableMovement = true;
