@@ -128,8 +128,9 @@ function startGame() {
     if (namePlayer[0] == ' ' || namePlayer == '') {
         alert("Inserire nome senza lasciare spazi all'inizio")
     } else {
-		time_minutes = 1; // Value in minutes
-		time_seconds = 30; // Value in seconds
+		//cambia qui per aumentare e diminuire il timer
+		time_minutes = 2; // Value in minutes
+		time_seconds = 0; // Value in seconds
 
 		duration = time_minutes * 60 + time_seconds;
 		var element = document.querySelector('#count-down-timer');
@@ -163,6 +164,14 @@ function startCountDown(duration, element) {
 		element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
 	
 		secondsRemaining = secondsRemaining - 1;
+		if(secondsRemaining==0){
+			timerPanel = document.getElementById("timer-panel");
+			timerPanel.style.display = "none";
+			looserPanel = document.getElementById("looser-panel");
+			looserPanel.style.display = "block";
+			enableMovement = false;
+
+		}
 		if (secondsRemaining < 0) { clearInterval(countInterval) };
 	
 	}, 1000);

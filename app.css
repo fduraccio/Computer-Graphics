@@ -67,6 +67,16 @@ body {
     height: 300px;
 }
 
+#looser-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 300px;
+    height: 300px;
+}
+
 #classifica-panel {
     position: absolute;
     top: 50%;

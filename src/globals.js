@@ -69,7 +69,8 @@ var helpPanel,
     winnerPanel,
     classificaPanel,
     namePlayerPanel,
-    timerPanel;
+    timerPanel,
+    looserPanel;
 
 var time_minutes,
     time_seconds,
