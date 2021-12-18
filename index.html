@@ -16,7 +16,8 @@
     <script type="text/javascript" src="lib/quaternion.min.js"></script>
     <script type="text/javascript" src="src/collisions.js"></script>
     <script type="text/javascript" src="src/raycast.js"></script>
-    
+    <script type="text/javascript" src="src/initialPage.js"></script>
+
 </head>
 
 <body>
@@ -39,9 +40,14 @@
         </div>
     </div>
 
+    <div id="cv-container" style="position: relative" hidden="">
+    </div>
+
+
+
     <div id="canvas-container" style="position: relative" hidden=""></div>
 
-    <div id="input-name-panel" class="main-panel" style="display: none">
+    <div id="input-name-panel" class="" style="display: none">
         <div id="namePlayer-panel" class="panel">
             <div class="control-panel">
                 <h1 class="secondary-font text-center my-0">Insert here your nickname</h1>
@@ -71,12 +77,12 @@
                 </div>
                 <div class="row-tb">
                     <span class="textColor secondary-font font-size-24 text-center" class="textColor ">
-                        Choose Environment
+                        Environment
                     </span>
                     <div style="padding: 0px 20px">
                         <select id="environment" class="select">
                             <option class="textColor bird-hunt-font" value="false">Woodland</option>
-                            <option class="textColor bird-hunt-font"  value="true">Frozen Wood</option>
+                            <option class="textColor bird-hunt-font"  value="true">Winterland</option>
                         </select>
                     </div>
                 </div>
@@ -228,10 +234,10 @@
             <div>
                 <h1 id="count-down-timer"></h1>
             </div>
-            
+
         </div>
     </div>
-    
+
 </body>
 
 </html>

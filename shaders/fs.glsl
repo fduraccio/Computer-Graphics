@@ -75,4 +75,7 @@ void main() {
 	vec3 ambientLight = texture(u_texture, uvFS).xyz * ambCoeff * ambAlpha;
 
 	outColor = vec4(clamp(dirLight + spotLight1 + ambientLight + mEmissColor, 0.0, 1.0), texture(u_texture, uvFS).a);
+
+	// color = vec4(min(matcol.rgb * dimFact  * (1.0-normvis) +
+	// 				normvis * (fs_norm) / 2.0, vec3(1.0, 1.0, 1.0)), 1.0);
 }

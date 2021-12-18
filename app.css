@@ -122,7 +122,8 @@ body {
 .text-center {
     text-align: center;
 }
-.padding-div{
+
+.padding-div {
     padding-right: 45px;
     padding-left: 35px;
 }
@@ -255,7 +256,7 @@ canvas {
 }
 
 .select {
-    width: 300px;
+    width: 250px;
     height: 34px;
     text-align: center;
     border-radius: 8px;
@@ -404,10 +405,11 @@ canvas {
 }
 
 .container {
-    padding: 100px 120px 150px 120px;
+    height: 100%;
+    padding: 80px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-content: center;
     flex-wrap: nowrap;
     align-items: center;
@@ -464,8 +466,9 @@ canvas {
 .container-btn {
     display: flex;
     flex-direction: column;
-    width: 1000;
+    width: 100%;
     margin: 30px 0px;
+    align-items: flex-start;
 }
 
 .btn-btn {

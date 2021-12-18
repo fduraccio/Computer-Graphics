@@ -128,53 +128,55 @@ function startGame() {
     if (namePlayer[0] == ' ' || namePlayer == '') {
         alert("Inserire nome senza lasciare spazi all'inizio")
     } else {
-		//cambia qui per aumentare e diminuire il timer
-		time_minutes = 2; // Value in minutes
-		time_seconds = 0; // Value in seconds
+        //cambia qui per aumentare e diminuire il timer
+        time_minutes = 2; // Value in minutes
+        time_seconds = 0; // Value in seconds
 
-		duration = time_minutes * 60 + time_seconds;
-		var element = document.querySelector('#count-down-timer');
-		element.textContent = `${paddedFormat(time_minutes)}:${paddedFormat(time_seconds)}`;
-		startCountDown(--duration, element);
+        duration = time_minutes * 60 + time_seconds;
+        var element = document.querySelector('#count-down-timer');
+        element.textContent = `${paddedFormat(time_minutes)}:${paddedFormat(time_seconds)}`;
+        startCountDown(--duration, element);
         namePlayerPanel = document.getElementById("namePlayer-panel");
         namePlayerPanel.style.display = "none";
+        cvContainer = document.getElementById("cv-container");
+        cvContainer.style.display = "none";
         helpPanel = document.getElementById("help-panel");
         helpPanel.style.display = "block";
-		timerPanel = document.getElementById("timer-panel");
-		timerPanel.style.display = "block";
+        timerPanel = document.getElementById("timer-panel");
+        timerPanel.style.display = "block";
         init();
 
     }
 }
 
 function paddedFormat(num) {
-	return num < 10 ? "0" + num : num; 
+    return num < 10 ? "0" + num : num;
 }
 
 function startCountDown(duration, element) {
-	let secondsRemaining = duration;
-	let min = 0;
-	let sec = 0;
-	
-	let countInterval = setInterval(function () {
-	
-		min = parseInt(secondsRemaining / 60);
-		sec = parseInt(secondsRemaining % 60);
-	
-		element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
-	
-		secondsRemaining = secondsRemaining - 1;
-		if(secondsRemaining==0){
-			timerPanel = document.getElementById("timer-panel");
-			timerPanel.style.display = "none";
-			looserPanel = document.getElementById("looser-panel");
-			looserPanel.style.display = "block";
-			enableMovement = false;
+    let secondsRemaining = duration;
+    let min = 0;
+    let sec = 0;
 
-		}
-		if (secondsRemaining < 0) { clearInterval(countInterval) };
-	
-	}, 1000);
+    let countInterval = setInterval(function() {
+
+        min = parseInt(secondsRemaining / 60);
+        sec = parseInt(secondsRemaining % 60);
+
+        element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
+
+        secondsRemaining = secondsRemaining - 1;
+        if (secondsRemaining == 0) {
+            timerPanel = document.getElementById("timer-panel");
+            timerPanel.style.display = "none";
+            looserPanel = document.getElementById("looser-panel");
+            looserPanel.style.display = "block";
+            enableMovement = false;
+
+        }
+        if (secondsRemaining < 0) { clearInterval(countInterval) };
+
+    }, 1000);
 }
 
 function changeState() {
@@ -182,6 +184,7 @@ function changeState() {
     mainPanel.style.display = "none";
     namePlayerPanel = document.getElementById("input-name-panel");
     namePlayerPanel.style.display = "block";
+    initialPage()
 }
 
 function reload() {
