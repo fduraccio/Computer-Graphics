@@ -20,6 +20,8 @@
 
 </head>
 
+
+
 <body>
     <div id="main-panel" class="main-panel">
         <div class="container">
@@ -50,7 +52,7 @@
     <div id="input-name-panel" class="" style="display: none">
         <div id="namePlayer-panel" class="panel">
             <div class="control-panel">
-                <h1 class="secondary-font text-center my-0">Insert here your nickname</h1>
+                <h1 class="secondary-font text-center my-0 padding-0-20">Insert your nickname here</h1>
                 <input type="text" id="namePlayer" autocomplete="off" class="input-size text-center" />
                 <button class="navButton" onclick="startGame()">
                     <span class="secondary-font font-size-40">Next</span>
@@ -61,34 +63,40 @@
 
     <div id="change-settings-panel" class="panel" style="display: none">
         <div class="control-panel">
-            <h1 class="secondary-font text-center my-0 font-size-35">Choose your setting</h1>
+            <h1 class="secondary-font text-center my-0 font-size-35">Choose your settings</h1>
             <div class="table-leaderboard">
-                <div class="row-tb">
-                    <span class="textColor padding-div secondary-font font-size-24 text-center" class="textColor">
+                <div class="row-tb my-0">
+                    <span class="textColor padding-div secondary-font font-size-24 text-center" class="textColor" style="width: 100%;">
                         Level
                     </span>
-                    <div style="padding: 0px 20px">
-                        <select id="choice" class="select">
-                            <option class="textColor bird-hunt-font" value="1">Easy</option>
-                            <option class="textColor bird-hunt-font" selected value="2">Medium</option>
-                            <option class="textColor bird-hunt-font" value="3">Hard</option>
-                        </select>
-                    </div>
+                </div>
+                <div class="row-tb" style="justify-content: space-evenly;">
+                    <button class="navButton" onclick="changeLevel('easy')" style="width: 21%">
+                        <span class="secondary-font font-size-23">Easy</span>
+                    </button>
+                    <button class="navButton" onclick="changeLevel('medium')" style="width: 21%">
+                        <span class="secondary-font font-size-23">Medium</span>
+                    </button>
+                    <button class="navButton" onclick="changeLevel('hard')" style="width: 21%">
+                        <span class="secondary-font font-size-23">Hard</span>
+                    </button>
+
                 </div>
                 <div class="row-tb">
-                    <span class="textColor secondary-font font-size-24 text-center" class="textColor ">
+                    <span class="textColor secondary-font font-size-24 text-center" class="textColor " style="width: 100%;">
                         Environment
                     </span>
-                    <div style="padding: 0px 20px">
-                        <select id="environment" class="select" onchange="setBackground()">
-                            <option class="textColor bird-hunt-font" value="false" >Woodland</option>
-                            <option class="textColor bird-hunt-font" value="true" >Winterland</option>
-                        </select>
+                </div>
+                <div class="row-tb my-0 padding-bottom-20" style="justify-content: space-evenly;">
+                    <div class="env-woodland" onclick="changeEnvironment('woodland')">
                     </div>
+                    <div class="env-winterland" onclick="changeEnvironment('winterland')">
+                    </div>
+
                 </div>
             </div>
             <button class="navButton" onclick="goBack()">
-                <span class="secondary-font font-size-40">Go back</span>
+                <span class="secondary-font font-size-35">Go back</span>
             </button>
         </div>
 

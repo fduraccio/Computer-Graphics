@@ -179,19 +179,19 @@ function startCountDown(duration, element) {
     }, 1000);
 }
 
-function setBackground() {
-    var selectBox = document.querySelector('#environment')
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value; //TODO:value non è un boolean ma uns stringa, da cambiare
+// function setBackground() {
+//     var selectBox = document.querySelector('#environment')
+//     var selectedValue = selectBox.options[selectBox.selectedIndex].value; //TODO:value non è un boolean ma uns stringa, da cambiare
 
-    if (selectedValue === "true") {
-        document.getElementById("main-panel").className =
-            document.getElementById("main-panel").className.replace("main", "winter");
-        return;
-    }
-    document.getElementById("main-panel").className =
-        document.getElementById("main-panel").className.replace("winter", "main");
+//     if (selectedValue === "true") {
+//         document.getElementById("main-panel").className =
+//             document.getElementById("main-panel").className.replace("main", "winter");
+//         return;
+//     }
+//     document.getElementById("main-panel").className =
+//         document.getElementById("main-panel").className.replace("winter", "main");
 
-}
+// }
 
 function changeState() {
     mainPanel = document.getElementById("main-panel");
@@ -208,6 +208,39 @@ function reload() {
 function changeSettings() {
     optionPanel = document.getElementById("change-settings-panel");
     optionPanel.style.display = "block";
+
+}
+
+function changeLevel(level) {
+    if (level === 'easy') {
+        difficulty = 1;
+        console.log(difficulty)
+        return;
+    }
+    if (level === 'medium') {
+        difficulty = 2;
+        return;
+    }
+    if (level === 'hard') {
+        difficulty = 3;
+        return;
+    }
+
+}
+
+function changeEnvironment(env) {
+    if (env === 'woodland') {
+        snow = "false";
+        document.getElementById("main-panel").className =
+            document.getElementById("main-panel").className.replace("winter", "main");
+        return;
+    }
+    if (env === 'winterland') {
+        snow = "true";
+        document.getElementById("main-panel").className =
+            document.getElementById("main-panel").className.replace("main", "winter");
+        return;
+    }
 
 }
 

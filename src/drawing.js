@@ -1,20 +1,18 @@
 async function main() {
 
-    var snow=document.querySelector('#environment')
-    console.log(snow.value)
-    //var snow = true;
-    var difficulty = document.querySelector('#choice')
-    console.log(difficulty.value);
-    if (difficulty.value == 3) {
-        difficulty.value = 2;
+    console.log(snow)
+        //var snow = true;
+    console.log(difficulty);
+    if (difficulty == 3) {
+        difficulty = 2;
         var tmp = true;
     }
     startGame = (new Date).getTime();
-    var randomPosBird = Math.round(Math.random() * 200 * difficulty.value)
+    var randomPosBird = Math.round(Math.random() * 200 * difficulty)
     var randomPosition = [];
-    
-    
-    for (i = 0; i < 200 * difficulty.value; i++) {
+
+
+    for (i = 0; i < 200 * difficulty; i++) {
         randomPosition[i] = Math.round(Math.random() * 5);
 
     }
@@ -66,7 +64,7 @@ async function main() {
 
     var img = loadTextures();
     let sceneConfig = await (await fetch(`json/config.json`)).json();
-    
+
     for (let model of sceneConfig.models) {
         if (model.type == "bird") {
             bird = await loadAsset(model.obj, img[0])
@@ -95,7 +93,7 @@ async function main() {
         }
 
         if (model.type == "floor") {
-            floor = snow.value == "true" ? await loadAsset(model.obj, img[5]): await loadAsset(model.obj, img[3]);
+            floor = snow == "true" ? await loadAsset(model.obj, img[5]) : await loadAsset(model.obj, img[3]);
         }
 
         if (model.type == "cloud") {
@@ -212,12 +210,12 @@ async function main() {
         var trees = sceneConfig.attachmentPos[0].trees // di n.random
         var type = sceneConfig.attachmentPos[0].treeType // di n.random
 
-        if(snow.value == "false"){
+        if (snow == "false") {
             //TODO creare una mappa del mondo in cui posizionare gli oggetti
-            for (var x = 1; x < 10 * difficulty.value; x++) {
+            for (var x = 1; x < 10 * difficulty; x++) {
                 for (var y = 0; y < 20; y++) {
                     // console.log(choice)
-                    worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * (54.0 / (difficulty.value))), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
+                    worldMatrix = utils.MakeWorld(trees[0][0] + (y * 27), trees[0][1], trees[0][2] + (27 * choice) + (x * (54.0 / (difficulty))), trees[0][3], trees[0][4], trees[0][5], trees[0][6]);
                     drawAsset(tree[randomPosition[(y + (20 * x))]][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
 
@@ -289,17 +287,17 @@ async function main() {
                         }
                     }
 
-                    choice = y!=20 ? choice * -1.0 : choice
+                    choice = y != 20 ? choice * -1.0 : choice
                 }
             }
         } else {
             //worldMatrix=utils.MakeWorld(trees[2][0], trees[2][1], trees[2][2], trees[2][3], trees[2][4], trees[2][5], trees[2][6]);
             //drawAsset(snowman[0], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
-            for (var x = 0; x < 10 * difficulty.value; x++) {
+            for (var x = 0; x < 10 * difficulty; x++) {
                 for (var y = 0; y < 20; y++) {
-                    
-                    worldMatrix = utils.MakeWorld(trees[1][0] + (y * 27), trees[1][1], trees[1][2] + (x * (54.0 / (difficulty.value))), trees[1][3], trees[1][4], trees[1][5], trees[1][6]);
+
+                    worldMatrix = utils.MakeWorld(trees[1][0] + (y * 27), trees[1][1], trees[1][2] + (x * (54.0 / (difficulty))), trees[1][3], trees[1][4], trees[1][5], trees[1][6]);
                     drawAsset(winterTree[randomPosition[(y + (20 * x))]][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
 
@@ -315,10 +313,10 @@ async function main() {
                     if (y + (x * 20) == randomPosBird) {
                         switch (winterTree[randomPosition[(y + (20 * x))]][1]) {
                             case "tree":
-                                randomPosBird+=1;
+                                randomPosBird += 1;
                                 break;
                             case "tree1":
-                                randomPosBird+=1;
+                                randomPosBird += 1;
                                 break;
                             case "tree2":
                                 ornamentLocalMatrix = utils.MakeWorld(0.3, 4.0, 0.0, 0.0, 0.0, 0.0, 0.5);
@@ -339,17 +337,17 @@ async function main() {
                                 drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, !tmp)
                                 break;
                             case "tree4":
-                                randomPosBird+=1;
+                                randomPosBird += 1;
                                 break;
                             case "tree5":
-                                randomPosBird+=1;
+                                randomPosBird += 1;
                                 break;
                         }
                     }
 
-                    
 
-                    choice = y!=20 ? choice * -1.0 : choice
+
+                    choice = y != 20 ? choice * -1.0 : choice
                 }
             }
         }
