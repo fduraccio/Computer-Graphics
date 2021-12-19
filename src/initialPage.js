@@ -8,7 +8,7 @@ function initialPage() {
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    let gameSpeed = 3;
+    let gameSpeed = 2;
 
     const backgroundLayer1 = new Image()
     backgroundLayer1.src = "/init/woodland/sky.png";
@@ -139,6 +139,8 @@ function initialPageWinter() {
     backgroundLayer8.src = "/init/winterland/snowtree2.png";
     const backgroundLayer9 = new Image()
     backgroundLayer9.src = "/init/winterland/snow.png";
+    const backgroundLayer10 = new Image()
+    backgroundLayer10.src = "/init/winterland/cloud.png";
 
     class Layer {
 
@@ -181,6 +183,8 @@ function initialPageWinter() {
     const layer7 = new Layer(backgroundLayer7, 0.75);
     const layer8 = new Layer(backgroundLayer8, 0.75);
     const layer9 = new Layer(backgroundLayer9, 0.25);
+    const layer10 = new Layer(backgroundLayer10, 0.5);
+
 
 
     function animate() {
@@ -194,8 +198,12 @@ function initialPageWinter() {
         layer7.update()
         layer8.update()
         layer9.update()
+        layer10.update()
+
+
 
         layer1.draw(0, 0, 2000, 650)
+        layer10.draw(0, 20, 2000, 650)
         layer3.draw(0, 80, 2000, 650)
         layer2.draw(0, 500, 2000, 650)
         layer4.draw(0, 600, 2000, 650)
