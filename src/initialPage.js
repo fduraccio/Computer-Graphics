@@ -21,13 +21,15 @@ function initialPage() {
     const backgroundLayer5 = new Image()
     backgroundLayer5.src = "/init/woodland/bushes.png";
     const backgroundLayer6 = new Image()
-        // backgroundLayer6.src = "/init/woodland/tree2.png";
-        // const backgroundLayer7 = new Image()
-        // backgroundLayer7.src = "/init/woodland/snowtree1.png";
-        // const backgroundLayer8 = new Image()
-        // backgroundLayer8.src = "/init/woodland/snowtree2.png";
-        // const backgroundLayer9 = new Image()
-        // backgroundLayer9.src = "/init/woodland/snow.png";
+    backgroundLayer6.src = "/init/woodland/hill2.png";
+    const backgroundLayer7 = new Image()
+    backgroundLayer7.src = "/init/woodland/rocks.png";
+    const backgroundLayer8 = new Image()
+    backgroundLayer8.src = "/init/woodland/tree1.png";
+    const backgroundLayer9 = new Image()
+    backgroundLayer9.src = "/init/woodland/tree2.png";
+    const backgroundLayer10 = new Image()
+    backgroundLayer10.src = "/init/woodland/cloud.png";
 
     class Layer {
 
@@ -61,15 +63,16 @@ function initialPage() {
 
     }
 
-    const layer1 = new Layer(backgroundLayer1, 0.75);
+    const layer1 = new Layer(backgroundLayer1, 0.5);
     const layer3 = new Layer(backgroundLayer3, 0.5);
     const layer2 = new Layer(backgroundLayer2, 0.75);
-    const layer4 = new Layer(backgroundLayer4, 1.0);
-    const layer5 = new Layer(backgroundLayer5, 0.75);
+    const layer4 = new Layer(backgroundLayer4, 1.25);
+    const layer5 = new Layer(backgroundLayer5, 1.25);
     const layer6 = new Layer(backgroundLayer6, 1.0);
-    // const layer7 = new Layer(backgroundLayer7, 0.75);
-    // const layer8 = new Layer(backgroundLayer8, 0.75);
-    // const layer9 = new Layer(backgroundLayer9, 0.25);
+    const layer7 = new Layer(backgroundLayer7, 1.25);
+    const layer8 = new Layer(backgroundLayer8, 0.75);
+    const layer9 = new Layer(backgroundLayer9, 0.75);
+    const layer10 = new Layer(backgroundLayer10, 0.25);
 
 
     function animate() {
@@ -80,20 +83,24 @@ function initialPage() {
         layer4.update()
         layer5.update()
         layer6.update()
-            // layer7.update()
-            // layer8.update()
-            // layer9.update()
+        layer7.update()
+        layer8.update()
+        layer9.update()
+        layer10.update()
 
         layer1.draw(0, 0, 2000, 650)
-        layer3.draw(0, 80, 2000, 650)
-        layer2.draw(0, 500, 2000, 650)
+        layer3.draw(0, 100, 2000, 650)
+        layer6.draw(0, 400, 2000, 650)
+        layer2.draw(0, 480, 2000, 650)
 
-        layer5.draw(-200, 430, 2000, 650)
-        layer4.draw(0, 600, 2000, 650)
-            // layer6.draw(0, 15, 2000, 650)
-            // layer7.draw(-500, 450, 2000, 650)
-            //     // layer8.draw(-100, 450, 2000, 650)
-            // layer9.draw(0, 0, 2000, 650)
+        layer5.draw(-200, 420, 2000, 650)
+        layer4.draw(0, 580, 2000, 650)
+        layer7.draw(0, 540, 2000, 650)
+        layer8.draw(0, 350, 2000, 650)
+        layer9.draw(-500, 350, 2000, 650)
+        layer10.draw(0, 70, 2000, 650)
+
+
 
         requestAnimationFrame(animate)
     }

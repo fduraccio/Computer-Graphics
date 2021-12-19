@@ -196,8 +196,8 @@ function startCountDown(duration, element) {
 function changeState() {
     mainPanel = document.getElementById("main-panel");
     mainPanel.style.display = "none";
-    // namePlayerPanel = document.getElementById("input-name-panel");
-    // namePlayerPanel.style.display = "block";
+    namePlayerPanel = document.getElementById("input-name-panel");
+    namePlayerPanel.style.display = "block";
 
     if (snow === 'false') {
         initialPage()
