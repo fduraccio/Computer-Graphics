@@ -242,6 +242,10 @@ kbd {
     font-size: 24px;
 }
 
+.font-size-18 {
+    font-size: 18px;
+}
+
 .panel {
     padding: 2em;
     background-color: transparent;
