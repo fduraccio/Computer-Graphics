@@ -207,6 +207,10 @@ function changeState() {
         initialPageWinter()
         return;
     }
+    if (environment === 'desert') {
+        initialPageDesert()
+        return;
+    }
 }
 
 function reload() {
@@ -238,22 +242,29 @@ function changeLevel(level) {
 
 function changeEnvironment(env) {
     if (env === 'woodland') {
-		environment = "woodland";
+        environment = "woodland";
         document.getElementById("main-panel").className =
             document.getElementById("main-panel").className.replace("winter", "main");
+        document.getElementById("main-panel").className =
+            document.getElementById("main-panel").className.replace("desert", "main");
         return;
     }
     if (env === 'winterland') {
-		environment = "winterland";
+        environment = "winterland";
         document.getElementById("main-panel").className =
             document.getElementById("main-panel").className.replace("main", "winter");
+        document.getElementById("main-panel").className =
+            document.getElementById("main-panel").className.replace("desert", "winter");
         return;
     }
-	if (env === 'desert'){
-		environment = "desert";
-		//creare animazione;
-		return
-	}
+    if (env === 'desertland') {
+        environment = "desert";
+        document.getElementById("main-panel").className =
+            document.getElementById("main-panel").className.replace("main", "desert");
+        document.getElementById("main-panel").className =
+            document.getElementById("main-panel").className.replace("winter", "desert");
+        return;
+    }
 
 }
 

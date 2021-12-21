@@ -43,7 +43,7 @@ const KEY_CODE = {
 };
 
 var difficulty = 2;
-var environment = "desert"
+var environment = "woodland"
 var trees;
 
 //un input parte solo se è collegato a queste keys
@@ -62,7 +62,7 @@ var bird,
     winterPlant = [],
     snowman = [],
     desertTree = [],
-    desertRock = [];  
+    desertRock = [];
 
 var randomPosition = [],
     randomPositionDesert = [],
@@ -247,7 +247,7 @@ var texture = [
     'texture/snow-floor.jpg',
     'texture/desert.png',
     'texture/desert.jpeg'
-    
+
 ]
 
 

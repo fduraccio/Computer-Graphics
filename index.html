@@ -53,7 +53,7 @@
         <div id="namePlayer-panel" class="panel">
             <div class="control-panel">
                 <h1 class="secondary-font text-center my-0 padding-0-20">Insert your nickname here</h1>
-                <input type="text" id="namePlayer" autocomplete="off" class="input-size text-center" />
+                <input type="text" id="namePlayer" autocomplete="off" class="input-size text-center" style="color: #000000d4;" />
                 <button class="navButton" onclick="startGame()">
                     <span class="secondary-font font-size-40">Next</span>
                 </button>
@@ -87,19 +87,24 @@
                         Environment
                     </span>
                 </div>
-                <div class="row-tb my-0 padding-bottom-20" style="justify-content: space-evenly;">
+                <div class="row-tb my-0 padding-bottom-20" style="justify-content: space-evenly; width: 115%;">
                     <div class="env-woodland cursor-pointer" onclick="changeEnvironment('woodland')">
                     </div>
                     <div class="env-winterland cursor-pointer" onclick="changeEnvironment('winterland')">
                     </div>
+                    <div class="env-desertland cursor-pointer" onclick="changeEnvironment('desertland')">
+                    </div>
 
                 </div>
-                <div class="row-tb" style="width: 100%; justify-content: space-around;">
+                <div class="row-tb" style="width: 110%;; justify-content: space-around;">
                     <span class="secondary-font font-size-18">
                         Woodland
                     </span>
                     <span class="secondary-font font-size-18">
                         Winterland
+                    </span>
+                    <span class="secondary-font font-size-18">
+                        Desertland
                     </span>
                 </div>
             </div>
@@ -112,7 +117,7 @@
 
     <div id="winner-panel" class="panel" style="display: none">
         <div class="control-panel">
-            <h1 class="secondary-font text-center font-size-50 margin-bottom-0">YOU WIN!</h1>
+            <h1 class="secondary-font text-center font-size-50 margin-bottom-0">YOU WON!</h1>
             <h1 class="secondary-font text-center margin-bottom-0">Your time is</h1>
             <h1 class="secondary-font text-center font-size-30"><span id="winner-time"></span><span>s</span></h1>
             <div>
@@ -129,7 +134,7 @@
 
     <div id="looser-panel" class="panel" style="display: none">
         <div class="control-panel">
-            <h1 class="secondary-font text-center font-size-50 margin-bottom-0">YOU LOOSE!</h1>
+            <h1 class="secondary-font text-center font-size-50 margin-bottom-0">YOU LOST!</h1>
             <h1 class="secondary-font text-center margin-bottom-0">Immagine di pollice in giù</h1>
             <div>
                 <div>
