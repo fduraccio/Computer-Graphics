@@ -34,6 +34,7 @@ const KEY_CODE = {
     'DOWN': 40,
     'LEFT': 37,
     'RIGHT': 39,
+    'L':76,
     'R': 82,
     'V': 86,
     'X': 88,
@@ -46,6 +47,7 @@ var difficulty = 2;
 var environment = "woodland"
 var audio;
 var trees;
+var enableSpotLight = false;
 
 //un input parte solo se è collegato a queste keys
 keys = [13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
@@ -245,7 +247,6 @@ var texture = [
     'texture/cloudColour.png',
     'texture/images.jpeg',
     'texture/texture_winter.png',
-    'texture/snow-floor.jpg',
     'texture/desert.png',
     'texture/desert.jpeg'
 
@@ -267,13 +268,13 @@ var skyColor = [0.0, 0.0, 0.0];
 var ambientLightCoeff = 0.3;
 var ambientLightAlpha = 0.0;
 
-var spotLightPos1 = [0.0, 0.0, 0.0];
-var spotLightDir = [0.0, -8.0, 13];
-var spotLightColor = [1.0, 1.0, 1.0];
-var spotLightTarget = 8.0;
-var spotLightDecay = 2;
-var outerCone = 30.0;
-var innerCone = 20.0;
+var spotLightPos1 = [0.0, 0.0, 0.0],
+    spotLightDir = [0.0, -8.0, 13],
+    spotLightColor = [1.0, 1.0, 1.0],
+    spotLightTarget = 8.0,
+    spotLightDecay = 2,
+    outerCone = 30.0,
+    innerCone = 20.0;
 
 var viewMatrix;
 var perspectiveMatrix;

@@ -1,7 +1,6 @@
 async function main() {
 
     
-    console.log(difficulty);
     if (difficulty == 3) {
         difficulty = 2;
         var tmp = true;
@@ -142,7 +141,7 @@ async function main() {
 
             directionalLightDir = [-Math.sin(sunRise), -Math.cos(sunRise), 0.0];
 
-            if (Math.abs(sunRise) < utils.degToRad(60.0)) {
+            if (Math.abs(sunRise) < utils.degToRad(60.0) || !enableSpotLight) {
                 spotLight = [0.0, 0.0, 0.0];
             } else {
                 spotLight = spotLightColor;
@@ -694,7 +693,6 @@ async function readTextFile(file) {
                 allText = allText.split("-");
                 //per rimuovere le regex
                 allText[9] = allText[9].split("\n")[0];
-                console.log(allText)
             }
         }
     }
