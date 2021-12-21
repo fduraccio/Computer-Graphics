@@ -55,6 +55,10 @@ var keyFunctionDown = function(e) {
                 lookRadius = 1.0;
                 deltaLookRadius = 0.0;
                 break;
+            case KEY_CODE.HELPPANEL:
+                helpPanel = document.getElementById("help-panel");
+                helpPanel.style.display = "block";
+                break;
             case KEY_CODE.F:
                 toggleFullScreen();
                 break;
@@ -102,6 +106,10 @@ var keyFunctionUp = function(e) {
                 break;
             case KEY_CODE.SHIFT:
                 simpleMotion = true;
+                break;
+            case KEY_CODE.HELPPANEL:
+                helpPanel = document.getElementById("help-panel");
+                helpPanel.style.display = "none";
                 break;
         }
     }
