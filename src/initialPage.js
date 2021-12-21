@@ -277,12 +277,12 @@ function initialPageDesert() {
 
     }
 
-    const layer1 = new Layer(backgroundLayer1, 0.75);
+    const layer1 = new Layer(backgroundLayer1, 0.25);
     const layer3 = new Layer(backgroundLayer3, 0.5);
-    const layer2 = new Layer(backgroundLayer2, 0.75);
+    const layer2 = new Layer(backgroundLayer2, 1.0);
     const layer4 = new Layer(backgroundLayer4, 1.0);
-    const layer5 = new Layer(backgroundLayer5, 0.75);
-    const layer7 = new Layer(backgroundLayer7, 0.75);
+    const layer5 = new Layer(backgroundLayer5, 1.0);
+    const layer7 = new Layer(backgroundLayer7, 1);
 
 
 

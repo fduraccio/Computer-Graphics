@@ -225,15 +225,23 @@ function changeSettings() {
 
 function changeLevel(level) {
     if (level === 'easy') {
+        document.getElementById("easy").classList.add("selected")
+        document.getElementById("medium").classList.remove("selected")
+        document.getElementById("hard").classList.remove("selected")
         difficulty = 1;
-        console.log(difficulty)
         return;
     }
     if (level === 'medium') {
+        document.getElementById("medium").classList.add("selected")
+        document.getElementById("easy").classList.remove("selected")
+        document.getElementById("hard").classList.remove("selected")
         difficulty = 2;
         return;
     }
     if (level === 'hard') {
+        document.getElementById("hard").classList.add("selected")
+        document.getElementById("medium").classList.remove("selected")
+        document.getElementById("easy").classList.remove("selected")
         difficulty = 3;
         return;
     }
@@ -247,6 +255,9 @@ function changeEnvironment(env) {
             document.getElementById("main-panel").className.replace("winter", "main");
         document.getElementById("main-panel").className =
             document.getElementById("main-panel").className.replace("desert", "main");
+        document.getElementById("wood").classList.add("selected")
+        document.getElementById("winter").classList.remove("selected")
+        document.getElementById("desert").classList.remove("selected")
         return;
     }
     if (env === 'winterland') {
@@ -255,6 +266,10 @@ function changeEnvironment(env) {
             document.getElementById("main-panel").className.replace("main", "winter");
         document.getElementById("main-panel").className =
             document.getElementById("main-panel").className.replace("desert", "winter");
+        document.getElementById("winter").classList.add("selected")
+        document.getElementById("desert").classList.remove("selected")
+        document.getElementById("wood").classList.remove("selected")
+
         return;
     }
     if (env === 'desertland') {
@@ -263,6 +278,9 @@ function changeEnvironment(env) {
             document.getElementById("main-panel").className.replace("main", "desert");
         document.getElementById("main-panel").className =
             document.getElementById("main-panel").className.replace("winter", "desert");
+        document.getElementById("desert").classList.add("selected")
+        document.getElementById("winter").classList.remove("selected")
+        document.getElementById("wood").classList.remove("selected")
         return;
     }
 

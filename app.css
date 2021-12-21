@@ -640,7 +640,7 @@ canvas {
 }
 
 .env-desertland:hover {
-    /* background-image: url(../env/winterland.gif); */
+    background-image: url(../env/desert.gif);
     background-repeat: no-repeat;
     width: 137px;
     background-size: 121%;
@@ -670,4 +670,12 @@ input {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.selected {
+    outline: 2px solid #f1991d;
+}
+
+.selected:hover {
+    outline: 2px solid #f1991d;
 }

@@ -71,13 +71,13 @@
                     </span>
                 </div>
                 <div class="row-tb" style="justify-content: space-evenly;">
-                    <button class="navButton" onclick="changeLevel('easy')" style="width: 21%">
+                    <button id="easy" class="navButton" onclick="changeLevel('easy')" style="width: 21%">
                         <span class="secondary-font font-size-23">Easy</span>
                     </button>
-                    <button class="navButton" onclick="changeLevel('medium')" style="width: 21%">
+                    <button id="medium" class="navButton selected" onclick="changeLevel('medium')" style="width: 21%">
                         <span class="secondary-font font-size-23">Medium</span>
                     </button>
-                    <button class="navButton" onclick="changeLevel('hard')" style="width: 21%">
+                    <button id="hard" class="navButton" onclick="changeLevel('hard')" style="width: 21%">
                         <span class="secondary-font font-size-23">Hard</span>
                     </button>
 
@@ -88,11 +88,11 @@
                     </span>
                 </div>
                 <div class="row-tb my-0 padding-bottom-20" style="justify-content: space-evenly; width: 115%;">
-                    <div class="env-woodland cursor-pointer" onclick="changeEnvironment('woodland')">
+                    <div id="wood" class="env-woodland cursor-pointer selected" onclick="changeEnvironment('woodland')">
                     </div>
-                    <div class="env-winterland cursor-pointer" onclick="changeEnvironment('winterland')">
+                    <div id="winter" class="env-winterland cursor-pointer" onclick="changeEnvironment('winterland')">
                     </div>
-                    <div class="env-desertland cursor-pointer" onclick="changeEnvironment('desertland')">
+                    <div id="desert" class="env-desertland cursor-pointer" onclick="changeEnvironment('desertland')">
                     </div>
 
                 </div>
