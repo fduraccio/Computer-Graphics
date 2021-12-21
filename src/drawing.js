@@ -278,25 +278,25 @@ async function main() {
             }
         }
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0, 0.0, 0.0, 0.0, 0.4),
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0, 0.0, 0.0, 0.0, 0.3),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
-        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, true)
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, 90.0, 0.0, 0.0, 0.4),
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, 90.0, 0.0, 0.0, 0.3),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
-        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, true)
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, -90.0, 0.0, 0.0, 0.4),
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(0.0, 50.0, 0.0, -90.0, 0.0, 0.0, 0.3),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
-        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, true)
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(-300.0, 50.0, 0, 0.0, 0.0, 0.0, 0.4),
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(-300.0, 50.0, 0, 0.0, 0.0, 0.0, 0.3),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
-        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, true)
 
-        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(300.0, 50.0, 0, 0.0, 0.0, 0.0, 0.4),
+        worldMatrix = utils.multiplyMatrices(utils.MakeWorld(300.0, 50.0, 0, 0.0, 0.0, 0.0, 0.3),
             utils.MakeTranslateMatrix(Math.cos(time / 100 * 2 * Math.PI) * 100, 0.0, 0.0));
-        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, false)
+        drawAsset(cloud, worldMatrix, viewMatrix, perspectiveMatrix, true)
 
 
         window.requestAnimationFrame(drawScene);
