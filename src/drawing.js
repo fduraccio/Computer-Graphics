@@ -6,7 +6,7 @@ async function main() {
         var tmp = true;
     }
     startGame = (new Date).getTime();
-    var randomPosBird = Math.round(Math.random() * 200 * difficulty)
+    var randomPosBird = Math.round(Math.random() * 150 * difficulty)
    
     for (i = 0; i < 200 * difficulty; i++) {
         randomPosition[i] = Math.round(Math.random() * 5);
