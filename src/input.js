@@ -372,12 +372,20 @@ function toggleFullScreen() {
 
 function startMusic(audio) {
     audio = document.getElementById('theme_music');
-
     if (audio.paused) {
+        document.getElementById("audio_disabled").style.display = "none";
+        document.getElementById("audio").style.display = "block";
+        document.getElementById("audio_disabled_2").style.display = "none";
+        document.getElementById("audio_2").style.display = "block";
         audio.play();
     } else {
+        document.getElementById("audio").style.display = "none";
+        document.getElementById("audio_disabled").style.display = "block";
+        document.getElementById("audio_2").style.display = "none";
+        document.getElementById("audio_disabled_2").style.display = "block";
         audio.currentTime = 0
         audio.pause();
+
     }
 
 }
