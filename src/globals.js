@@ -64,6 +64,10 @@ var bird,
     desertTree = [],
     desertRock = [];  
 
+var randomPosition = [],
+    randomPositionDesert = [],
+    randomPositionRockDesert = [];
+
 var rock = []
 var flower;
 var enableMovement = true;

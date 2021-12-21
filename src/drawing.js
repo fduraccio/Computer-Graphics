@@ -8,14 +8,13 @@ async function main() {
     }
     startGame = (new Date).getTime();
     var randomPosBird = Math.round(Math.random() * 200 * difficulty)
-    var randomPosition = [];
-
-
-    /*for (i = 0; i < 200 * difficulty; i++) {
+   
+    for (i = 0; i < 200 * difficulty; i++) {
         randomPosition[i] = Math.round(Math.random() * 5);
+        randomPositionDesert[i] = Math.round(Math.random() * 2);
+        randomPositionRockDesert[i] = Math.round(Math.random() * 7)
 
-    }*/
-    randomPosition=[0,1,2,3,4,5,6,7,8,9,10,11]
+    }
 
     var dirLightAlpha = -utils.degToRad(-60);
     var dirLightBeta = -utils.degToRad(120);
@@ -419,14 +418,20 @@ async function main() {
     }
 
     function createDesertMap(){
-        for (var x = 0; x < 1; x++) {
-            for (var y = 0; y < 11; y++) {
+        for (var x = 0; x < 10 * difficulty; x++) {
+            for (var y = 0; y < 20; y++) {
 
-                worldMatrix = utils.MakeWorld(trees[2][0] + (y * 27), trees[2][1], trees[2][2] + (27 * choice), trees[2][3], trees[2][4], trees[2][5], trees[2][6]);
-                drawAsset(desertTree[randomPosition[y]][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
+                worldMatrix = utils.MakeWorld(trees[2][0] + (y * 27), trees[2][1], trees[2][2] + (27 * choice) + (x * (54.0 / (difficulty))), trees[2][3], trees[2][4], trees[2][5], trees[2][6]);
+                drawAsset(desertTree[randomPositionDesert[(y + (20 * x))]][0], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
+
+                ornamentLocalMatrix = utils.MakeWorld(1.0, 0.1, 1.0, 0.0, 0.0, 0.0, 0.3);
+                ornamentWorldMatrix = utils.multiplyMatrices(worldMatrix, ornamentLocalMatrix);
+                drawAsset(desertRock[randomPositionDesert[(y + (20 * x))]], ornamentWorldMatrix, viewMatrix, perspectiveMatrix, false);
+
+                choice = y != 20 ? choice * -1.0 : choice
             }
-            //choice = y != 20 ? choice * -1.0 : choice
+            
         }
     }
 
