@@ -21,6 +21,9 @@ var keyFunctionDown = function(e) {
                     deltaCamAngle_2 -= 1.0;
                 }
                 break;
+			case KEY_CODE.L:
+				enableSpotLight=!enableSpotLight;
+				break;
             case KEY_CODE.RIGHT:
                 if (firstPersonView) {
                     deltaCamAngle_1 -= 1.0;
@@ -74,6 +77,7 @@ var keyFunctionUp = function(e) {
     if (keys[e.keyCode]) {
         keys[e.keyCode] = false;
         switch (e.keyCode) {
+			case KEY_CODE.L:
             case KEY_CODE.A:
             case KEY_CODE.D:
                 steeringDir = 0;

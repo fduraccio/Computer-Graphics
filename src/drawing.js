@@ -1,13 +1,12 @@
 async function main() {
 
     
-    console.log(difficulty);
     if (difficulty == 3) {
         difficulty = 2;
         var tmp = true;
     }
     startGame = (new Date).getTime();
-    var randomPosBird = Math.round(Math.random() * 200 * difficulty)
+    var randomPosBird = Math.round(Math.random() * 150 * difficulty)
    
     for (i = 0; i < 200 * difficulty; i++) {
         randomPosition[i] = Math.round(Math.random() * 5);
@@ -142,7 +141,7 @@ async function main() {
 
             directionalLightDir = [-Math.sin(sunRise), -Math.cos(sunRise), 0.0];
 
-            if (Math.abs(sunRise) < utils.degToRad(60.0)) {
+            if (Math.abs(sunRise) < utils.degToRad(60.0) || !enableSpotLight) {
                 spotLight = [0.0, 0.0, 0.0];
             } else {
                 spotLight = spotLightColor;
@@ -694,7 +693,6 @@ async function readTextFile(file) {
                 allText = allText.split("-");
                 //per rimuovere le regex
                 allText[9] = allText[9].split("\n")[0];
-                console.log(allText)
             }
         }
     }
