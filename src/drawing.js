@@ -94,7 +94,7 @@ async function main() {
 
         if (model.type == "floor") {
             floor = environment == "winterland" ? await loadAsset(model.obj, img[5]) : 
-                    environment == "desert" ? await loadAsset(model.obj, img[9]) : await loadAsset(model.obj, img[3]);
+                    environment == "desert" ? await loadAsset(model.obj, img[8]) : await loadAsset(model.obj, img[3]);
         }
 
         if (model.type == "cloud") {
@@ -106,11 +106,11 @@ async function main() {
         }
 
         if (model.type == "desert-rock") {
-            desertRock.push(await loadAsset(model.obj, img[8]))
+            desertRock.push(await loadAsset(model.obj, img[7]))
         }
 
         if (model.type == "desert-plant" || model.type == "desert-rock" || model.name == "rock02" ) {
-            desertTree.push([await loadAsset(model.obj, img[8]), model.name])
+            desertTree.push([await loadAsset(model.obj, img[7]), model.name])
         }
 
 
