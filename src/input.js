@@ -179,20 +179,6 @@ function startCountDown(duration, element) {
     }, 1000);
 }
 
-// function setBackground() {
-//     var selectBox = document.querySelector('#environment')
-//     var selectedValue = selectBox.options[selectBox.selectedIndex].value; //TODO:value non è un boolean ma uns stringa, da cambiare
-
-//     if (selectedValue === "true") {
-//         document.getElementById("main-panel").className =
-//             document.getElementById("main-panel").className.replace("main", "winter");
-//         return;
-//     }
-//     document.getElementById("main-panel").className =
-//         document.getElementById("main-panel").className.replace("winter", "main");
-
-// }
-
 function changeState() {
     mainPanel = document.getElementById("main-panel");
     mainPanel.style.display = "none";
@@ -258,6 +244,11 @@ function changeEnvironment(env) {
         document.getElementById("wood").classList.add("selected")
         document.getElementById("winter").classList.remove("selected")
         document.getElementById("desert").classList.remove("selected")
+
+        audio = document.getElementById("theme_music")
+        audio.src = "theme_music.mp3"
+        startMusic(audio)
+
         return;
     }
     if (env === 'winterland') {
@@ -268,7 +259,11 @@ function changeEnvironment(env) {
             document.getElementById("main-panel").className.replace("desert", "winter");
         document.getElementById("winter").classList.add("selected")
         document.getElementById("desert").classList.remove("selected")
-        document.getElementById("wood").classList.remove("selected")
+        document.getElementById("wood").classList.remove("selected");
+
+        audio = document.getElementById("theme_music")
+        audio.src = "theme_music_winterland.mp3"
+        startMusic(audio)
 
         return;
     }
@@ -281,6 +276,11 @@ function changeEnvironment(env) {
         document.getElementById("desert").classList.add("selected")
         document.getElementById("winter").classList.remove("selected")
         document.getElementById("wood").classList.remove("selected")
+
+        audio = document.getElementById("theme_music")
+        audio.src = "theme_music_desert.mp3"
+        startMusic(audio)
+
         return;
     }
 
@@ -366,4 +366,21 @@ function toggleFullScreen() {
             document.exitFullscreen();
         }
     }
+}
+
+function startMusic(audio) {
+    audio = document.getElementById('theme_music');
+
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.currentTime = 0
+        audio.pause();
+    }
+
+}
+
+function stopMusic() {
+    audio.pause();
+    audio.currentTime = 0;
 }

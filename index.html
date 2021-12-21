@@ -24,7 +24,7 @@
 
 <body>
     <div id="main-panel" class="main-panel">
-        <div class="container">
+        <div class="container" onload="startMusic()">
             <div id="game" class="d-flex justify-content-center">
                 <h1 class="bird-hunt-font font-size-100 text-color-white title">Bird Hunt</h1>
                 <div id="button" value="game" onclick="changeState()">
@@ -37,6 +37,9 @@
                 <div class="btn-btn">
                     <img src="/env/menu.png" onclick="changeSettings()" class="icon-img" alt="" />
                     <img src="/env/leaderboard.png" onclick="showLeaderboard()" class="icon-img" alt="" />
+                </div>
+                <div class="btn-btn">
+                    <img src="/env/audio.png" onclick="startMusic()" class="icon-img" alt="" />
                 </div>
             </div>
         </div>
@@ -262,6 +265,7 @@
         </div>
     </div>
 
+    <audio id="theme_music" src="theme_music.mp3" loop="loop" autoplay="autoplay"></audio>
 </body>
 
 </html>

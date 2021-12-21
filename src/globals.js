@@ -44,6 +44,7 @@ const KEY_CODE = {
 
 var difficulty = 2;
 var environment = "woodland"
+var audio;
 var trees;
 
 //un input parte solo se è collegato a queste keys
