@@ -144,6 +144,8 @@ function startGame() {
         helpPanel.style.display = "block";
         timerPanel = document.getElementById("timer-panel");
         timerPanel.style.display = "block";
+        audioButton = document.getElementById("audio-button");
+        audioButton.style.display = "block";
         init();
 
     }

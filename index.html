@@ -40,6 +40,8 @@
                 </div>
                 <div class="btn-btn">
                     <img src="/env/audio.png" onclick="startMusic()" class="icon-img" alt="" />
+                    <!-- <img src="/env/disabled.png" onclick="startMusic()" alt="" /> -->
+
                 </div>
             </div>
         </div>
@@ -260,12 +262,18 @@
 
                 <h1 class="secondary-font font-size-40 my-0" id="count-down-timer" style="display:inline"></h1>
             </span>
+        </div>
+    </div>
 
-
+    <div id="audio-button" style="display: none">
+        <div class="audio-button">
+            <img src="/env/audio.png" onclick="startMusic()" class="icon-img" alt="" />
         </div>
     </div>
 
     <audio id="theme_music" src="theme_music.mp3" loop="loop" autoplay="autoplay"></audio>
+    <audio id="bird_selection" src="bird_selection.mp3"></audio>
+
 </body>
 
 </html>

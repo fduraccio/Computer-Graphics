@@ -31,6 +31,21 @@ body {
     color: white;
 }
 
+#audio-button {
+    position: absolute;
+    top: 85%;
+    left: 92%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.audio-button {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    width: 80px;
+}
+
 .input-size {
     height: 42px;
     width: 260px;

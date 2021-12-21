@@ -74,6 +74,8 @@ function winners(ev) {
     timeOfWinner = (new Date).getTime();
     timeOfWinner = Math.round((timeOfWinner - startGame) / 1000);
     enableMovement = false;
+    sound = document.getElementById('bird_selection');
+    sound.play();
     winnerPanel = document.getElementById("winner-panel");
     winnerPanel.style.display = "block";
     document.getElementById("winner-time").innerHTML = timeOfWinner
