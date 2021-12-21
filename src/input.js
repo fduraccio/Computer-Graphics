@@ -133,8 +133,8 @@ function startGame() {
         alert("Inserire nome senza lasciare spazi all'inizio")
     } else {
         //cambia qui per aumentare e diminuire il timer
-        time_minutes = 0; // Value in minutes
-        time_seconds = 10; // Value in seconds
+        time_minutes = 2; // Value in minutes
+        time_seconds = 0; // Value in seconds
 
         duration = time_minutes * 60 + time_seconds;
         var element = document.querySelector('#count-down-timer');
