@@ -21,9 +21,9 @@ var keyFunctionDown = function(e) {
                     deltaCamAngle_2 -= 1.0;
                 }
                 break;
-			case KEY_CODE.L:
-				enableSpotLight=!enableSpotLight;
-				break;
+            case KEY_CODE.L:
+                enableSpotLight = !enableSpotLight;
+                break;
             case KEY_CODE.RIGHT:
                 if (firstPersonView) {
                     deltaCamAngle_1 -= 1.0;
@@ -77,7 +77,7 @@ var keyFunctionUp = function(e) {
     if (keys[e.keyCode]) {
         keys[e.keyCode] = false;
         switch (e.keyCode) {
-			case KEY_CODE.L:
+            case KEY_CODE.L:
             case KEY_CODE.A:
             case KEY_CODE.D:
                 steeringDir = 0;
@@ -133,8 +133,8 @@ function startGame() {
         alert("Inserire nome senza lasciare spazi all'inizio")
     } else {
         //cambia qui per aumentare e diminuire il timer
-        time_minutes = 2; // Value in minutes
-        time_seconds = 0; // Value in seconds
+        time_minutes = 0; // Value in minutes
+        time_seconds = 10; // Value in seconds
 
         duration = time_minutes * 60 + time_seconds;
         var element = document.querySelector('#count-down-timer');
@@ -175,6 +175,8 @@ function startCountDown(duration, element) {
         if (secondsRemaining == 0) {
             timerPanel = document.getElementById("timer-panel");
             timerPanel.style.display = "none";
+            looser_sound = document.getElementById('looser_sound');
+            looser_sound.play();
             looserPanel = document.getElementById("looser-panel");
             looserPanel.style.display = "block";
             enableMovement = false;

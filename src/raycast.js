@@ -76,6 +76,10 @@ function winners(ev) {
     enableMovement = false;
     sound = document.getElementById('bird_selection');
     sound.play();
+    setTimeout(function() {
+        document.getElementById("winning_sound").play();
+    }, 400);
+
     winnerPanel = document.getElementById("winner-panel");
     winnerPanel.style.display = "block";
     document.getElementById("winner-time").innerHTML = timeOfWinner

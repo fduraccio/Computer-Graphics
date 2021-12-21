@@ -460,8 +460,10 @@ canvas {
 
 .table {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    height: 41%;
+    width: 75%;
 }
 
 .table-leaderboard {

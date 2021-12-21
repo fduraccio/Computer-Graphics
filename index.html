@@ -139,7 +139,8 @@
     <div id="looser-panel" class="panel" style="display: none">
         <div class="control-panel">
             <h1 class="secondary-font text-center font-size-50 margin-bottom-0">YOU LOST!</h1>
-            <h1 class="secondary-font text-center margin-bottom-0">Immagine di pollice in giù</h1>
+            <h2 class="secondary-font text-center margin-bottom-0">You didn't catch the bird.</h2>
+            <h2 class="secondary-font text-center my-0">Try again!</h2>
             <div>
                 <div>
                     <div>
@@ -216,28 +217,28 @@
         <div id="help-panel" class="panel " style="display: none ">
             <div class="control-panel ">
                 <h1 class="secondary-font text-center ">Controls</h1>
-                <table class="table ">
-                    <tbody>
-                        <tr>
-                            <td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td>
-                            <td class="textColor secondary-font padding-left-80 font-size-24 ">Move around</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Shift</kbd></td>
-                            <td class="secondary-font textColor padding-left-80 font-size-24 ">Run</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>L</kbd></td>
-                            <td class="secondary-font textColor padding-left-80 font-size-24 ">Toggle torch</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Alt</kbd> + <kbd>H</kbd></td>
-                            <td class="secondary-font textColor padding-left-80 font-size-24 ">Show this help screen
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table">
+
+                    <div class="row-tb my-0" style="justify-content: space-between;">
+                        <div><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></div>
+                        <div class="textColor secondary-font  font-size-24 ">Move around</div>
+                    </div>
+                    <div class="row-tb my-0" style="justify-content: space-between;">
+                        <div><kbd>Shift</kbd></div>
+                        <div class="secondary-font textColor  font-size-24 ">Run</div>
+                    </div>
+                    <div class="row-tb my-0" style="justify-content: space-between;">
+                        <div><kbd>L</kbd></div>
+                        <div class="secondary-font textColor  font-size-24 ">Toggle torch</div>
+                    </div>
+                    <div class="row-tb my-0" style="justify-content: space-between;">
+                        <div><kbd>Alt</kbd> + <kbd>H</kbd></div>
+                        <div class="secondary-font textColor  font-size-24 ">Show this help screen
+                        </div>
+                    </div>
+                </div>
                 <h1 class="secondary-font text-center ">PRESS ENTER TO CONTINUE</h1>
+
             </div>
         </div>
     </div>
@@ -262,6 +263,8 @@
     <audio id="theme_music" src="theme_music.mp3" loop="loop" autoplay="autoplay"></audio>
     <audio id="bird_selection" src="bird_selection.mp3"></audio>
     <audio id="winning_sound" src="winning_sound.mp3"></audio>
+    <audio id="looser_sound" src="loosing_sound.mp3"></audio>
+
 
 
 </body>
