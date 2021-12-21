@@ -102,79 +102,164 @@
             "name": "tree",
             "type": "winter-tree",
             "attachPoint": "",
-            "obj": "winter-object/winter-tree.obj",
+            "obj": "object-winter/winter-tree.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "tree1",
             "type": "winter-tree",
             "attachPoint": "",
-            "obj": "winter-object/winter-tree1.obj",
+            "obj": "object-winter/winter-tree1.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "tree2",
             "type": "winter-tree",
             "attachPoint": "",
-            "obj": "winter-object/winter-tree2.obj",
+            "obj": "object-winter/winter-tree2.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "tree3",
             "type": "winter-tree",
             "attachPoint": "",
-            "obj": "winter-object/winter-tree3.obj",
+            "obj": "object-winter/winter-tree3.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "tree4",
             "type": "winter-tree",
             "attachPoint": "",
-            "obj": "winter-object/winter-tree4.obj",
+            "obj": "object-winter/winter-tree4.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "tree5",
             "type": "winter-tree",
             "attachPoint": "",
-            "obj": "winter-object/winter-tree5.obj",
+            "obj": "object-winter/winter-tree5.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "winter-rock",
             "type": "winter-rock",
             "attachPoint": "",
-            "obj": "winter-object/winter-rock3.obj",
+            "obj": "object-winter/winter-rock3.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "winter-plant",
             "type": "winter-plant",
             "attachPoint": "",
-            "obj": "winter-object/winter-plant.obj",
+            "obj": "object-winter/winter-plant.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "winter-plant",
             "type": "winter-plant",
             "attachPoint": "",
-            "obj": "winter-object/winter-plant1.obj",
+            "obj": "object-winter/winter-plant1.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "snowman",
             "type": "snowman",
             "attachPoint": "",
-            "obj": "winter-object/snowman_1.obj",
+            "obj": "object-winter/snowman_1.obj",
             "texture": "texture/Texture_01.png"
         },
         {
             "name": "snowman",
             "type": "snowman",
             "attachPoint": "",
-            "obj": "winter-object/snowman_2.obj",
+            "obj": "object-winter/snowman_2.obj",
             "texture": "texture/Texture_01.png"
+        },
+        {
+            "name": "aloe",
+            "type": "desert-plant",
+            "attachPoint": "",
+            "obj": "object-desert/aloe.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "cactus01",
+            "type": "desert-plant",
+            "attachPoint": "",
+            "obj": "object-desert/cactus01.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "cactus02",
+            "type": "desert-plant",
+            "attachPoint": "",
+            "obj": "object-desert/cactus02.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "cactus03",
+            "type": "desert-plant",
+            "attachPoint": "",
+            "obj": "object-desert/cactus03.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "rock01",
+            "type": "desert-rock",
+            "attachPoint": "",
+            "obj": "object-desert/rock01.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "rock02",
+            "type": "desert-rock",
+            "attachPoint": "",
+            "obj": "object-desert/rock02.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "rock03",
+            "type": "desert-rock",
+            "attachPoint": "",
+            "obj": "object-desert/rock03.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "rock04",
+            "type": "desert-rock",
+            "attachPoint": "",
+            "obj": "object-desert/rock04.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "rock05",
+            "type": "desert-rock",
+            "attachPoint": "",
+            "obj": "object-desert/rock05.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "rock06",
+            "type": "desert-rock",
+            "attachPoint": "",
+            "obj": "object-desert/rock06.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "rock07",
+            "type": "desert-rock",
+            "attachPoint": "",
+            "obj": "object-desert/rock07.obj",
+            "texture": "texture/desert.png"
+        },
+        {
+            "name": "rock08",
+            "type": "desert-rock",
+            "attachPoint": "",
+            "obj": "object-desert/rock08.obj",
+            "texture": "texture/desert.png"
         }
+
     ],
 
     "attachmentPos": [{
@@ -182,7 +267,7 @@
         "trees": [
             [-260, -9.0, -270, 0.0, 0.0, 0.0, 10],
             [-250, -9.0, -260, 0.0, 0.0, 0.0, 6],
-            [-10.0, -9.0, 0.0, 0.0, 0.0, 0.0, 10]
+            [-230.0, -9.0, -230.0, 0.0, 0.0, 0.0, 10]
         ],
         "rocks": [],
         "bird": [],
@@ -190,7 +275,11 @@
             [-280, -8.0, 300.0, 0.0, 0.0, 0.0, 6],
             [280, -8.0, 300.0, 90.0, 0.0, 0.0, 6],
             [-280, -8.0, -290.0, 0.0, 0.0, 0.0, 6],
-            [-280, -8.0, 300.0, 90.0, 0.0, 0.0, 6]
+            [-280, -8.0, 300.0, 90.0, 0.0, 0.0, 6],
+            [-280, -10.0, 300.0, 0.0, 0.0, 0.0, 12],
+            [280, -10.0, 300.0, 90.0, 0.0, 0.0, 12],
+            [-280, -10.0, -290.0, 0.0, 0.0, 0.0, 12],
+            [-280, -10.0, 300.0, 90.0, 0.0, 0.0, 12]
         ]
     }],
 

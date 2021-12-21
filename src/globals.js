@@ -42,8 +42,9 @@ const KEY_CODE = {
     'SHIFT': 16
 };
 
-var difficulty = 1;
-var snow = "false"
+var difficulty = 2;
+var environment = "desert"
+var trees;
 
 //un input parte solo se è collegato a queste keys
 keys = [13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
@@ -51,14 +52,18 @@ keys = [13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
 //Assets arrays
 var value;
 var i = 0;
-var bird;
-var floor;
-var cloud;
-var tree = []
-var winterTree = [],
+var bird,
+    borderArea,
+    floor,
+    cloud,
+    tree = [],
+    winterTree = [],
     winterRock = [],
     winterPlant = [],
-    snowman = []
+    snowman = [],
+    desertTree = [],
+    desertRock = [];  
+
 var rock = []
 var flower;
 var enableMovement = true;
@@ -235,7 +240,10 @@ var texture = [
     'texture/cloudColour.png',
     'texture/images.jpeg',
     'texture/texture_winter.png',
-    'texture/ snow-floor.jpg'
+    'texture/snow-floor.jpg',
+    'texture/desert.png',
+    'texture/desert.jpeg'
+    
 ]
 
 
