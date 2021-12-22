@@ -40,11 +40,11 @@ var keyFunctionDown = function(e) {
             case KEY_CODE.HELPPANEL:
                 showElement("help-panel")
                 break;
-            case KEY_CODE.G:
-				if (enableFly)
-                	flyUp();
-				else
-					flyDown();
+            case KEY_CODE.F:
+                if (enableFly)
+                    flyUp();
+                else
+                    flyDown();
                 break;
             case KEY_CODE.SHIFT:
                 simpleMotion = false;
@@ -81,8 +81,8 @@ var keyFunctionUp = function(e) {
             case KEY_CODE.SHIFT:
                 simpleMotion = true;
                 break;
-			case KEY_CODE.G:
-				break;
+            case KEY_CODE.F:
+                break;
             case KEY_CODE.HELPPANEL:
                 hideElement("help-panel")
                 break;
@@ -107,15 +107,15 @@ var keyPanelFunction = function(e) {
 }
 
 function flyUp() {
-	enableFly = false;
-	enableMovement = false;
-	deltaY = 0.25
+    enableFly = false;
+    enableMovement = false;
+    deltaY = 0.5
 }
 
 function flyDown() {
-	enableFly = true;
-	enableMovement = true;
-	deltaY = -0.25
+    enableFly = true;
+    enableMovement = true;
+    deltaY = -0.5
 }
 
 function startGame() {
