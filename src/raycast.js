@@ -33,7 +33,7 @@ function myOnMouseUp(ev) {
 
     var rayDir = utils.multiplyMatrixVector(viewInv, rayEyeCoords);
     var normalisedRayDir = normaliseVector(rayDir);
-    var rayStartPoint = [cx, cy, cz];
+    var rayStartPoint = [cameraX, cameraY, cameraZ];
 
 
     var hit = raySphereIntersection(rayStartPoint, normalisedRayDir, birdPosition[0], birdPosition[1]);

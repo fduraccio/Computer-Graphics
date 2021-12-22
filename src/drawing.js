@@ -123,11 +123,11 @@ async function main() {
 
     var W = utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0);
 
-    var nC = utils.multiplyMatrixVector(W, [driverPosX, driverPosY, driverPosZ, 1.0]);
+    var nC = utils.multiplyMatrixVector(W, [viewPosX, viewPosY, viewPosZ, 1.0]);
 
-    cx = nC[0];
-    cy = nC[1];
-    cz = nC[2];
+    cameraX = nC[0];
+    cameraY = nC[1];
+    cameraZ = nC[2];
 
     requestAnimationFrame(drawScene);
 
@@ -190,7 +190,7 @@ async function main() {
 
         lDir = utils.multiplyMatrix3Vector3(utils.sub3x3from4x4(lightDirMatrix), directionalLightDir);
 
-        var spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(cx, cy, cz, playerAngle, 0.0, 0.0, 1.0));
+        var spotLightMatrix = utils.multiplyMatrices(viewMatrix, utils.MakeWorld(cameraX, cameraY, cameraZ, playerAngle, 0.0, 0.0, 1.0));
         var spotLightMatrix_inv_t = utils.invertMatrix(utils.transposeMatrix(spotLightMatrix));
 
         var spotPos1 = utils.multiplyMatrixVector(spotLightMatrix, [spotLightPos1[0], spotLightPos1[1], spotLightPos1[2], 1.0]);

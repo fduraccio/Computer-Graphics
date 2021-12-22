@@ -15,60 +15,31 @@ var keyFunctionDown = function(e) {
                 if (enableMovement) vz = vz - 1.0;
                 break;
             case KEY_CODE.LEFT:
-                if (firstPersonView) {
-                    deltaCamAngle_1 += 1.0;
-                } else {
-                    deltaCamAngle_2 -= 1.0;
-                }
+                deltaCamAngle += 1.0;
                 break;
             case KEY_CODE.L:
                 enableSpotLight = !enableSpotLight;
                 break;
             case KEY_CODE.RIGHT:
-                if (firstPersonView) {
-                    deltaCamAngle_1 -= 1.0;
-                } else {
-                    deltaCamAngle_2 += 1.0;
-                }
+                deltaCamAngle -= 1.0;
                 break;
             case KEY_CODE.UP:
-                if (firstPersonView) {
-                    deltaCamElevation_1 += 1.0;
-                } else {
-                    deltaCamElevation_2 -= 1.0;
-                }
+                deltaCamElevation += 1.0;
                 break;
             case KEY_CODE.DOWN:
-                if (firstPersonView) {
-                    deltaCamElevation_1 -= 1.0;
-                } else {
-                    deltaCamElevation_2 += 1.0;
-                }
+                deltaCamElevation -= 1.0;
                 break;
             case KEY_CODE.R:
                 angle = playerAngle % 360 - 180;
                 elevation = 0.0;
-                deltaCamAngle_1 = 0.0;
-                deltaCamElevation_1 = 0.0;
-                deltaCamAngle_2 = 0.0;
-                deltaCamElevation_2 = 0.0;
+                deltaCamAngle = 0.0;
+                deltaCamElevation = 0.0;
                 lookRadius = 1.0;
                 deltaLookRadius = 0.0;
                 break;
             case KEY_CODE.HELPPANEL:
                 helpPanel = document.getElementById("help-panel");
                 helpPanel.style.display = "block";
-                break;
-            case KEY_CODE.F:
-                toggleFullScreen();
-                break;
-            case 84:
-                if (easterEggPresses < 5) {
-                    easterEggPresses += 1;
-                } else {
-                    alert("Tropp fort");
-                    easterEggPresses = 0;
-                }
                 break;
             case KEY_CODE.SHIFT:
                 simpleMotion = false;
@@ -92,13 +63,11 @@ var keyFunctionUp = function(e) {
                 break;
             case KEY_CODE.LEFT:
             case KEY_CODE.RIGHT:
-                deltaCamAngle_1 = 0.0;
-                deltaCamAngle_2 = 0.0;
+                deltaCamAngle = 0.0;
                 break;
             case KEY_CODE.UP:
             case KEY_CODE.DOWN:
-                deltaCamElevation_1 = 0.0;
-                deltaCamElevation_2 = 0.0;
+                deltaCamElevation = 0.0;
                 break;
             case KEY_CODE.X:
             case KEY_CODE.Z:
@@ -141,8 +110,8 @@ function startGame() {
         alert("Inserire nome senza lasciare spazi all'inizio")
     } else {
         //cambia qui per aumentare e diminuire il timer
-        time_minutes = 2; // Value in minutes
-        time_seconds = 0; // Value in seconds
+        time_minutes = 0; // Value in minutes
+        time_seconds = 5; // Value in seconds
 
         duration = time_minutes * 60 + time_seconds;
         var element = document.querySelector('#count-down-timer');
@@ -217,6 +186,8 @@ function changeState() {
 
 function reload() {
     window.location.reload();
+	audio = document.getElementById('theme_music');
+	audio.pause();
 }
 
 function changeSettings() {
@@ -262,7 +233,7 @@ function changeEnvironment(env) {
         document.getElementById("desert").classList.remove("selected")
 
         audio = document.getElementById("theme_music")
-        audio.src = "theme_music.mp3"
+        audio.src = "audio/theme_music.mp3"
         startMusic(audio)
 
         return;
@@ -278,7 +249,7 @@ function changeEnvironment(env) {
         document.getElementById("wood").classList.remove("selected");
 
         audio = document.getElementById("theme_music")
-        audio.src = "theme_music_winterland.mp3"
+        audio.src = "audio/theme_music_winterland.mp3"
         startMusic(audio)
 
         return;
@@ -294,7 +265,7 @@ function changeEnvironment(env) {
         document.getElementById("wood").classList.remove("selected")
 
         audio = document.getElementById("theme_music")
-        audio.src = "theme_music_desert.mp3"
+        audio.src = "audio/theme_music_desert.mp3"
         startMusic(audio)
 
         return;
