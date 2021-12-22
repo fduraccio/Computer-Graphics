@@ -41,7 +41,7 @@ var keyFunctionDown = function(e) {
                 showElement("help-panel")
                 break;
             case KEY_CODE.G:
-				if (!enableFly)
+				if (enableFly)
                 	flyUp();
 				else
 					flyDown();
@@ -107,24 +107,15 @@ var keyPanelFunction = function(e) {
 }
 
 function flyUp() {
-	enableFly = true;
+	enableFly = false;
 	enableMovement = false;
-	while (playerY<= 20){
-		playerY += 0.25
-	}
-
-	console.log(playerY)
+	deltaY = 0.25
 }
 
 function flyDown() {
-	enableFly = false;
+	enableFly = true;
 	enableMovement = true;
-	while (playerY > 0){
-		playerY -= 0.25
-	}
-	console.log(playerY)
-
-	
+	deltaY = -0.25
 }
 
 function startGame() {

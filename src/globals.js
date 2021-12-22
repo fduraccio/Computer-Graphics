@@ -59,7 +59,7 @@ var rock = [],
     i;
 
 var enableMovement = true,
-    enableFly = false;
+    enableFly = true;
     
 var allText = []
 var birdPosition,
