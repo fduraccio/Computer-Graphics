@@ -78,7 +78,7 @@ function winners(ev) {
     sound.play();
     setTimeout(function() {
         document.getElementById("winning_sound").play();
-    }, 400);
+    }, 300);
 
     winnerPanel = document.getElementById("winner-panel");
     winnerPanel.style.display = "block";

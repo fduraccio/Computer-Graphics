@@ -11,11 +11,12 @@ const KEY_CODE = {
     'D': 68,
     'I': 73,
     'F': 70,
+    'G': 71,
     'UP': 38,
     'DOWN': 40,
     'LEFT': 37,
     'RIGHT': 39,
-    'L':76,
+    'L': 76,
     'R': 82,
     'V': 86,
     'X': 88,
@@ -93,6 +94,8 @@ var directionalLightDir = [0.0, -1.0, 0.0];
 var specularColor = [1.0, 1.0, 1.0];
 var specularPower = 20.0;
 var spotLight;
+
+var deltaY = 0;
 
 
 var simpleCam = true;

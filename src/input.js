@@ -41,6 +41,10 @@ var keyFunctionDown = function(e) {
                 helpPanel = document.getElementById("help-panel");
                 helpPanel.style.display = "block";
                 break;
+            case KEY_CODE.G:
+                // fly()
+                playerY = 50
+                break;
             case KEY_CODE.SHIFT:
                 simpleMotion = false;
                 break;
@@ -103,6 +107,15 @@ var keyPanelFunction = function(e) {
     //}
 }
 
+function fly() {
+
+    while (playerY <= 40) {
+        deltaY += 1
+    }
+
+    return
+
+}
 
 function startGame() {
     namePlayer = document.getElementById("namePlayer").value;
@@ -186,8 +199,8 @@ function changeState() {
 
 function reload() {
     window.location.reload();
-	audio = document.getElementById('theme_music');
-	audio.pause();
+    audio = document.getElementById('theme_music');
+    audio.pause();
 }
 
 function changeSettings() {
