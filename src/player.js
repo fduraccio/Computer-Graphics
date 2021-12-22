@@ -87,7 +87,7 @@ function computeWPV(vz, steeringDir) {
 
     ackermann(playerLinVel, steeringAngle);
 
-    playerY = playerY + deltaY
+    
     P = utils.MakePerspective(fov, aspectRatio, 0.1, 1000.0);
 
     W = utils.MakeWorld(playerX, playerY, playerZ, 0.0, playerAngle, 0.0, 1.0);
