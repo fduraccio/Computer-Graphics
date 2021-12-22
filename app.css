@@ -315,7 +315,7 @@ canvas {
 
 @font-face {
     font-family: bird-hunt-font;
-    src: url(FEASFBRG.TTF);
+    src: url(fonts/FEASFBRG.TTF);
 }
 
 .bird-hunt-font {
@@ -326,7 +326,7 @@ canvas {
 
 @font-face {
     font-family: secondary-font;
-    src: url(angrybirds-regular.ttf);
+    src: url(fonts/angrybirds-regular.ttf);
 }
 
 .secondary-font {

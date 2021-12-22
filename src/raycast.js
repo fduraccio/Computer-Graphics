@@ -70,22 +70,20 @@ function raySphereIntersection(rayStartPoint, rayNormalisedDir, sphereCentre, sp
 }
 
 function winners(ev) {
-    // alert("entro");
     timeOfWinner = (new Date).getTime();
     timeOfWinner = Math.round((timeOfWinner - startGame) / 1000);
     enableMovement = false;
     sound = document.getElementById('bird_selection');
     sound.play();
+
     setTimeout(function() {
         document.getElementById("winning_sound").play();
     }, 300);
 
-    timerPanel = document.getElementById("timer-panel");
-    timerPanel.style.display = "none";
+    hideElement("timer-panel")
     clearInterval(countInterval)
+    showElement("winner-panel")
 
-    winnerPanel = document.getElementById("winner-panel");
-    winnerPanel.style.display = "block";
     document.getElementById("winner-time").innerHTML = timeOfWinner
     updateRanking(timeOfWinner);
 }

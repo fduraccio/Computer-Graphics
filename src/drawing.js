@@ -1,13 +1,15 @@
+/**
+ * Main function of the game
+ */
 async function main() {
 
-    
     if (difficulty == 3) {
         difficulty = 2;
         var tmp = true;
     }
     startGame = (new Date).getTime();
     var randomPosBird = Math.round(Math.random() * 150 * difficulty)
-   
+
     for (i = 0; i < 200 * difficulty; i++) {
         randomPosition[i] = Math.round(Math.random() * 5);
         randomPositionDesert[i] = Math.round(Math.random() * 3);
@@ -93,8 +95,8 @@ async function main() {
         }
 
         if (model.type == "floor") {
-            floor = environment == "winterland" ? await loadAsset(model.obj, img[5]) : 
-                    environment == "desert" ? await loadAsset(model.obj, img[8]) : await loadAsset(model.obj, img[3]);
+            floor = environment == "winterland" ? await loadAsset(model.obj, img[5]) :
+                environment == "desert" ? await loadAsset(model.obj, img[8]) : await loadAsset(model.obj, img[3]);
         }
 
         if (model.type == "cloud") {
@@ -109,7 +111,7 @@ async function main() {
             desertRock.push(await loadAsset(model.obj, img[7]))
         }
 
-        if (model.type == "desert-plant" || model.type == "desert-rock" || model.name == "rock02" ) {
+        if (model.type == "desert-plant" || model.type == "desert-rock" || model.name == "rock02") {
             desertTree.push([await loadAsset(model.obj, img[7]), model.name])
         }
 
@@ -222,12 +224,12 @@ async function main() {
         if (environment == "woodland") {
             //TODO creare una mappa del mondo in cui posizionare gli oggetti
             createWoodlandMap();
-            
-        } else if(environment == "winterland") {
+
+        } else if (environment == "winterland") {
             //worldMatrix=utils.MakeWorld(trees[2][0], trees[2][1], trees[2][2], trees[2][3], trees[2][4], trees[2][5], trees[2][6]);
             //drawAsset(snowman[0], worldMatrix, viewMatrix, perspectiveMatrix, false);
             createWinterlandMap();
-        } else if(environment == "desert"){
+        } else if (environment == "desert") {
             createDesertMap();
         }
 
@@ -235,7 +237,7 @@ async function main() {
         borderArea = sceneConfig.attachmentPos[0].borderArea; // di n.random
 
         // Border area
-        if(environment == "desert"){
+        if (environment == "desert") {
             for (x = 0; x < 25; x++) {
                 worldMatrix = utils.MakeWorld(borderArea[4][0] + (x * 25), borderArea[4][1], borderArea[4][2], borderArea[4][3], borderArea[4][4], borderArea[4][5], borderArea[4][6]);
                 drawAsset(desertRock[4], worldMatrix, viewMatrix, perspectiveMatrix, false);
@@ -249,10 +251,8 @@ async function main() {
                 worldMatrix = utils.MakeWorld(borderArea[7][0], borderArea[7][1], borderArea[7][2] - (x * 25), borderArea[7][3], borderArea[7][4], borderArea[7][5], borderArea[7][6]);
                 drawAsset(desertRock[4], worldMatrix, viewMatrix, perspectiveMatrix, false);
             }
-
         } else {
             for (x = 0; x < 15; x++) {
-
                 worldMatrix = utils.MakeWorld(borderArea[0][0] + (x * 40), borderArea[0][1], borderArea[0][2], borderArea[0][3], borderArea[0][4], borderArea[0][5], borderArea[0][6]);
                 drawAsset(rock[2], worldMatrix, viewMatrix, perspectiveMatrix, false);
 
@@ -416,7 +416,7 @@ async function main() {
         return imgtxs
     }
 
-    function createDesertMap(){
+    function createDesertMap() {
         for (var x = 0; x < 10 * difficulty; x++) {
             for (var y = 0; y < 20; y++) {
 
@@ -466,16 +466,16 @@ async function main() {
                             ];
                             drawAsset(bird, ornamentWorldMatrix, viewMatrix, perspectiveMatrix, !tmp)
                             break;
-                        
+
                     }
                 }
                 choice = y != 20 ? choice * -1.0 : choice
             }
-            
+
         }
     }
 
-    function createWoodlandMap(){
+    function createWoodlandMap() {
         for (var x = 1; x < 10 * difficulty; x++) {
             for (var y = 0; y < 20; y++) {
                 // console.log(choice)
@@ -556,7 +556,7 @@ async function main() {
         }
     }
 
-    function createWinterlandMap(){
+    function createWinterlandMap() {
         for (var x = 0; x < 10 * difficulty; x++) {
             for (var y = 0; y < 20; y++) {
 
@@ -617,6 +617,9 @@ async function main() {
 }
 
 
+/**
+ * Initializes the canvas
+ */
 async function init() {
 
     let canvas = document.createElement("canvas");
@@ -683,6 +686,10 @@ function initWebGL(canvas) {
     return gl;
 }
 
+/**
+ * Reads from .txt file
+ * @param {*} file 
+ */
 async function readTextFile(file) {
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
@@ -699,6 +706,10 @@ async function readTextFile(file) {
     rawFile.send(null);
 }
 
+/**
+ * Reads to .txt file
+ * @param {*} file 
+ */
 function writeToFile(passForm) {
     const fs = require('fs');
 

@@ -38,8 +38,7 @@ var keyFunctionDown = function(e) {
                 deltaLookRadius = 0.0;
                 break;
             case KEY_CODE.HELPPANEL:
-                helpPanel = document.getElementById("help-panel");
-                helpPanel.style.display = "block";
+                showElement("help-panel")
                 break;
             case KEY_CODE.G:
                 // fly()
@@ -81,8 +80,7 @@ var keyFunctionUp = function(e) {
                 simpleMotion = true;
                 break;
             case KEY_CODE.HELPPANEL:
-                helpPanel = document.getElementById("help-panel");
-                helpPanel.style.display = "none";
+                hideElement("help-panel")
                 break;
         }
     }
@@ -92,15 +90,12 @@ var keyPanelFunction = function(e) {
     //if (checkKey(e.keyCode)) {
     switch (e.keyCode) {
         case KEY_CODE.INVIO:
-            helpPanel = document.getElementById("help-panel");
-            helpPanel.style.display = "none";
-            winnerPanel = document.getElementById("winner-panel");
-            winnerPanel.style.display = "none";
+            hideElement("help-panel")
+            hideElement("winner-panel")
             e.preventDefault();
             break;
         case KEY_CODE.HELPPANEL:
-            helpPanel = document.getElementById("help-panel");
-            helpPanel.style.display = "block";
+            showElement("help-panel")
             e.preventDefault();
             break;
     }
@@ -130,16 +125,11 @@ function startGame() {
         var element = document.querySelector('#count-down-timer');
         element.textContent = `${paddedFormat(time_minutes)}:${paddedFormat(time_seconds)}`;
         startCountDown(--duration, element);
-        namePlayerPanel = document.getElementById("namePlayer-panel");
-        namePlayerPanel.style.display = "none";
-        cvContainer = document.getElementById("cv-container");
-        cvContainer.style.display = "none";
-        helpPanel = document.getElementById("help-panel");
-        helpPanel.style.display = "block";
-        timerPanel = document.getElementById("timer-panel");
-        timerPanel.style.display = "block";
-        audioButton = document.getElementById("audio-button");
-        audioButton.style.display = "block";
+        hideElement("namePlayer-panel")
+        hideElement("cv-container")
+        showElement("help-panel")
+        showElement("timer-panel")
+        showElement("audio-button")
         init();
 
     }
@@ -163,12 +153,10 @@ function startCountDown(duration, element) {
 
         secondsRemaining = secondsRemaining - 1;
         if (secondsRemaining == 0) {
-            timerPanel = document.getElementById("timer-panel");
-            timerPanel.style.display = "none";
+            hidePanel("timer-panel")
             looser_sound = document.getElementById('looser_sound');
             looser_sound.play();
-            looserPanel = document.getElementById("looser-panel");
-            looserPanel.style.display = "block";
+            showElement("looser-panel")
             enableMovement = false;
 
         }
@@ -178,10 +166,8 @@ function startCountDown(duration, element) {
 }
 
 function changeState() {
-    mainPanel = document.getElementById("main-panel");
-    mainPanel.style.display = "none";
-    namePlayerPanel = document.getElementById("input-name-panel");
-    namePlayerPanel.style.display = "block";
+    hideElement("main-panel")
+    showElement("input-name-panel")
 
     if (environment === 'woodland') {
         initialPage()
@@ -204,9 +190,7 @@ function reload() {
 }
 
 function changeSettings() {
-    optionPanel = document.getElementById("change-settings-panel");
-    optionPanel.style.display = "block";
-
+    showElement("change-settings-panel")
 }
 
 function changeLevel(level) {
@@ -287,16 +271,12 @@ function changeEnvironment(env) {
 }
 
 function goBack() {
-    classificaPanel = document.getElementById("classifica-panel");
-    classificaPanel.style.display = "none";
-    optionPanel = document.getElementById("change-settings-panel");
-    optionPanel.style.display = "none";
+    hideElement("classifica-panel")
+    hideElement("change-settings-panel")
 }
 
 function showLeaderboard() {
-    classificaPanel = document.getElementById("classifica-panel");
-    classificaPanel.style.display = "block";
-    // console.log(allText[0])
+    showElement("classifica-panel")
     document.getElementById("firstPlayer").innerHTML = allText[0];
     document.getElementById("scoreFirst").innerHTML = allText[1];
     document.getElementById("secondPlayer").innerHTML = allText[2]
@@ -371,21 +351,28 @@ function toggleFullScreen() {
 function startMusic(audio) {
     audio = document.getElementById('theme_music');
     if (audio.paused) {
-        document.getElementById("audio_disabled").style.display = "none";
-        document.getElementById("audio").style.display = "block";
-        document.getElementById("audio_disabled_2").style.display = "none";
-        document.getElementById("audio_2").style.display = "block";
+        hideElement("audio_disabled");
+        showElement("audio")
+        hideElement("audio_disabled_2");
+        showElement("audio_2")
         audio.play();
     } else {
-        document.getElementById("audio").style.display = "none";
-        document.getElementById("audio_disabled").style.display = "block";
-        document.getElementById("audio_2").style.display = "none";
-        document.getElementById("audio_disabled_2").style.display = "block";
+        hideElement("audio")
+        showElement("audio_disabled");
+        hideElement("audio_2")
+        showElement("audio_disabled_2");
         audio.currentTime = 0
         audio.pause();
-
     }
+}
 
+
+function showElement(element) {
+    document.getElementById(element).style.display = "block";
+}
+
+function hideElement(element) {
+    document.getElementById(element).style.display = "none";
 }
 
 function stopMusic() {

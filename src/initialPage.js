@@ -1,3 +1,6 @@
+/**
+ * Sets and handle the moving background in the initial page - Woodland environment
+ */
 function initialPage() {
     let canvas = document.createElement("canvas");
     let cvContainer = document.getElementById("cv-container");
@@ -109,6 +112,9 @@ function initialPage() {
 
 }
 
+/**
+ * Sets and handle the moving background in the initial page - Winterland environment
+ */
 function initialPageWinter() {
     let canvas = document.createElement("canvas");
     let cvContainer = document.getElementById("cv-container");
@@ -220,6 +226,9 @@ function initialPageWinter() {
 
 }
 
+/**
+ * Sets and handle the moving background in the initial page - Desertland environment
+ */
 function initialPageDesert() {
     let canvas = document.createElement("canvas");
     let cvContainer = document.getElementById("cv-container");
