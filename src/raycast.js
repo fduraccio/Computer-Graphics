@@ -80,6 +80,10 @@ function winners(ev) {
         document.getElementById("winning_sound").play();
     }, 300);
 
+    timerPanel = document.getElementById("timer-panel");
+    timerPanel.style.display = "none";
+    clearInterval(countInterval)
+
     winnerPanel = document.getElementById("winner-panel");
     winnerPanel.style.display = "block";
     document.getElementById("winner-time").innerHTML = timeOfWinner

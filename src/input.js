@@ -123,8 +123,8 @@ function startGame() {
         alert("Inserire nome senza lasciare spazi all'inizio")
     } else {
         //cambia qui per aumentare e diminuire il timer
-        time_minutes = 0; // Value in minutes
-        time_seconds = 5; // Value in seconds
+        time_minutes = 2; // Value in minutes
+        time_seconds = 0; // Value in seconds
 
         duration = time_minutes * 60 + time_seconds;
         var element = document.querySelector('#count-down-timer');
@@ -154,7 +154,7 @@ function startCountDown(duration, element) {
     let min = 0;
     let sec = 0;
 
-    let countInterval = setInterval(function() {
+    countInterval = setInterval(function() {
 
         min = parseInt(secondsRemaining / 60);
         sec = parseInt(secondsRemaining % 60);

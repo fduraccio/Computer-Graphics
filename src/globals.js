@@ -30,6 +30,7 @@ var environment = "woodland"
 var audio;
 var trees;
 var enableSpotLight = false;
+var countInterval = 0;
 
 //un input parte solo se è collegato a queste keys
 keys = [13, 65, 87, 83, 68, 73, 70, 38, 40, 37, 39, 82, 86, 88, 90, 70, 72]
@@ -59,7 +60,7 @@ var rock = [],
 
 var enableMovement = true;
 var allText = []
-var birdPosition, 
+var birdPosition,
     birdPos;
 //Panel
 var helpPanel,
@@ -101,7 +102,7 @@ var deltaY = 0;
 var simpleCam = true;
 var simpleMotion = true; //change to make to 
 
-var distance = 8.0; 
+var distance = 8.0;
 var odom_offset = 4.0;
 
 
@@ -225,4 +226,3 @@ var spotLightPos1 = [0.0, 0.0, 0.0],
 
 var viewMatrix,
     perspectiveMatrix;
-

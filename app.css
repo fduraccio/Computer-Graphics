@@ -462,7 +462,7 @@ canvas {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 41%;
+    height: 65%;
     width: 75%;
 }
 
@@ -476,6 +476,14 @@ canvas {
 
 .row-tb {
     padding: 10px;
+    width: 100%;
+    margin: 5px;
+    word-spacing: 8px;
+    display: flex;
+}
+
+.row {
+    padding: 8px;
     width: 100%;
     margin: 5px;
     word-spacing: 8px;
