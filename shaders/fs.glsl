@@ -64,9 +64,6 @@ void main() {
 	vec3 nSpotLightDir = - normalize(spotLightDir);
 	vec3 lx1 = spotLightPos1 - fsPosition;
 	
-	// f_x = f_diff + f_spec
-
-	// outColor = L_dir*f_dir + L_spec*f_spec + L_spot*f_spot
 
 	vec3 dirLight = lightColor * f_BRDF(nLightDirection, nEyeDirection, nNormal);
 	
@@ -76,6 +73,4 @@ void main() {
 
 	outColor = vec4(clamp(dirLight + spotLight1 + ambientLight + mEmissColor, 0.0, 1.0), texture(u_texture, uvFS).a);
 
-	// color = vec4(min(matcol.rgb * dimFact  * (1.0-normvis) +
-	// 				normvis * (fs_norm) / 2.0, vec3(1.0, 1.0, 1.0)), 1.0);
 }
