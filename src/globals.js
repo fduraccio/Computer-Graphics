@@ -82,8 +82,7 @@ var time_minutes,
 
 
 var vao = [],
-    bufferLength = [],
-    texture = [];
+    bufferLength = [];
 
 var currentTime;
 var lastUpdateTime = (new Date).getTime();

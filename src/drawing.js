@@ -64,7 +64,6 @@ async function main() {
 
     var img = loadTextures();
     let sceneConfig = await (await fetch(`json/config.json`)).json();
-
     for (let model of sceneConfig.models) {
         if (model.type == "bird") {
             bird = await loadAsset(model.obj, img[0])
@@ -310,15 +309,14 @@ async function main() {
      */
     async function loadAsset(assetDir, texture) {
 
-        var vao = [];
-        var bufferLength = [];
+        var vao, bufferLength;
 
         var assetModel = await initMesh(assetDir)
         OBJ.initMeshBuffers(gl, assetModel);
-        vao[i] = gl.createVertexArray();
-        gl.bindVertexArray(vao[i]);
+        vao = gl.createVertexArray();
+        gl.bindVertexArray(vao);
 
-        bufferLength[i] = assetModel.indexBuffer.numItems
+        bufferLength = assetModel.indexBuffer.numItems
 
         var positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -342,9 +340,9 @@ async function main() {
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(assetModel.indices), gl.STATIC_DRAW);
 
-        texture[i] = gl.createTexture();
+        tex = gl.createTexture();
         gl.activeTexture(gl.TEXTURE0 + 0);
-        gl.bindTexture(gl.TEXTURE_2D, texture[i]);
+        gl.bindTexture(gl.TEXTURE_2D, tex);
         gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture);
         // set the filtering so we don't need mips
@@ -355,7 +353,7 @@ async function main() {
 
         gl.bindVertexArray(null);
 
-        return { "id": i, "vao": vao, "texture": texture, "bufferLength": bufferLength };
+        return {"vao": vao, "texture": tex, "bufferLength": bufferLength };
     }
 
     /**
@@ -384,10 +382,10 @@ async function main() {
         if (!emittedColor) gl.uniform3fv(materialEmissColorHandle, [0.0, 0.0, 0.0]);
         else gl.uniform3fv(materialEmissColorHandle, [0.2, 0.2, 0.2]);
         gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, asset.texture[asset.id]);
+        gl.bindTexture(gl.TEXTURE_2D, asset.texture);
 
-        gl.bindVertexArray(asset.vao[asset.id]);
-        gl.drawElements(gl.TRIANGLES, asset.bufferLength[asset.id], gl.UNSIGNED_SHORT, 0);
+        gl.bindVertexArray(asset.vao);
+        gl.drawElements(gl.TRIANGLES, asset.bufferLength, gl.UNSIGNED_SHORT, 0);
 
     }
 
