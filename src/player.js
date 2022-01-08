@@ -3,7 +3,7 @@
  * @param {*} v 
  * @param {*} steering_angle 
  */
-function ackermann(v, steering_angle) {
+function steeringLogic(v, steering_angle) {
 
     var old_theta = playerAngle / 180 * Math.PI;
 
@@ -85,7 +85,7 @@ function computeWPV(vz, steeringDir) {
     prevPlayerAngle = playerAngle;
     deltaPlayerAngle = -playerAngle;
 
-    ackermann(playerLinVel, steeringAngle);
+    steeringLogic(playerLinVel, steeringAngle);
 
     if(playerY < 20 && !enableFly)
 		playerY = playerY + deltaY

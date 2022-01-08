@@ -35,7 +35,6 @@ var keyFunctionDown = function(e) {
                 deltaCamAngle = 0.0;
                 deltaCamElevation = 0.0;
                 lookRadius = 1.0;
-                deltaLookRadius = 0.0;
                 break;
             case KEY_CODE.HELPPANEL:
                 showElement("help-panel")
@@ -58,25 +57,28 @@ var keyFunctionUp = function(e) {
         keys[e.keyCode] = false;
         switch (e.keyCode) {
             case KEY_CODE.L:
+                break;
             case KEY_CODE.A:
+                steeringDir = 0;
+                break;
             case KEY_CODE.D:
                 steeringDir = 0;
                 break;
             case KEY_CODE.W:
+                vz = 0.0;
+                break;
             case KEY_CODE.S:
                 vz = 0.0;
                 break;
             case KEY_CODE.LEFT:
+                deltaCamAngle = 0.0;
+                break;
             case KEY_CODE.RIGHT:
                 deltaCamAngle = 0.0;
                 break;
             case KEY_CODE.UP:
             case KEY_CODE.DOWN:
                 deltaCamElevation = 0.0;
-                break;
-            case KEY_CODE.X:
-            case KEY_CODE.Z:
-                deltaLookRadius = 0.0;
                 break;
             case KEY_CODE.SHIFT:
                 simpleMotion = true;
@@ -91,7 +93,6 @@ var keyFunctionUp = function(e) {
 }
 
 var keyPanelFunction = function(e) {
-    //if (checkKey(e.keyCode)) {
     switch (e.keyCode) {
         case KEY_CODE.INVIO:
             hideElement("help-panel")
@@ -103,7 +104,6 @@ var keyPanelFunction = function(e) {
             e.preventDefault();
             break;
     }
-    //}
 }
 
 function flyUp() {

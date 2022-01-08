@@ -6,24 +6,8 @@ function normaliseVector(vec) {
 
 
 function myOnMouseUp(ev) {
-    //These commented lines of code only work if the canvas is full screen
     var normX = (2 * ev.clientX) / gl.canvas.width - 1;
     var normY = 1 - (2 * ev.clientY) / gl.canvas.height;
-
-    //This is a way of calculating the coordinates of the click in the canvas taking into account its possible displacement in the page
-    /*var top = 0.0, left = 0.0;
-    canvas = gl.canvas;
-    while (canvas && canvas.tagName !== 'BODY') {
-        top += canvas.offsetTop;
-        left += canvas.offsetLeft;
-        canvas = canvas.offsetParent;
-    }
-    var x = ev.clientX - left;
-    var y = ev.clientY - top;
-        
-    //Here we calculate the normalised device coordinates from the pixel coordinates of the canvas
-    var normX = (2*x)/ gl.canvas.width - 1;
-    var normY = 1 - (2*y) / gl.canvas.height;*/
 
     var projInv = utils.invertMatrix(perspectiveMatrix);
     var viewInv = utils.invertMatrix(viewMatrix);
@@ -37,7 +21,7 @@ function myOnMouseUp(ev) {
 
 
     var hit = raySphereIntersection(rayStartPoint, normalisedRayDir, birdPosition[0], birdPosition[1]);
-    //alert(hit)
+
     if (hit) {
         winners(ev);
     }
@@ -106,7 +90,7 @@ function updateRanking(time) {
         writeResult += x + 1 != ranking.length ? ranking[x] + "-" : ranking[x];
     }
 
-    //fare la scrittura sul file ed è fatta
+    //fare la scrittura sul file 
     // console.log(writeResult)
     //WriteToFile(writeResult)
 

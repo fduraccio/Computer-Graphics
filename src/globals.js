@@ -169,7 +169,6 @@ var lineMargin = 1 / Math.sqrt(2);
 var neighborMargin = 1;
 
 var lookRadius = 1.0;
-var deltaLookRadius = 0.0;
 
 var vx = 0,
     vy = 0,
