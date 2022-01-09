@@ -159,7 +159,7 @@ function startCountDown(duration, element) {
 
         secondsRemaining = secondsRemaining - 1;
         if (secondsRemaining == 0) {
-            hidePanel("timer-panel")
+            hideElement("timer-panel")
             looser_sound = document.getElementById('looser_sound');
             looser_sound.play();
             showElement("looser-panel")

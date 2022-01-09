@@ -48,7 +48,6 @@ async function main() {
 
     var materialSpecPowerHandle = gl.getUniformLocation(program, 'mSpecPower');
     var ambientCoeffHandle = gl.getUniformLocation(program, 'ambCoeff');
-    var ambientAlphaHandle = gl.getUniformLocation(program, 'ambAlpha');
     var spotLightTargetHandle = gl.getUniformLocation(program, 'spotLightTarget');
     var spotLightDecayHandle = gl.getUniformLocation(program, 'spotLightDecay');
     var outerConeHandle = gl.getUniformLocation(program, 'outerCone');
@@ -182,7 +181,6 @@ async function main() {
             skyColor[1] = ((1 - skyAlpha) * sunsetLightColor[1] + (skyAlpha - th) * dayLightColor[1]) / (1 - th);
             skyColor[2] = ((1 - skyAlpha) * sunsetLightColor[2] + (skyAlpha - th) * dayLightColor[2]) / (1 - th);
         }
-        ambientLightAlpha = 1.0;
 
         gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -215,7 +213,6 @@ async function main() {
         gl.uniform1f(outerConeHandle, outerCone);
         gl.uniform1f(innerConeHandle, innerCone);
         gl.uniform1f(ambientCoeffHandle, ambientLightCoeff);
-        gl.uniform1f(ambientAlphaHandle, ambientLightAlpha);
 
 
         trees = sceneConfig.attachmentPos[0].trees // di n.random

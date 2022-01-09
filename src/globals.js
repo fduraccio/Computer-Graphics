@@ -214,7 +214,6 @@ var darkLightColor = [0.07, 0.07, 0.12];
 var skyAlpha = 1.0;
 var skyColor = [0.0, 0.0, 0.0];
 var ambientLightCoeff = 0.3;
-var ambientLightAlpha = 0.0;
 
 var spotLightPos1 = [0.0, 0.0, 0.0],
     spotLightDir = [0.0, -8.0, 13],
