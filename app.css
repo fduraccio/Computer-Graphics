@@ -120,7 +120,7 @@ body {
 }
 
 .main-panel {
-    background-image: url(../env/start_page.png);
+    background-image: url(env/start_page.png);
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
@@ -139,7 +139,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: transparent;
-    background-image: url(../env/start_page_winter.png);
+    background-image: url(env/start_page_winter.png);
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -151,7 +151,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: transparent;
-    background-image: url(../env/start_page_desert.png);
+    background-image: url(env/start_page_desert.png);
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -191,7 +191,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: transparent;
-    background-image: url(../env/start_page.png);
+    background-image: url(env/start_page.png);
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -237,7 +237,7 @@ body {
 
 /* #scene div[id="game"] {
     background-color: #71ab21;
-    background-image: url(../env/start_page.png);
+    background-image: url(env/start_page.png);
 } */
 
 button {
@@ -276,7 +276,7 @@ kbd {
 .panel {
     padding: 2em;
     background-color: transparent;
-    background-image: url(../env/control.png);
+    background-image: url(env/control.png);
     background-repeat: no-repeat;
     background-size: 100%;
     color: white;
@@ -414,7 +414,7 @@ canvas {
 
 #button {
     background-color: transparent;
-    background-image: url(../env/red.png);
+    background-image: url(env/red.png);
     background-size: 100px;
     background-repeat: no-repeat;
     height: 100;
@@ -594,7 +594,7 @@ canvas {
 }
 
 .env-woodland {
-    background-image: url(../env/start_page.png);
+    background-image: url(env/start_page.png);
     background-repeat: no-repeat;
     width: 137px;
     background-size: 121%;
@@ -608,7 +608,7 @@ canvas {
 }
 
 .env-winterland {
-    background-image: url(../env/start_page_winter.png);
+    background-image: url(env/start_page_winter.png);
     background-repeat: no-repeat;
     width: 137px;
     background-size: 121%;
@@ -622,7 +622,7 @@ canvas {
 }
 
 .env-desertland {
-    background-image: url(../env/start_page_desert.png);
+    background-image: url(env/start_page_desert.png);
     background-repeat: no-repeat;
     width: 137px;
     background-size: 121%;
@@ -636,7 +636,7 @@ canvas {
 }
 
 .env-woodland:hover {
-    background-image: url(../env/woodland.gif);
+    background-image: url(env/woodland.gif);
     background-repeat: no-repeat;
     width: 137px;
     background-size: 121%;
@@ -651,7 +651,7 @@ canvas {
 }
 
 .env-winterland:hover {
-    background-image: url(../env/winterland.gif);
+    background-image: url(env/winterland.gif);
     background-repeat: no-repeat;
     width: 137px;
     background-size: 121%;
@@ -666,7 +666,7 @@ canvas {
 }
 
 .env-desertland:hover {
-    background-image: url(../env/desert.gif);
+    background-image: url(env/desert.gif);
     background-repeat: no-repeat;
     width: 137px;
     background-size: 121%;
