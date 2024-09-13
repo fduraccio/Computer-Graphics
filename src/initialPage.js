@@ -14,25 +14,25 @@ function initialPage() {
     let gameSpeed = 2;
 
     const backgroundLayer1 = new Image()
-    backgroundLayer1.src = "/init/woodland/sky.png";
+    backgroundLayer1.src = "init/woodland/sky.png";
     const backgroundLayer2 = new Image()
-    backgroundLayer2.src = "/init/woodland/hill1.png";
+    backgroundLayer2.src = "init/woodland/hill1.png";
     const backgroundLayer3 = new Image()
-    backgroundLayer3.src = "/init/woodland/moutains.png";
+    backgroundLayer3.src = "init/woodland/moutains.png";
     const backgroundLayer4 = new Image()
-    backgroundLayer4.src = "/init/woodland/ground.png";
+    backgroundLayer4.src = "init/woodland/ground.png";
     const backgroundLayer5 = new Image()
-    backgroundLayer5.src = "/init/woodland/bushes.png";
+    backgroundLayer5.src = "init/woodland/bushes.png";
     const backgroundLayer6 = new Image()
-    backgroundLayer6.src = "/init/woodland/hill2.png";
+    backgroundLayer6.src = "init/woodland/hill2.png";
     const backgroundLayer7 = new Image()
-    backgroundLayer7.src = "/init/woodland/rocks.png";
+    backgroundLayer7.src = "init/woodland/rocks.png";
     const backgroundLayer8 = new Image()
-    backgroundLayer8.src = "/init/woodland/tree1.png";
+    backgroundLayer8.src = "init/woodland/tree1.png";
     const backgroundLayer9 = new Image()
-    backgroundLayer9.src = "/init/woodland/tree2.png";
+    backgroundLayer9.src = "init/woodland/tree2.png";
     const backgroundLayer10 = new Image()
-    backgroundLayer10.src = "/init/woodland/cloud.png";
+    backgroundLayer10.src = "init/woodland/cloud.png";
 
     class Layer {
 
@@ -128,25 +128,25 @@ function initialPageWinter() {
     let gameSpeed = 3;
 
     const backgroundLayer1 = new Image()
-    backgroundLayer1.src = "/init/winterland/sky.png";
+    backgroundLayer1.src = "init/winterland/sky.png";
     const backgroundLayer2 = new Image()
-    backgroundLayer2.src = "/init/winterland/hills.png";
+    backgroundLayer2.src = "init/winterland/hills.png";
     const backgroundLayer3 = new Image()
-    backgroundLayer3.src = "/init/winterland/moutains.png";
+    backgroundLayer3.src = "init/winterland/moutains.png";
     const backgroundLayer4 = new Image()
-    backgroundLayer4.src = "/init/winterland/ground.png";
+    backgroundLayer4.src = "init/winterland/ground.png";
     const backgroundLayer5 = new Image()
-    backgroundLayer5.src = "/init/winterland/tree1.png";
+    backgroundLayer5.src = "init/winterland/tree1.png";
     const backgroundLayer6 = new Image()
-    backgroundLayer6.src = "/init/winterland/tree2.png";
+    backgroundLayer6.src = "init/winterland/tree2.png";
     const backgroundLayer7 = new Image()
-    backgroundLayer7.src = "/init/winterland/snowtree1.png";
+    backgroundLayer7.src = "init/winterland/snowtree1.png";
     const backgroundLayer8 = new Image()
-    backgroundLayer8.src = "/init/winterland/snowtree2.png";
+    backgroundLayer8.src = "init/winterland/snowtree2.png";
     const backgroundLayer9 = new Image()
-    backgroundLayer9.src = "/init/winterland/snow.png";
+    backgroundLayer9.src = "init/winterland/snow.png";
     const backgroundLayer10 = new Image()
-    backgroundLayer10.src = "/init/winterland/cloud.png";
+    backgroundLayer10.src = "init/winterland/cloud.png";
 
     class Layer {
 
@@ -242,17 +242,17 @@ function initialPageDesert() {
     let gameSpeed = 3;
 
     const backgroundLayer1 = new Image()
-    backgroundLayer1.src = "/init/desertland/sky.png";
+    backgroundLayer1.src = "init/desertland/sky.png";
     const backgroundLayer2 = new Image()
-    backgroundLayer2.src = "/init/desertland/cactus1.png";
+    backgroundLayer2.src = "init/desertland/cactus1.png";
     const backgroundLayer3 = new Image()
-    backgroundLayer3.src = "/init/desertland/hill.png";
+    backgroundLayer3.src = "init/desertland/hill.png";
     const backgroundLayer4 = new Image()
-    backgroundLayer4.src = "/init/desertland/ground.png";
+    backgroundLayer4.src = "init/desertland/ground.png";
     const backgroundLayer5 = new Image()
-    backgroundLayer5.src = "/init/desertland/cactus2.png";
+    backgroundLayer5.src = "init/desertland/cactus2.png";
     const backgroundLayer7 = new Image()
-    backgroundLayer7.src = "/init/desertland/bushes.png";
+    backgroundLayer7.src = "init/desertland/bushes.png";
 
     class Layer {
 
