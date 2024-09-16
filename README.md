@@ -1,10 +1,6 @@
-# Computer Graphics 
-
-# Cirillo Pasquale (10803192) - Duraccio Federica (10806456) 
-
 # Bird Hunt Game
 
-**Bird Hunt** is a 3D browser-based game developed as part of a Computer Graphics course. The project is built using **WebGL** and **OpenGL**, following the course's goal of teaching how to design, engineer, and develop computer graphics software for various applications, including **scientific visualization**, **simulation**, and **gaming**.
+**Bird Hunt** is a 3D browser-based game developed as part of the Computer Graphics course at **Politecnico di Milano**. The project is built using **WebGL** and **OpenGL**, following the course's goal of teaching how to design, engineer, and develop computer graphics software for various applications, including **scientific visualization**, **simulation**, and **gaming**.
 
 ## Game Overview
 
@@ -22,3 +18,9 @@ In **Bird Hunt**, as the name suggests, the player’s goal is to hunt down a bi
 - Start hunting the bird in the selected environment!
 
 Play the game [here](https://pasqualecirillo.github.io/Computer-Graphics/) and test your hunting skills!
+
+## Authors:
+- **Cirillo Pasquale** (10803192)
+- **Duraccio Federica** (10806456)
+
+**Politecnico di Milano**
