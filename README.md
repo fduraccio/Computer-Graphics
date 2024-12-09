@@ -1,25 +1,39 @@
 # Bird Hunt Game
 
-**Bird Hunt** is a 3D browser-based game developed as part of the Computer Graphics course at **Politecnico di Milano**. The project is built using **WebGL** and **OpenGL**, following the course's goal of teaching how to design, engineer, and develop computer graphics software for various applications, including **scientific visualization**, **simulation**, and **gaming**.
+**Bird Hunt** is a 3D browser-based game developed as part of the Computer Graphics course at **Politecnico di Milano**. The project leverages **WebGL** and **OpenGL** technologies and is designed to provide an engaging gameplay experience while demonstrating principles of computer graphics.
+
+## Compatibility
+
+- Fully compatible with the latest versions of **Google Chrome** and **Mozilla Firefox**.
+- **Not optimized for Safari** — users may experience issues or limited functionality when using this browser.
 
 ## Game Overview
 
-In **Bird Hunt**, as the name suggests, the player’s goal is to hunt down a bird in a virtual environment. The game's user interface (UI) takes inspiration from the popular **Angry Birds** game, with a similar aesthetic style reflected in the bird icon and font design.
+In **Bird Hunt**, the player’s objective is to hunt a bird in a virtual environment. The user interface (UI) draws inspiration from the popular **Angry Birds** game, featuring a playful aesthetic reflected in the bird icon and font design.
 
-### Main Features:
-- **Difficulty Levels**: Players can choose between three difficulty levels—easy, medium, and hard.
-- **Environments**: The game offers three distinct environments: **Woodland**, **Winterland**, and **Desertland**. Hovering over each environment provides a preview, and the background music changes accordingly to enhance the user experience (UX). Players can toggle the background music on or off based on their preference.
-- **Scoreboard**: After each game, the top five players’ scores are displayed, encouraging competition.
+### Main Features
 
-### How to Play:
-- Click the button on the bottom left to open the settings modal.
-- Choose your difficulty level and game environment.
-- Background music will automatically adapt to the chosen environment, adding an immersive element to the gameplay.
-- Start hunting the bird in the selected environment!
+- **Difficulty Levels**: Choose between three difficulty levels—Easy, Medium, and Hard.
+- **Environments**: Select from three distinct environments:
+  - **Woodland**
+  - **Winterland**
+  - **Desertland**  
+  Each environment includes a preview and unique background music that can be toggled on or off to enhance user experience.
+- **Scoreboard**: Displays the top five scores after each game to encourage competition.
 
-Play the game [here](https://pasqualecirillo.github.io/Computer-Graphics/) and test your hunting skills!
+### How to Play
 
-## Authors:
+1. Click the button on the bottom left corner to open the settings modal.
+2. Select your difficulty level and preferred game environment.
+3. Background music will adapt automatically to the selected environment, providing an immersive experience.
+4. Start the game and hunt the bird in the virtual setting!
+
+## Play Now
+
+Try the game here: [Bird Hunt Game](https://pasqualecirillo.github.io/Computer-Graphics/)
+
+## Authors
+
 - **Cirillo Pasquale** (10803192)
 - **Duraccio Federica** (10806456)
 
